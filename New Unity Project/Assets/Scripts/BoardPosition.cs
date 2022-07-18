@@ -9,6 +9,7 @@ class BoardPosition
     public Color Color;
     public Tile target_tile;
     public BoardPosition[,] reference;
+    public bool dirty = false;
 
     public bool CheckType(BoardPosition other)
     {
@@ -49,7 +50,7 @@ class BoardPosition
         if (board_position.y < 8)
         {
             BoardPosition other = reference[(int)board_position.x, (int)board_position.y+1];
-            if (other.target_tile != null && CheckType(other)  )
+            if (other.target_tile != null && CheckType(other))
             {
                 neighbours.Add(other);
                 count += other.CheckUp(count,neighbours);

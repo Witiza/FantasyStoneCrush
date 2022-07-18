@@ -45,6 +45,7 @@ public class Board : MonoBehaviour
                         if ((diff).magnitude > minimum_magnitude)
                         {
                             SwapAction(diff);
+                            selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
                             selected_tile = null;
                         }
                     }
@@ -141,24 +142,30 @@ public class Board : MonoBehaviour
     }
 
     //Shit name
-    //EL PROBLEMA ES QUE BUSCAN LAS X PRIMERAS, QUE AL MOVERLAS DEJAN OTRO HUECO DEL MISMO TAMAÑO. TENDRIAN QUE CAER TODAS LAS QUE ESTAN ARRIBA. QUIZAS ES BUENA IDEA HACER UNA LSITA CON TODAS LAS QUE HAY ARRIBA Y MOVERLAS X ESPACIOS.
+
     void DestroyAndMoveVertically(List<BoardPosition> tiles)
     {
-
         tiles = tiles.OrderBy(x => x.board_position.y).ToList();
         foreach (BoardPosition tile in tiles)
         {
+            Debug.Log(tile.board_position.y);
             Destroy(tile.target_tile.gameObject);
             tile.target_tile = null;
         }
-        foreach (BoardPosition tile in tiles)
+        BoardPosition tmp = tiles[0];
+        int counter = 0;
+        for(int i = (int)tiles[0].board_position.y;i<8;i++)
         {
-            GetHighestValid(tile);
+            tmp = board[(int)tiles[0].board_position.x, (int)tiles[0].board_position.y + counter];
+            GetHighestValid(tmp);
+            counter++;
         }
+        //MoveUpperTiles(tiles.Last(),tiles.Count);
     }
 
     void GetHighestValid(BoardPosition tile)
     {
+        Debug.Log("Getting one");
         BoardPosition tmp = tile;
 
         tile.target_tile = null;
@@ -175,15 +182,12 @@ public class Board : MonoBehaviour
         }
     }
 
+  
     void NotifyNeighbours(BoardPosition tile)
     {
         int x = (int)tile.board_position.x;
         int y = (int)tile.board_position.y;
 
-        //BoardPosition right = x < 8 ? board[x + 1, y] : null;
-        //BoardPosition left = x > 0 ? board[x - 1, y] : null;
-        //BoardPosition top = y < 8 ? board[x, y + 1] : null;
-        //BoardPosition bottom = y > 0 ? board[x, y - 1] : null;
         List<BoardPosition> neighbours = new List<BoardPosition>();
 
         int count = 0;
@@ -216,11 +220,6 @@ public class Board : MonoBehaviour
             Destroy(tile.target_tile.gameObject);
             NotifyDisapear(tile);
         }
-
-        //Debug.Log($"Checking Right, the tile {tile.target_tile.tile_type} found {count} matches");
-        //Debug.Log($"Checking Left, the tile {tile.target_tile.tile_type} found {count2} matches");
-        //Debug.Log($"Checking Up, the tile {tile.target_tile.tile_type} found {count} matches");
-        //Debug.Log($"Checking Down, the tile {tile.target_tile.tile_type} found {count2} matches");
     }
 
     void SwapAction(Vector2 diff)
