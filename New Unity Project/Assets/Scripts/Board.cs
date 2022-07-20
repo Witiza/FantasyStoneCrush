@@ -4,68 +4,45 @@ using System.Linq;
 using UnityEngine;
 
 
-
+[RequireComponent(typeof(IGameplayInput))]
 public class Board : MonoBehaviour
 {
     public GameObject tile_prefab;
     BoardPosition selected_tile;
-    Vector2 initial_touch_position;
-    public float minimum_magnitude = 1;
     BoardPosition[,] board = new BoardPosition[9,9];
     public float tile_size = 0.5f;
-    // Start is called before the first frame update
+    IGameplayInput gameplay_input;
+
     void Start()
     {
         UpdateBoardPos();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        for(int i = 0;i<9;i++)
         {
-            BoardPosition clicked = DetermineClosestTile(Input.mousePosition);
-            Destroy(clicked.target_tile.gameObject);
-            NotifyDisapear(clicked);
-            
-        }
-        if (Input.touchCount >0)
-        {
-            Touch touch = Input.GetTouch(0);
-            switch (touch.phase)
+            for(int j = 0;j<9;j++)
             {
-                case TouchPhase.Began:
-                    SelectTile(touch.position);
-                    initial_touch_position = touch.position;
-                    break;
-                case TouchPhase.Moved:
-                    if(selected_tile != null)
-                    { 
-                    Vector2 diff = touch.position - initial_touch_position;
-                        if ((diff).magnitude > minimum_magnitude)
-                        {
-                            SwapAction(diff);
-                            selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-                            selected_tile = null;
-                        }
-                    }
-                    break;
-                case TouchPhase.Stationary:
-                    break;
-                case TouchPhase.Ended:
-                    if (selected_tile != null)
+                if (board[i, j].dirty && board[i,j].target_tile != null )
+                {
+                    NotifyNeighbours(board[i, j]);
+                }
+            }
+        }
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (board[i, j].target_tile == null)
+                {
+                    if (!GetHighestValid(board[i, j]))
                     {
-                        selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                        GameObject tile = Instantiate(tile_prefab);
+                        board[i, j].target_tile = tile.GetComponent<Tile>();
+                        MoveVisualTile(board[i, j]);
                     }
-                    break;
-                case TouchPhase.Canceled:
-                    if (selected_tile != null)
-                    {
-                        selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-                    }
-                    break;
-                default:
-                    break;
+                }
             }
         }
     }
@@ -82,24 +59,24 @@ public class Board : MonoBehaviour
             selected_tile = null;
         }
     }
+    //Find better way to do this
     BoardPosition DetermineClosestTile(Vector2 screen_pos)
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(screen_pos);
         pos.z = 0;
         BoardPosition closest = board[0, 0];
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
-            {
-                if ((board[i,j].Position-pos).magnitude < (closest.Position-pos).magnitude)
-                {
-                    closest = board[i,j];
-                }
-            }
-        }
+        //for (int i = 0; i < 9; i++)
+        //{
+        //    for (int j = 0; j < 9; j++)
+        //    {
+        //        if ((board[i,j].Position-pos).magnitude < (closest.Position-pos).magnitude)
+        //        {
+        //            closest = board[i,j];
+        //        }
+        //    }
+        //}
         return closest;
     }
-    //Debugging purposes
     void UpdateBoardPos()
     {
         for (int i = 0; i < 9; i++)
@@ -107,231 +84,222 @@ public class Board : MonoBehaviour
             for (int j = 0; j < 9; j++)
             {
                 board[i, j] = new BoardPosition();
-                board[i, j].Position = new Vector3(transform.position.x + i * tile_size, transform.position.y + j * tile_size, 0);
-                board[i, j].Color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
                 board[i, j].board_position = new Vector2(i, j);
                 board[i, j].reference = board;
                 GameObject tile = Instantiate(tile_prefab);
-                tile.transform.position = board[i, j].Position;
                 board[i, j].target_tile = tile.GetComponent<Tile>();
-
+                MoveVisualTile(board[i, j]);
+                
             }
         }
     }
 
-    void NotifyDisapear(BoardPosition deleted)
+    //This funciton should tell something tot he tile script, so it does de tween shit.
+    void MoveVisualTile(BoardPosition tile)
     {
-        if(deleted.board_position.y !=8)
-        {
-            BoardPosition to_move = board[(int)deleted.board_position.x, (int)deleted.board_position.y + 1];
-            if (to_move.target_tile != null)
-            {
-                deleted.target_tile = to_move.target_tile;
-                deleted.target_tile.transform.position = deleted.Position;
-                NotifyDisapear(to_move);
-            }
-            else
-            {
-                deleted.target_tile = null;
-            }
-        }
-        else
-        {
-            deleted.target_tile = null;
-        }
+       tile.target_tile.transform.position = new Vector3(transform.position.x + tile.board_position.x * tile_size, transform.position.y + tile.board_position.y* tile_size, 0);
     }
-
-    //Shit name
-
-    void DestroyAndMoveVertically(List<BoardPosition> tiles)
+    bool GetHighestValid(BoardPosition deleted)
     {
-        tiles = tiles.OrderBy(x => x.board_position.y).ToList();
-        foreach (BoardPosition tile in tiles)
-        {
-            Debug.Log(tile.board_position.y);
-            Destroy(tile.target_tile.gameObject);
-            tile.target_tile = null;
-        }
-        BoardPosition tmp = tiles[0];
-        int counter = 0;
-        for(int i = (int)tiles[0].board_position.y;i<8;i++)
-        {
-            tmp = board[(int)tiles[0].board_position.x, (int)tiles[0].board_position.y + counter];
-            GetHighestValid(tmp);
-            counter++;
-        }
-        //MoveUpperTiles(tiles.Last(),tiles.Count);
-    }
+        bool ret = false;
+        BoardPosition tmp = deleted;
 
-    void GetHighestValid(BoardPosition tile)
-    {
-        Debug.Log("Getting one");
-        BoardPosition tmp = tile;
+        deleted.target_tile = null;
 
-        tile.target_tile = null;
-
-        while(tmp.board_position.y<8&&tile.target_tile==null)
+        while(tmp.board_position.y<8&&deleted.target_tile==null)
         {
             tmp = board[(int)tmp.board_position.x, (int)tmp.board_position.y + 1];
             if(tmp.target_tile!=null)
             {
-                tile.target_tile = tmp.target_tile;
-                tile.target_tile.transform.position = tile.Position;
+                deleted.target_tile = tmp.target_tile;
+                MoveVisualTile(deleted);
+                deleted.dirty = true;
                 tmp.target_tile = null;
+                ret = true;
             }
         }
+        return ret;
     }
 
-  
+    bool CanSwap(BoardPosition tile)
+    {
+        bool ret = false;
+        List<BoardPosition> horizontal_neighbours;
+        List<BoardPosition> vertical_neighbours;
+
+        GetNeighbours(tile, out horizontal_neighbours, out vertical_neighbours);
+        if(horizontal_neighbours.Count>=2||vertical_neighbours.Count>=2)
+        {
+            ret = true;
+        }
+        return ret;
+    }
+    void GetNeighbours(BoardPosition tile, out List<BoardPosition> horizontal, out List<BoardPosition> vertical)
+    {
+        horizontal = new List<BoardPosition>();
+        vertical = new List<BoardPosition>();
+
+        tile.CheckRight(horizontal);
+        tile.CheckLeft(horizontal);
+        tile.CheckUp(vertical);
+        tile.CheckDown(vertical);
+    }
+    //Needs to be sepparated into getting neighbours and doing things to them.
     void NotifyNeighbours(BoardPosition tile)
     {
-        int x = (int)tile.board_position.x;
-        int y = (int)tile.board_position.y;
+        List<BoardPosition> horizontal_neighbours;
+        List<BoardPosition> vertical_neighbours;
 
-        List<BoardPosition> neighbours = new List<BoardPosition>();
-
-        int count = 0;
-        count +=tile.CheckRight(count,neighbours);
-        int count2 = 0;
-        count2 += tile.CheckLeft(count2, neighbours);
-        if(count+count2 >=2)
+        GetNeighbours(tile, out horizontal_neighbours, out vertical_neighbours);
+        int horizontal_count = horizontal_neighbours.Count;
+        int vertical_count = vertical_neighbours.Count;
+        if (horizontal_count >= 3 || vertical_count >= 3)
         {
-            foreach(BoardPosition neighbour in neighbours)
+            if (horizontal_count >= 3)
             {
-                if (neighbour != tile)
+                foreach (BoardPosition neighbour in horizontal_neighbours)
                 {
                     Destroy(neighbour.target_tile.gameObject);
-                    NotifyDisapear(neighbour);
+                    neighbour.target_tile = null;
                 }
             }
-        }
-        neighbours.Clear();
-        int count3 = 0;
-        count3 += tile.CheckUp(count3, neighbours);
-        int count4 = 0;
-        count4 += tile.CheckDown(count4, neighbours);
-        if(count3+count4>=2)
-        {
-            neighbours.Add(tile);
-            DestroyAndMoveVertically(neighbours);
-        }
-        else if(count + count2 >= 2)
-        {
+            if (vertical_count >= 2)
+            {
+                vertical_neighbours.Add(tile);
+                foreach (BoardPosition neighbour in vertical_neighbours)
+                {
+                    if (neighbour != tile)
+                    {
+                        Destroy(neighbour.target_tile.gameObject);
+                        neighbour.target_tile = null;
+                    }
+                }
+            }
             Destroy(tile.target_tile.gameObject);
-            NotifyDisapear(tile);
-        }
-    }
-
-    void SwapAction(Vector2 diff)
-    {
-        BoardPosition other = null;
-        if (Mathf.Abs(diff.y) > Mathf.Abs(diff.x))
-        {
-            if (diff.y > 0)
-            {
-                other = SwapTop();
-            }
-            else
-            {
-                other = SwapBottom();
-            }
+            tile.target_tile = null;
         }
         else
         {
-            if (diff.x > 0)
-            {
-                other = SwapRight();
-            }
-            else
-            {
-                other = SwapLeft();
-            }
+            //NO MATCHES?
         }
-        //This means that the swap has been done
-        if(other != null)
+        tile.dirty = false;
+    }
+
+    void SwapAction(Direction dir)
+    {
+        bool swapped = false;
+        switch (dir)
         {
-            NotifyNeighbours(other);
-            NotifyNeighbours(selected_tile);
+            case Direction.RIGHT:
+                swapped = SwapRight();
+                break;
+            case Direction.LEFT:
+                swapped = SwapLeft();
+                break;
+            case Direction.UP:
+                swapped = SwapTop();
+                break;
+            case Direction.DOWN:
+                swapped = SwapBottom();
+                break;
+            default:
+                break;
         }
     }
-    BoardPosition SwapTop()
+
+    bool SwapTop()
     {
-        BoardPosition ret = null;
+        bool ret = false;
         if(selected_tile.board_position.y <8)
         {
             BoardPosition other = board[(int)selected_tile.board_position.x, (int)selected_tile.board_position.y + 1];
-            if (other.target_tile != null)
-            {
-                Tile tmp = selected_tile.target_tile;
-                selected_tile.target_tile = other.target_tile;
-                selected_tile.target_tile.gameObject.transform.position = selected_tile.Position;
-                other.target_tile = tmp;
-                other.target_tile.gameObject.transform.position = other.Position;
-                tmp.GetComponent<SpriteRenderer>().color = Color.white;
-                ret = other;
-            }
+            ret = SwapVisualTile(selected_tile, other);
         }
         return ret;
     }
 
-    BoardPosition SwapBottom()
+    bool SwapBottom()
     {
-        BoardPosition ret = null;
+        bool ret = false;
         if (selected_tile.board_position.y > 0)
         {
             BoardPosition other = board[(int)selected_tile.board_position.x, (int)selected_tile.board_position.y - 1];
-            if (other.target_tile != null)
-            {
-                Tile tmp = selected_tile.target_tile;
-                selected_tile.target_tile = other.target_tile;
-                selected_tile.target_tile.gameObject.transform.position = selected_tile.Position;
-                other.target_tile = tmp;
-                other.target_tile.gameObject.transform.position = other.Position;
-                tmp.GetComponent<SpriteRenderer>().color = Color.white;
-                ret = other;
-            }
+            ret = SwapVisualTile(selected_tile, other);
         }
         return ret;
     }
 
-    BoardPosition SwapRight()
+    bool SwapRight()
     {
-        BoardPosition ret=null;
+        bool ret=false;
         if (selected_tile.board_position.x < 8)
         {
-
             BoardPosition other = board[(int)selected_tile.board_position.x+1, (int)selected_tile.board_position.y];
-            if (other.target_tile != null)
-            {
-                Tile tmp = selected_tile.target_tile;
-                selected_tile.target_tile = other.target_tile;
-                selected_tile.target_tile.gameObject.transform.position = selected_tile.Position;
-                other.target_tile = tmp;
-                other.target_tile.gameObject.transform.position = other.Position;
-                tmp.GetComponent<SpriteRenderer>().color = Color.white;
-                ret = other;
-            }
+            ret = SwapVisualTile(selected_tile, other);
         }
         return ret;
     }
 
-    BoardPosition SwapLeft()
+    bool SwapLeft()
     {
-        BoardPosition ret = null;
+        bool ret = false;
         if (selected_tile.board_position.x > 0)
         {
             BoardPosition other = board[(int)selected_tile.board_position.x - 1, (int)selected_tile.board_position.y];
-            if (other.target_tile != null)
-            {
-                Tile tmp = selected_tile.target_tile;
-                selected_tile.target_tile = other.target_tile;
-                selected_tile.target_tile.gameObject.transform.position = selected_tile.Position;
-                other.target_tile = tmp;
-                other.target_tile.gameObject.transform.position = other.Position;
-                tmp.GetComponent<SpriteRenderer>().color = Color.white;
-                ret = other;
+            ret = SwapVisualTile(selected_tile, other);
             }
-        }
         return ret;
+    }
+
+    //Needs some refactoring. visual position and visual color should change somewhere else.
+    bool SwapVisualTile(BoardPosition tile, BoardPosition other)
+    {
+        bool ret = false;
+        if (other.target_tile != null && CanSwap(tile)&&CanSwap(other))
+        {
+            Tile tmp = tile.target_tile;
+            tile.target_tile = other.target_tile;
+            MoveVisualTile(tile);
+            other.target_tile = tmp;
+            MoveVisualTile(other);
+            tile.dirty = true;
+            other.dirty = true;
+            ret = true;
+        }
+        tile.target_tile.GetComponent<SpriteRenderer>().color = Color.white;
+        return ret;
+    }
+
+    private void OnEnable()
+    {
+        gameplay_input = gameObject.GetComponent<IGameplayInput>();
+        gameplay_input.StartTouch += InputStartTouch;
+        gameplay_input.Swap += InputSwap;
+        gameplay_input.EndTouch += InputEndTouch;
+    }
+    private void OnDisable()
+    {
+        gameplay_input.StartTouch -= InputStartTouch;
+        gameplay_input.Swap -= InputSwap;
+        gameplay_input.EndTouch -= InputEndTouch;
+    }
+    private void InputSwap(Direction dir)
+    {
+        SwapAction(dir);
+        selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        selected_tile = null;
+    }
+
+    private void InputEndTouch()
+    {
+        if (selected_tile != null)
+        {
+            selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    private void InputStartTouch(Vector3 pos)
+    {
+        SelectTile(pos);
     }
 }

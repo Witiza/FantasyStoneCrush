@@ -4,18 +4,16 @@ using UnityEngine;
 
 class BoardPosition
 {
-    public Vector3 Position;
     public Vector2 board_position;
-    public Color Color;
     public Tile target_tile;
     public BoardPosition[,] reference;
-    public bool dirty = false;
+    public bool dirty = true;
 
     public bool CheckType(BoardPosition other)
     {
         return other.target_tile.tile_type == target_tile.tile_type;
     }
-    public int CheckRight(int count,List<BoardPosition> neighbours)
+    public bool CheckRight(List<BoardPosition> neighbours)
     {
         if (board_position.x < 8)
         {
@@ -23,14 +21,14 @@ class BoardPosition
             if (other.target_tile != null && CheckType(other))
             {
                 neighbours.Add(other);
-                count+=other.CheckRight(count,neighbours);
-                return ++count;
+                other.CheckRight(neighbours);
+                return true;
             }
         }
-        return count;
+        return false; 
     }
 
-        public int CheckLeft(int count, List<BoardPosition> neighbours)
+        public bool CheckLeft(List<BoardPosition> neighbours)
         {
             if (board_position.x >0)
             {
@@ -38,14 +36,14 @@ class BoardPosition
                 if (other.target_tile != null && CheckType(other))
                 {
                 neighbours.Add(other);
-                count += other.CheckLeft(count,neighbours);
-                    return ++count;
+                other.CheckLeft(neighbours);
+                    return true;
                 }
             }
-           return count;
+           return false;
         }
 
-    public int CheckUp(int count, List<BoardPosition> neighbours)
+    public bool CheckUp(List<BoardPosition> neighbours)
     {
         if (board_position.y < 8)
         {
@@ -53,14 +51,14 @@ class BoardPosition
             if (other.target_tile != null && CheckType(other))
             {
                 neighbours.Add(other);
-                count += other.CheckUp(count,neighbours);
-                return ++count;
+                other.CheckUp(neighbours);
+                return true;
             }
         }
-        return count;
+        return false;
     }
 
-    public int CheckDown(int count, List<BoardPosition> neighbours)
+    public bool CheckDown(List<BoardPosition> neighbours)
     {
         if (board_position.y > 0)
         {
@@ -68,10 +66,10 @@ class BoardPosition
             if (other.target_tile != null && CheckType(other)  )
             {
                 neighbours.Add(other);
-                count += other.CheckLeft(count,neighbours);
-                return ++count;
+                other.CheckDown(neighbours);
+                return true;
             }
         }
-        return count;
+        return false;
     }
 }
