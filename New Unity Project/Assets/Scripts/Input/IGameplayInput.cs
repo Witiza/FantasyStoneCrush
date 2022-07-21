@@ -3,8 +3,8 @@ using UnityEngine;
 
 public interface IGameplayInput
 {
-     public event Action<Vector3> StartTouch;
-    public void NotifyTouch(Vector3 pos);
+     public event Action<Vector2> StartTouch;
+    public void NotifyTouch(Vector2 pos);
 
      public event Action<Direction> Swap;
     public void NotifySwap(Direction dir);

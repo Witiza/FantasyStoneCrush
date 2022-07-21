@@ -9,7 +9,10 @@ public enum  TileType
     DAGGER,
     ARROW,
     WAND,
-    CHALICE
+    CHALICE,
+    BOMB,
+    ROCKET,
+    NULL
 }
 public class Tile : MonoBehaviour
 {

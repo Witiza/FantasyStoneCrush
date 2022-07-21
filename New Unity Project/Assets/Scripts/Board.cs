@@ -9,7 +9,7 @@ public class Board : MonoBehaviour
 {
     public GameObject tile_prefab;
     BoardPosition selected_tile;
-    BoardPosition[,] board = new BoardPosition[9,9];
+    public static BoardPosition[,] board = new BoardPosition[9,9];
     public float tile_size = 0.5f;
     IGameplayInput gameplay_input;
 
@@ -50,21 +50,25 @@ public class Board : MonoBehaviour
     void SelectTile(Vector2 screen_pos)
     {
         selected_tile = DetermineClosestTile(screen_pos);
-        if (selected_tile.target_tile != null)
+        if (selected_tile != null)
         {
-            selected_tile.target_tile.GetComponent<SpriteRenderer>().color = Color.red;
-        }
-        else
-        {
-            selected_tile = null;
+            if (selected_tile.target_tile != null)
+            {
+                selected_tile.target_tile.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else
+            {
+                selected_tile = null;
+            }
         }
     }
     //Find better way to do this
     BoardPosition DetermineClosestTile(Vector2 screen_pos)
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(screen_pos);
+        Vector3 tmp = pos - transform.position;
         pos.z = 0;
-        BoardPosition closest = board[0, 0];
+        BoardPosition closest = null;
         //for (int i = 0; i < 9; i++)
         //{
         //    for (int j = 0; j < 9; j++)
@@ -75,6 +79,15 @@ public class Board : MonoBehaviour
         //        }
         //    }
         //}
+        //board[i, j].Position = new Vector3(transform.position.x + i * tile_size, transform.position.y + j * tile_size, 0);
+        float x = (tmp.x / (tile_size));
+        float y = (tmp.y / (tile_size));
+        int rounded_x = (int)Mathf.Round(x);
+        int rounded_y = (int)Mathf.Round(y);
+        if(rounded_x >=0&&rounded_x < 9 && rounded_y >=0&&rounded_y<9)
+        {
+            closest = board[rounded_x, rounded_y];
+        }
         return closest;
     }
     void UpdateBoardPos()
@@ -83,7 +96,7 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < 9; j++)
             {
-                board[i, j] = new BoardPosition();
+                board[i, j] = new BaseTile();
                 board[i, j].board_position = new Vector2(i, j);
                 board[i, j].reference = board;
                 GameObject tile = Instantiate(tile_prefab);
@@ -153,30 +166,29 @@ public class Board : MonoBehaviour
         GetNeighbours(tile, out horizontal_neighbours, out vertical_neighbours);
         int horizontal_count = horizontal_neighbours.Count;
         int vertical_count = vertical_neighbours.Count;
-        if (horizontal_count >= 3 || vertical_count >= 3)
+        if (horizontal_count >= 2 || vertical_count >= 2)
         {
-            if (horizontal_count >= 3)
+            if (horizontal_count >= 2)
             {
                 foreach (BoardPosition neighbour in horizontal_neighbours)
                 {
+                    neighbour.DestroyTile();
+
                     Destroy(neighbour.target_tile.gameObject);
                     neighbour.target_tile = null;
                 }
             }
             if (vertical_count >= 2)
             {
-                vertical_neighbours.Add(tile);
                 foreach (BoardPosition neighbour in vertical_neighbours)
                 {
-                    if (neighbour != tile)
-                    {
-                        Destroy(neighbour.target_tile.gameObject);
-                        neighbour.target_tile = null;
-                    }
+                    neighbour.DestroyTile();
+                    Destroy(neighbour.target_tile.gameObject);
+                    neighbour.target_tile = null;
                 }
             }
-            Destroy(tile.target_tile.gameObject);
-            tile.target_tile = null;
+            tile.DestroyTile();
+
         }
         else
         {
@@ -185,6 +197,22 @@ public class Board : MonoBehaviour
         tile.dirty = false;
     }
 
+    //This should be in its own script or someting
+    void SpecialTileGeneration(BoardPosition tile, List<BoardPosition> vertical, List<BoardPosition> horizontal)
+    {
+        if(vertical.Count + horizontal.Count > 2)
+        {
+            //generate bomb
+        }
+        else if(horizontal.Count > 2)
+        {
+            //horizontal missile
+        }
+        else if(vertical.Count > 2)
+        {
+            //vertical missile
+        }
+    }
     void SwapAction(Direction dir)
     {
         bool swapped = false;
@@ -255,18 +283,29 @@ public class Board : MonoBehaviour
     bool SwapVisualTile(BoardPosition tile, BoardPosition other)
     {
         bool ret = false;
-        if (other.target_tile != null && CanSwap(tile)&&CanSwap(other))
+        if (other.target_tile != null)
         {
+            
             Tile tmp = tile.target_tile;
             tile.target_tile = other.target_tile;
-            MoveVisualTile(tile);
             other.target_tile = tmp;
-            MoveVisualTile(other);
-            tile.dirty = true;
-            other.dirty = true;
-            ret = true;
+            if (CanSwap(tile) || CanSwap(other))
+            {
+                MoveVisualTile(other);
+                MoveVisualTile(tile);
+                tile.dirty = true;
+                other.dirty = true;
+                ret = true;
+            }
+            else
+            {
+                //We undo the swap, this should be in another function
+                tmp = tile.target_tile;
+                tile.target_tile = other.target_tile;
+                other.target_tile = tmp;
+            }
+
         }
-        tile.target_tile.GetComponent<SpriteRenderer>().color = Color.white;
         return ret;
     }
 
@@ -285,9 +324,12 @@ public class Board : MonoBehaviour
     }
     private void InputSwap(Direction dir)
     {
-        SwapAction(dir);
-        selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        selected_tile = null;
+        if (selected_tile != null)
+        {
+            SwapAction(dir);
+            selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            selected_tile = null;
+        }
     }
 
     private void InputEndTouch()
@@ -298,7 +340,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void InputStartTouch(Vector3 pos)
+    private void InputStartTouch(Vector2 pos)
     {
         SelectTile(pos);
     }

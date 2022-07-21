@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class BoardPosition
+public abstract class BoardPosition
 {
     public Vector2 board_position;
     public Tile target_tile;
     public BoardPosition[,] reference;
     public bool dirty = true;
+
+    public abstract void DestroyTile();
 
     public bool CheckType(BoardPosition other)
     {

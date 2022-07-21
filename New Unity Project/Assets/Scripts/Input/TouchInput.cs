@@ -13,10 +13,11 @@ public enum Direction
 public class TouchInput : MonoBehaviour,IGameplayInput
 {
     public Vector2 initial_touch { get; set; }
+    [field: SerializeField]
     public float swap_distance { get; set; }
 
-    public event Action<Vector3> StartTouch;
-    public void NotifyTouch(Vector3 pos) =>StartTouch?.Invoke(pos);
+    public event Action<Vector2> StartTouch;
+    public void NotifyTouch(Vector2 pos) =>StartTouch?.Invoke(pos);
 
     public event Action<Direction> Swap;
     public void NotifySwap(Direction dir) =>Swap?.Invoke(dir);    
@@ -34,9 +35,7 @@ public class TouchInput : MonoBehaviour,IGameplayInput
             {
                 case TouchPhase.Began:
                     initial_touch = touch.position;
-                    Vector3 pos = Camera.main.ScreenToWorldPoint(touch.position);
-                    pos.z = 0;
-                    NotifyTouch(pos);
+                    NotifyTouch(touch.position);
                     break;
                 case TouchPhase.Moved:
                     { 
