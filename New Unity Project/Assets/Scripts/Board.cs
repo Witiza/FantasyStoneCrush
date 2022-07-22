@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
+//BoardPosition should have a variable type, and emmit events saying the type of tyle and the coordinates. They should also send events to move xy tile to xy position
 [RequireComponent(typeof(IGameplayInput))]
 public class Board : MonoBehaviour
 {
-    public GameObject tile_prefab;
     BoardPosition selected_tile;
     public static BoardPosition[,] board = new BoardPosition[9,9];
-    public float tile_size = 0.5f;
+    public static float tile_size = 0.5f;
     IGameplayInput gameplay_input;
 
+    private void Awake()
+    {
+
+    }
     void Start()
     {
         UpdateBoardPos();
@@ -24,9 +27,17 @@ public class Board : MonoBehaviour
         {
             for(int j = 0;j<9;j++)
             {
-                if (board[i, j].dirty && board[i,j].target_tile != null )
+                if (board[i, j].dirty && board[i,j].IsValid())
                 {
-                    NotifyNeighbours(board[i, j]);
+                    //This should call the board position funciton and handle it internally
+                    if (board[i, j].IsBaseTile())
+                    {
+                        NotifyNeighbours(board[i, j]);
+                    }
+                    else if (board[i,j].IsSpecialTile())
+                    {
+                        board[i, j].DestroyTile();
+                    }
                 }
             }
         }
@@ -34,13 +45,13 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < 9; j++)
             {
-                if (board[i, j].target_tile == null)
+                if (board[i, j].IsValid())
                 {
                     if (!GetHighestValid(board[i, j]))
                     {
-                        GameObject tile = Instantiate(tile_prefab);
-                        board[i, j].target_tile = tile.GetComponent<Tile>();
-                        MoveVisualTile(board[i, j]);
+                        board[i, j].type = (TileType)Random.Range(1, 6);
+                        BoardEvents.NotifyCreated(board[i, j].board_position, (int)board[i, j].type);
+                        //MoveVisualTile(board[i, j]);
                     }
                 }
             }
@@ -52,9 +63,13 @@ public class Board : MonoBehaviour
         selected_tile = DetermineClosestTile(screen_pos);
         if (selected_tile != null)
         {
-            if (selected_tile.target_tile != null)
+            if (selected_tile.IsValid())
             {
-                selected_tile.target_tile.GetComponent<SpriteRenderer>().color = Color.red;
+                BoardEvents.NotifySelected(selected_tile.board_position);
+                if(selected_tile.IsSpecialTile())
+                {
+                    selected_tile.dirty = true;
+                }
             }
             else
             {
@@ -69,17 +84,6 @@ public class Board : MonoBehaviour
         Vector3 tmp = pos - transform.position;
         pos.z = 0;
         BoardPosition closest = null;
-        //for (int i = 0; i < 9; i++)
-        //{
-        //    for (int j = 0; j < 9; j++)
-        //    {
-        //        if ((board[i,j].Position-pos).magnitude < (closest.Position-pos).magnitude)
-        //        {
-        //            closest = board[i,j];
-        //        }
-        //    }
-        //}
-        //board[i, j].Position = new Vector3(transform.position.x + i * tile_size, transform.position.y + j * tile_size, 0);
         float x = (tmp.x / (tile_size));
         float y = (tmp.y / (tile_size));
         int rounded_x = (int)Mathf.Round(x);
@@ -99,35 +103,35 @@ public class Board : MonoBehaviour
                 board[i, j] = new BaseTile();
                 board[i, j].board_position = new Vector2(i, j);
                 board[i, j].reference = board;
-                GameObject tile = Instantiate(tile_prefab);
-                board[i, j].target_tile = tile.GetComponent<Tile>();
-                MoveVisualTile(board[i, j]);
+                board[i, j].type = (TileType)Random.Range(1, 6);
+                BoardEvents.NotifyCreated(board[i, j].board_position, (int)board[i, j].type);
+                //MoveVisualTile(board[i, j]);
                 
             }
         }
     }
 
     //This funciton should tell something tot he tile script, so it does de tween shit.
-    void MoveVisualTile(BoardPosition tile)
-    {
-       tile.target_tile.transform.position = new Vector3(transform.position.x + tile.board_position.x * tile_size, transform.position.y + tile.board_position.y* tile_size, 0);
-    }
+    //void MoveVisualTile(BoardPosition tile)
+    //{
+    //   tile.target_tile.transform.position = new Vector3(transform.position.x + tile.board_position.x * tile_size, transform.position.y + tile.board_position.y* tile_size, 0);
+    //}
     bool GetHighestValid(BoardPosition deleted)
     {
         bool ret = false;
         BoardPosition tmp = deleted;
 
-        deleted.target_tile = null;
+        deleted.type = TileType.NULL;
 
-        while(tmp.board_position.y<8&&deleted.target_tile==null)
+        while(tmp.board_position.y<8&&deleted.IsValid())
         {
             tmp = board[(int)tmp.board_position.x, (int)tmp.board_position.y + 1];
-            if(tmp.target_tile!=null)
+            if(tmp.IsValid())
             {
-                deleted.target_tile = tmp.target_tile;
-                MoveVisualTile(deleted);
+                deleted.type = tmp.type;
+                //MoveVisualTile(deleted);
                 deleted.dirty = true;
-                tmp.target_tile = null;
+                tmp.type = TileType.NULL;
                 ret = true;
             }
         }
@@ -137,11 +141,18 @@ public class Board : MonoBehaviour
     bool CanSwap(BoardPosition tile)
     {
         bool ret = false;
-        List<BoardPosition> horizontal_neighbours;
-        List<BoardPosition> vertical_neighbours;
+        if (tile.IsBaseTile())
+        {
+            List<BoardPosition> horizontal_neighbours;
+            List<BoardPosition> vertical_neighbours;
 
-        GetNeighbours(tile, out horizontal_neighbours, out vertical_neighbours);
-        if(horizontal_neighbours.Count>=2||vertical_neighbours.Count>=2)
+            GetNeighbours(tile, out horizontal_neighbours, out vertical_neighbours);
+            if (horizontal_neighbours.Count >= 2 || vertical_neighbours.Count >= 2)
+            {
+                ret = true;
+            }
+        }
+        else if(tile.IsSpecialTile())
         {
             ret = true;
         }
@@ -173,9 +184,6 @@ public class Board : MonoBehaviour
                 foreach (BoardPosition neighbour in horizontal_neighbours)
                 {
                     neighbour.DestroyTile();
-
-                    Destroy(neighbour.target_tile.gameObject);
-                    neighbour.target_tile = null;
                 }
             }
             if (vertical_count >= 2)
@@ -183,8 +191,6 @@ public class Board : MonoBehaviour
                 foreach (BoardPosition neighbour in vertical_neighbours)
                 {
                     neighbour.DestroyTile();
-                    Destroy(neighbour.target_tile.gameObject);
-                    neighbour.target_tile = null;
                 }
             }
             tile.DestroyTile();
@@ -197,6 +203,54 @@ public class Board : MonoBehaviour
         tile.dirty = false;
     }
 
+    void DestroyRow(int row)
+    {
+        if(CoordinateInsideBoard(row))
+        {
+            for(int i = 0;i<9;i++)
+            {
+                board[row, i].DestroyTile();
+            }
+        }
+    }
+
+    void DestroyColumn(int column)
+    {
+        if (CoordinateInsideBoard(column))
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                board[i, column].DestroyTile();
+            }
+        }
+    }
+
+    public void DestroyArea(int size,Vector2 pos)
+    {
+        int x;
+        int y;
+        for(int i = -size;i<size;i++)
+        {
+            for(int j = -size; j<size;j++)
+            {
+                x = (int)pos.x + i;
+                y = (int)pos.y + j;
+                if(CoordinatesInsideBoard(x,y))
+                {
+                    board[x,y].DestroyTile();
+                }
+            }
+        }
+    }
+    bool CoordinatesInsideBoard(int x, int y)
+    {
+        return CoordinateInsideBoard(x) && CoordinateInsideBoard(y);
+    }
+
+    bool CoordinateInsideBoard(int coord)
+    {
+        return coord >= 0 && coord < 9;
+    }
     //This should be in its own script or someting
     void SpecialTileGeneration(BoardPosition tile, List<BoardPosition> vertical, List<BoardPosition> horizontal)
     {
@@ -283,16 +337,19 @@ public class Board : MonoBehaviour
     bool SwapVisualTile(BoardPosition tile, BoardPosition other)
     {
         bool ret = false;
-        if (other.target_tile != null)
+        if (other.IsValid())
         {
-            
-            Tile tmp = tile.target_tile;
-            tile.target_tile = other.target_tile;
-            other.target_tile = tmp;
+            TileType tmp = tile.type;
+            tile.type = other.type;
+            other.type = tmp;
+            //Tile tmp = tile.target_tile;
+            //tile.target_tile = other.target_tile;
+            //other.target_tile = tmp;
             if (CanSwap(tile) || CanSwap(other))
             {
-                MoveVisualTile(other);
-                MoveVisualTile(tile);
+                //MoveVisualTile(other);
+                //MoveVisualTile(tile);
+
                 tile.dirty = true;
                 other.dirty = true;
                 ret = true;
@@ -300,9 +357,12 @@ public class Board : MonoBehaviour
             else
             {
                 //We undo the swap, this should be in another function
-                tmp = tile.target_tile;
-                tile.target_tile = other.target_tile;
-                other.target_tile = tmp;
+                tmp = tile.type;
+                tile.type = other.type;
+                other.type = tmp;
+                //tmp = tile.target_tile;
+                //tile.target_tile = other.target_tile;
+                //other.target_tile = tmp;
             }
 
         }
@@ -327,7 +387,7 @@ public class Board : MonoBehaviour
         if (selected_tile != null)
         {
             SwapAction(dir);
-            selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            BoardEvents.NotifyUnselected(selected_tile.board_position);
             selected_tile = null;
         }
     }
@@ -336,7 +396,7 @@ public class Board : MonoBehaviour
     {
         if (selected_tile != null)
         {
-            selected_tile.target_tile.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            BoardEvents.NotifyUnselected(selected_tile.board_position);
         }
     }
 

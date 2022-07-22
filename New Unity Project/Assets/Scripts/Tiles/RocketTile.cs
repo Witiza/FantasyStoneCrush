@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class RocketTile : SpecialTile
 {
+    bool horizontal = false;
     public override void DestroyTile()
     {
-        throw new System.NotImplementedException();
+        ActivateSpecial();
     }
     public override void ActivateSpecial()
     {
-        throw new System.NotImplementedException();
+        
     }
     public override void ActivateSuperSpecial()
     {

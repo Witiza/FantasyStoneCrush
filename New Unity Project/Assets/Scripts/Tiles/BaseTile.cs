@@ -6,8 +6,17 @@ public class BaseTile : BoardPosition
 {
     public override void DestroyTile()
     {
-        Object.Destroy(target_tile.gameObject);
-        target_tile = null;
+        type = TileType.NULL;
+    }
+
+    public override bool IsBaseTile()
+    {
+        return true;
+    }
+
+    public override bool IsSpecialTile()
+    {
+        return false;
     }
 
 }

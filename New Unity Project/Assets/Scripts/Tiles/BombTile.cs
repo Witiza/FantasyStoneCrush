@@ -6,11 +6,12 @@ public class BombTile : SpecialTile
 {
     public override void DestroyTile()
     {
-        throw new System.NotImplementedException();
+        ActivateSpecial();
+        type = TileType.NULL;
     }
     public override void ActivateSpecial()
     {
-        throw new System.NotImplementedException();
+        GameObject.FindGameObjectWithTag("Board").GetComponent<Board>().DestroyArea(1,board_position);
     }
     public override void ActivateSuperSpecial()
     {

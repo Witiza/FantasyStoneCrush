@@ -5,35 +5,43 @@ using UnityEngine.UI;
 
 public enum  TileType
 {
+    NULL,
     SHIELD,
     DAGGER,
     ARROW,
     WAND,
     CHALICE,
     BOMB,
-    ROCKET,
-    NULL
+    ROCKET
 }
 public class Tile : MonoBehaviour
 {
     public Sprite[] sprites = new Sprite[5];
-    public TileType tile_type;
+    public Vector2 board_pos;
+    public Vector2 original_world_pos;
 
     private void Awake()
     {
-        tile_type = (TileType)Random.Range(0, 5);
-        gameObject.name = $"Tile{tile_type}";
-        GetComponent<SpriteRenderer>().sprite = sprites[(int)tile_type];
+        original_world_pos = GameObject.FindGameObjectWithTag("Board").transform.position;
     }
-    // Start is called before the first frame update
-    void Start()
+    public void InitializeTile(TileType type, Vector2 pos)
     {
-        
+        SetSprite(type);
+        SetBoardPosition(pos);
+    }
+     public void SetSprite(TileType type)
+    {
+        GetComponent<SpriteRenderer>().sprite = sprites[(int)type];
+        gameObject.name = $"Tile {type}";
+    }
+    public void SetBoardPosition(Vector2 pos)
+    {
+        board_pos = pos;
+        SetWorldPosition();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetWorldPosition()
     {
-
+       transform.position = new Vector3(original_world_pos.x + board_pos.x * Board.tile_size, original_world_pos.y + board_pos.y* Board.tile_size, 0);
     }
 }
