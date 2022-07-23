@@ -2,7 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BoardPosition
+public enum TileType
+{
+    NULL,
+    SHIELD,
+    DAGGER,
+    ARROW,
+    WAND,
+    CHALICE,
+    BOMB,
+    ROCKET
+}
+public abstract  class BoardPosition 
 {
     public Vector2 board_position;
     //public Tile target_tile;

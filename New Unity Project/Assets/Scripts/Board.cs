@@ -36,7 +36,8 @@ public class Board : MonoBehaviour
                     }
                     else if (board[i,j].IsSpecialTile())
                     {
-                        board[i, j].DestroyTile();
+                        Debug.Log("EIN?");
+                        TileRemover.DestroyTile(board[i, j]);
                     }
                 }
             }
@@ -45,7 +46,7 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < 9; j++)
             {
-                if (board[i, j].IsValid())
+                if (!board[i, j].IsValid())
                 {
                     if (!GetHighestValid(board[i, j]))
                     {
@@ -183,17 +184,19 @@ public class Board : MonoBehaviour
             {
                 foreach (BoardPosition neighbour in horizontal_neighbours)
                 {
-                    neighbour.DestroyTile();
+                    TileRemover.DestroyTile(neighbour);
                 }
             }
             if (vertical_count >= 2)
             {
                 foreach (BoardPosition neighbour in vertical_neighbours)
                 {
-                    neighbour.DestroyTile();
+                    TileRemover.DestroyTile(neighbour);
+
                 }
             }
-            tile.DestroyTile();
+            TileRemover.DestroyTile(tile);
+
 
         }
         else
@@ -209,7 +212,7 @@ public class Board : MonoBehaviour
         {
             for(int i = 0;i<9;i++)
             {
-                board[row, i].DestroyTile();
+                TileRemover.DestroyTile(board[row, i]);
             }
         }
     }
@@ -220,7 +223,8 @@ public class Board : MonoBehaviour
         {
             for (int i = 0; i < 9; i++)
             {
-                board[i, column].DestroyTile();
+                TileRemover.DestroyTile(board[i, column]);
+
             }
         }
     }
@@ -237,7 +241,7 @@ public class Board : MonoBehaviour
                 y = (int)pos.y + j;
                 if(CoordinatesInsideBoard(x,y))
                 {
-                    board[x,y].DestroyTile();
+                    TileRemover.DestroyTile(board[x, y]);
                 }
             }
         }

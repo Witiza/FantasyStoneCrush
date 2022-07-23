@@ -3,17 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum  TileType
-{
-    NULL,
-    SHIELD,
-    DAGGER,
-    ARROW,
-    WAND,
-    CHALICE,
-    BOMB,
-    ROCKET
-}
+
 public class Tile : MonoBehaviour
 {
     public Sprite[] sprites = new Sprite[5];

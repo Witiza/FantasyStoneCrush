@@ -160,6 +160,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   board_pos: {x: 0, y: 0}
+  original_world_pos: {x: 0, y: 0}
 --- !u!212 &248645907
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -323,6 +324,7 @@ GameObject:
   - component: {fileID: 725343613}
   - component: {fileID: 725343615}
   - component: {fileID: 725343616}
+  - component: {fileID: 725343617}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Board
@@ -383,3 +385,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile_prefab: {fileID: 566611581903736121, guid: 4f4d25524fdca154eb090bbff32becb0, type: 3}
+--- !u!114 &725343617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725343612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232eaa7e9573581429bc2d135614e9d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
