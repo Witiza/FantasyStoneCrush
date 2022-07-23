@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile_prefab: {fileID: 566611581903736121, guid: 4f4d25524fdca154eb090bbff32becb0, type: 3}
+  test: {fileID: 3917238807649400832, guid: 441922150bcdd2445b2ca75670e7a4f1, type: 3}
 --- !u!114 &725343617
 MonoBehaviour:
   m_ObjectHideFlags: 0

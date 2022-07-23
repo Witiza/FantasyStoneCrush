@@ -7,7 +7,7 @@ public class VisualFactory : MonoBehaviour
 {
     public static List<Tile> tiles = new List<Tile>();
     public GameObject tile_prefab;
-
+    public GameObject test;
     public  void Awake()  
     {
         BoardEvents.TileCreated += BoardEvents_TileCreated;

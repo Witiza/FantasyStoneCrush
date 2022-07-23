@@ -11,25 +11,29 @@ public enum TileType
     WAND,
     CHALICE,
     BOMB,
-    ROCKET
+    VERTICAL_ROCKET,
+    HORIZONTAL_ROCKET
 }
-public abstract  class BoardPosition 
+public  class BoardPosition 
 {
     public Vector2 board_position;
     //public Tile target_tile;
     public BoardPosition[,] reference;
     public bool dirty = true;
     public TileType type;
-
-    public abstract void DestroyTile();
-
-    public abstract bool IsBaseTile();
-
-    public abstract bool IsSpecialTile();
+    public bool to_destroy = false;
 
     public bool IsValid()
     {
         return type != TileType.NULL;
+    }
+    public bool IsBaseTile()
+    {
+        return type > 0 && (int)type < 6;
+    }
+    public bool IsSpecialTile()
+    {
+        return (int)type >= 6;
     }
     public bool CheckType(BoardPosition other)
     {

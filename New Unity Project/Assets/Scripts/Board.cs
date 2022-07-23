@@ -23,7 +23,21 @@ public class Board : MonoBehaviour
 
     void Update()
     {
-        for(int i = 0;i<9;i++)
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (board[i, j].IsValid())
+                {
+                    if (board[i, j].to_destroy)
+                    {
+                        TileRemover.DestroyTile(board[i, j]);
+                        board[i, j].to_destroy = false;
+                    }
+                }
+            }
+        }
+        for (int i = 0;i<9;i++)
         {
             for(int j = 0;j<9;j++)
             {
@@ -36,8 +50,8 @@ public class Board : MonoBehaviour
                     }
                     else if (board[i,j].IsSpecialTile())
                     {
-                        Debug.Log("EIN?");
-                        TileRemover.DestroyTile(board[i, j]);
+                       // Debug.Log("EIN?");
+                        //TileRemover.DestroyTile(board[i, j]);
                     }
                 }
             }
@@ -51,24 +65,13 @@ public class Board : MonoBehaviour
                 {
                     if (!GetHighestValid(board[i, j]))
                     {
-                        Debug.Log($"Creating new tile at {i},{j}");
                         board[i, j].type = (TileType)Random.Range(1, 6);
                         BoardEvents.NotifyCreated(board[i, j].board_position, (int)board[i, j].type);
                     }
                 }
             }
         }
-        string tmp = "";
-        for (int i = 8;i>=0;i--)
-        {
-            for(int j = 0;j<9;j++)
-            {
-                tmp += $" . {board[i, j].type}";
-            }
-            
-            tmp += "\n";
-        }
-        Debug.Log(tmp);
+
     }
 
     void SelectTile(Vector2 screen_pos)
@@ -81,7 +84,8 @@ public class Board : MonoBehaviour
                 BoardEvents.NotifySelected(selected_tile.board_position);
                 if(selected_tile.IsSpecialTile())
                 {
-                    selected_tile.dirty = true;
+                    TileRemover.DestroyTile(selected_tile);
+                    Debug.Log("selected special");
                 }
             }
             else
@@ -113,7 +117,7 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < 9; j++)
             {
-                board[i, j] = new BaseTile();
+                board[i, j] = new BoardPosition();
                 board[i, j].board_position = new Vector2(i, j);
                 board[i, j].reference = board;
                 board[i, j].type = (TileType)Random.Range(1, 6);
@@ -202,10 +206,10 @@ public class Board : MonoBehaviour
                 foreach (BoardPosition neighbour in vertical_neighbours)
                 {
                     TileRemover.DestroyTile(neighbour);
-
                 }
             }
             TileRemover.DestroyTile(tile);
+            SpecialTileGeneration(tile, vertical_neighbours, horizontal_neighbours);
         }
         else
         {
@@ -214,52 +218,54 @@ public class Board : MonoBehaviour
         tile.dirty = false;
     }
 
-    void DestroyRow(int row)
+    public static void DestroyRow(int row)
     {
         if(CoordinateInsideBoard(row))
         {
             for(int i = 0;i<9;i++)
             {
-                TileRemover.DestroyTile(board[row, i]);
+                board[row, i].to_destroy = true;
             }
         }
     }
 
-    void DestroyColumn(int column)
+    public static void DestroyColumn(int column)
     {
         if (CoordinateInsideBoard(column))
         {
             for (int i = 0; i < 9; i++)
             {
-                TileRemover.DestroyTile(board[i, column]);
-
+                board[i, column].to_destroy = true;
             }
         }
     }
 
-    public void DestroyArea(int size,Vector2 pos)
+    public static void DestroyArea(int size,Vector2 pos)
     {
         int x;
         int y;
-        for(int i = -size;i<size;i++)
+        for(int i = -size;i<=size;i++)
         {
-            for(int j = -size; j<size;j++)
+            for(int j = -size; j<=size;j++)
             {
                 x = (int)pos.x + i;
                 y = (int)pos.y + j;
                 if(CoordinatesInsideBoard(x,y))
                 {
-                    TileRemover.DestroyTile(board[x, y]);
+                    //Added to destroy otherwise two bombs will keep exploding each other
+                    //TileRemover.DestroyTile(board[x, y]);
+                    Debug.Log($"Destroying tile at {x},{y}");
+                    board[x, y].to_destroy = true;
                 }
             }
         }
     }
-    bool CoordinatesInsideBoard(int x, int y)
+    static bool CoordinatesInsideBoard(int x, int y)
     {
         return CoordinateInsideBoard(x) && CoordinateInsideBoard(y);
     }
 
-    bool CoordinateInsideBoard(int coord)
+    static bool CoordinateInsideBoard(int coord)
     {
         return coord >= 0 && coord < 9;
     }
@@ -269,14 +275,21 @@ public class Board : MonoBehaviour
         if(vertical.Count + horizontal.Count > 2)
         {
             //generate bomb
+            tile.type = TileType.BOMB;
+            BoardEvents.NotifyCreated(tile.board_position, (int)TileType.BOMB);
         }
         else if(horizontal.Count > 2)
         {
             //horizontal missile
+            tile.type = TileType.HORIZONTAL_ROCKET;
+
+            BoardEvents.NotifyCreated(tile.board_position, (int)TileType.HORIZONTAL_ROCKET);
         }
         else if(vertical.Count > 2)
         {
             //vertical missile
+            tile.type = TileType.VERTICAL_ROCKET;
+            BoardEvents.NotifyCreated(tile.board_position, (int)TileType.VERTICAL_ROCKET);
         }
     }
     void SwapAction(Direction dir)
@@ -354,9 +367,6 @@ public class Board : MonoBehaviour
             TileType tmp = tile.type;
             tile.type = other.type;
             other.type = tmp;
-            //Tile tmp = tile.target_tile;
-            //tile.target_tile = other.target_tile;
-            //other.target_tile = tmp;
             if (CanSwap(tile) || CanSwap(other))
             {
                 BoardEvents.NotifySwap(tile.board_position, other.board_position);
@@ -370,9 +380,6 @@ public class Board : MonoBehaviour
                 tmp = tile.type;
                 tile.type = other.type;
                 other.type = tmp;
-                //tmp = tile.target_tile;
-                //tile.target_tile = other.target_tile;
-                //other.target_tile = tmp;
             }
 
         }
