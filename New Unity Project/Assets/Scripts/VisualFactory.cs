@@ -12,15 +12,26 @@ public class VisualFactory : MonoBehaviour
     {
         BoardEvents.TileCreated += BoardEvents_TileCreated;
         BoardEvents.TileMoved += BoardEvents_TileMoved;
+        BoardEvents.TileSwapped += BoardEvents_TileSwapped;
         BoardEvents.TileDestroyed += BoardEvents_TileDestroyed;
 
     }
+
 
     public void OnDestroy()
     {
         BoardEvents.TileCreated -= BoardEvents_TileCreated;
         BoardEvents.TileMoved -= BoardEvents_TileMoved;
+        BoardEvents.TileSwapped -= BoardEvents_TileSwapped;
         BoardEvents.TileDestroyed -= BoardEvents_TileDestroyed;
+    }
+
+    private void BoardEvents_TileSwapped(Vector2 pos1, Vector2 pos2)
+    {
+        Tile tile = GetTileAtPos(pos1);
+        Tile other = GetTileAtPos(pos2);
+        tile.SetBoardPosition(pos2);
+        other.SetBoardPosition(pos1);
     }
 
 

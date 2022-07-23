@@ -42,6 +42,7 @@ public class Board : MonoBehaviour
                 }
             }
         }
+
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
@@ -50,13 +51,24 @@ public class Board : MonoBehaviour
                 {
                     if (!GetHighestValid(board[i, j]))
                     {
+                        Debug.Log($"Creating new tile at {i},{j}");
                         board[i, j].type = (TileType)Random.Range(1, 6);
                         BoardEvents.NotifyCreated(board[i, j].board_position, (int)board[i, j].type);
-                        //MoveVisualTile(board[i, j]);
                     }
                 }
             }
         }
+        string tmp = "";
+        for (int i = 8;i>=0;i--)
+        {
+            for(int j = 0;j<9;j++)
+            {
+                tmp += $" . {board[i, j].type}";
+            }
+            
+            tmp += "\n";
+        }
+        Debug.Log(tmp);
     }
 
     void SelectTile(Vector2 screen_pos)
@@ -106,8 +118,6 @@ public class Board : MonoBehaviour
                 board[i, j].reference = board;
                 board[i, j].type = (TileType)Random.Range(1, 6);
                 BoardEvents.NotifyCreated(board[i, j].board_position, (int)board[i, j].type);
-                //MoveVisualTile(board[i, j]);
-                
             }
         }
     }
@@ -124,13 +134,13 @@ public class Board : MonoBehaviour
 
         deleted.type = TileType.NULL;
 
-        while(tmp.board_position.y<8&&deleted.IsValid())
+        while(tmp.board_position.y<8&&!deleted.IsValid())
         {
             tmp = board[(int)tmp.board_position.x, (int)tmp.board_position.y + 1];
             if(tmp.IsValid())
             {
                 deleted.type = tmp.type;
-                //MoveVisualTile(deleted);
+                BoardEvents.NotifyMoved(tmp.board_position, deleted.board_position);
                 deleted.dirty = true;
                 tmp.type = TileType.NULL;
                 ret = true;
@@ -196,8 +206,6 @@ public class Board : MonoBehaviour
                 }
             }
             TileRemover.DestroyTile(tile);
-
-
         }
         else
         {
@@ -351,9 +359,7 @@ public class Board : MonoBehaviour
             //other.target_tile = tmp;
             if (CanSwap(tile) || CanSwap(other))
             {
-                //MoveVisualTile(other);
-                //MoveVisualTile(tile);
-
+                BoardEvents.NotifySwap(tile.board_position, other.board_position);
                 tile.dirty = true;
                 other.dirty = true;
                 ret = true;
