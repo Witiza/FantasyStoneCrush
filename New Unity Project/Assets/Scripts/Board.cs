@@ -272,7 +272,7 @@ public class Board : MonoBehaviour
     //This should be in its own script or someting
     void SpecialTileGeneration(BoardPosition tile, List<BoardPosition> vertical, List<BoardPosition> horizontal)
     {
-        if(vertical.Count + horizontal.Count > 2)
+        if(vertical.Count >=2 && horizontal.Count >= 2)
         {
             //generate bomb
             tile.type = TileType.BOMB;
@@ -282,7 +282,6 @@ public class Board : MonoBehaviour
         {
             //horizontal missile
             tile.type = TileType.HORIZONTAL_ROCKET;
-
             BoardEvents.NotifyCreated(tile.board_position, (int)TileType.HORIZONTAL_ROCKET);
         }
         else if(vertical.Count > 2)

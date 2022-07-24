@@ -14,9 +14,7 @@ public class VisualFactory : MonoBehaviour
         BoardEvents.TileMoved += BoardEvents_TileMoved;
         BoardEvents.TileSwapped += BoardEvents_TileSwapped;
         BoardEvents.TileDestroyed += BoardEvents_TileDestroyed;
-
     }
-
 
     public void OnDestroy()
     {
@@ -33,7 +31,6 @@ public class VisualFactory : MonoBehaviour
         tile.SetBoardPosition(pos2);
         other.SetBoardPosition(pos1);
     }
-
 
     private void BoardEvents_TileDestroyed(Vector2 obj)
     {
@@ -65,5 +62,4 @@ public class VisualFactory : MonoBehaviour
         }
         return tile;
     }
-
 }
