@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +11,8 @@ public class ScoreController : MonoBehaviour
     public TMP_Text mage_text;
     public TMP_Text priest_text;
 
+    public TMP_Text moves_text;
+
     private int warrior_score;
     private int rogue_score;
     private int archer_score;
@@ -20,18 +21,39 @@ public class ScoreController : MonoBehaviour
 
     public int winning_score;
     public int available_moves;
+
+    public EventBus GameWon;
+    public EventBus GameLost;
     // Start is called before the first frame update
     private void Awake()
     {
-        BoardEvents.TileDestroyed += BoardEvents_TileDestroyed;
+        BoardEvents.TileDestroyed += BoardEventsTileDestroyed;
+        BoardEvents.TileSwapped += BoardEventsTileSwapped;
         warrior_text.text = $"0/{winning_score}";
         rogue_text.text = $"0/{winning_score}";
         archer_text.text = $"0/{winning_score}";
         mage_text.text = $"0/{winning_score}";
         priest_text.text = $"0/{winning_score}";
+        moves_text.text = $"{available_moves}";
     }
 
-    private void BoardEvents_TileDestroyed(Vector2 pos,int type)
+    private void OnDestroy()
+    {
+        BoardEvents.TileDestroyed -= BoardEventsTileDestroyed;
+        BoardEvents.TileSwapped -= BoardEventsTileSwapped;
+    }
+
+    private void BoardEventsTileSwapped(Vector2 arg1, Vector2 arg2)
+    {
+        available_moves--;
+        moves_text.text = $"{available_moves}";
+        if (available_moves == 0)
+        {
+            GameLost.NotifyEvent();
+        }
+    }
+
+    private void BoardEventsTileDestroyed(Vector2 pos,int type)
     {
         switch ((TileType)type)
         {
@@ -72,13 +94,14 @@ public class ScoreController : MonoBehaviour
         {
             text.text = $"{winning_score} /{winning_score}";
         }
+        CheckForVictory();
     }
 
     void CheckForVictory()
     {
         if(warrior_score>=winning_score && archer_score>=winning_score&& rogue_score>=winning_score&&mage_score>=winning_score&&priest_score>=winning_score)
         {
-            Debug.Log("WINNER WINNER CHICKEN DINNER");
+            GameWon.NotifyEvent(); 
         }
     }
 }

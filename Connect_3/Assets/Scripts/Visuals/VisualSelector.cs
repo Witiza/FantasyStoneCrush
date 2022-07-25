@@ -20,13 +20,13 @@ public class VisualSelector : MonoBehaviour
 
     private void BoardEvents_TileUnselected(Vector2 obj)
     {
-        Tile tile = VisualFactory.GetTileAtPos(obj);
+        VisualTile tile = VisualHandler.GetTileAtPos(obj);
         tile.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void BoardEvents_TileSelected(Vector2 obj)
     {
-        Tile tile = VisualFactory.GetTileAtPos(obj);
+        VisualTile tile = VisualHandler.GetTileAtPos(obj);
         tile.GetComponent<SpriteRenderer>().color = Color.red;
     }
 }

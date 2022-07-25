@@ -7,7 +7,7 @@ public static class TileRemover
     
     public static void DestroyTile(BoardPosition tile)
     {
-        switch (tile.type)
+        switch (tile._type)
         {
             case TileType.NULL:
                 return;
@@ -23,18 +23,18 @@ public static class TileRemover
             case TileType.CHALICE:
                 break;
             case TileType.BOMB:
-                Board.DestroyArea(1, tile.board_position);
+                Board.DestroyArea(1, tile.BoardPos);
                 break;
             case TileType.HORIZONTAL_ROCKET:
-                Board.DestroyRow((int)tile.board_position.x);
+                Board.DestroyRow((int)tile.BoardPos.x);
                 break;
             case TileType.VERTICAL_ROCKET:
-                Board.DestroyColumn((int)tile.board_position.y);
+                Board.DestroyColumn((int)tile.BoardPos.y);
                 break;
             default:
                 break;
         }
-        BoardEvents.NotifyDestroyed(tile.board_position,(int)tile.type); 
-        tile.type = TileType.NULL;
+        BoardEvents.NotifyDestroyed(tile.BoardPos,(int)tile._type); 
+        tile._type = TileType.NULL;
     }
 }

@@ -12,56 +12,75 @@ public enum Direction
 }
 public class TouchInput : MonoBehaviour,IGameplayInput
 {
-    public Vector2 initial_touch { get; set; }
+    public EventBus GameWon;
+    public EventBus GameLost;
+    private bool _inputEnabled= true;
+    public Vector2 _initialTouch { get; set; }
     [field: SerializeField]
-    public float swap_distance { get; set; }
+    public float SwapDistance { get; set; }
 
     public event Action<Vector2> StartTouch;
     public void NotifyTouch(Vector2 pos) =>StartTouch?.Invoke(pos);
 
-    public event Action<Direction> Swap;
-    public void NotifySwap(Direction dir) =>Swap?.Invoke(dir);    
+    public event Action<Direction> SwapTouch;
+    public void NotifySwapTouch(Direction dir) =>SwapTouch?.Invoke(dir);    
 
     public event Action EndTouch;
     public void NotifyEndTouch() =>EndTouch?.Invoke();  
 
+    void Awake()
+    {
+        GameWon.Event += ScoreControllerGameWon;
+        GameLost.Event += ScoreControllerGameLost;
+    }
+
+    private void ScoreControllerGameLost()
+    {
+        _inputEnabled = false;
+    }
+
+    private void ScoreControllerGameWon()
+    {
+        _inputEnabled= false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 &&_inputEnabled)
         {
             Touch touch = Input.GetTouch(0);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    initial_touch = touch.position;
+                    _initialTouch = touch.position;
                     NotifyTouch(touch.position);
                     break;
                 case TouchPhase.Moved:
                     { 
-                        Vector2 diff = touch.position - initial_touch;
-                        if ((diff).magnitude > swap_distance)
+                        Vector2 diff = touch.position - _initialTouch;
+                        if ((diff).magnitude > SwapDistance)
                         {
                             if (Mathf.Abs(diff.y) > Mathf.Abs(diff.x))
                             {
                                 if (diff.y > 0)
                                 {
-                                    NotifySwap(Direction.UP);
+                                    NotifySwapTouch(Direction.UP);
                                 }
                                 else
                                 {
-                                    NotifySwap(Direction.DOWN);
+                                    NotifySwapTouch(Direction.DOWN);
                                 }
                             }
                             else
                             {
                                 if (diff.x > 0)
                                 {
-                                    NotifySwap(Direction.RIGHT);
+                                    NotifySwapTouch(Direction.RIGHT);
                                 }
                                 else
                                 {
-                                    NotifySwap(Direction.LEFT);
+                                    NotifySwapTouch(Direction.LEFT);
                                 }
                             }
                         }

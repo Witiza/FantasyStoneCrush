@@ -16,34 +16,37 @@ public enum TileType
 }
 public  class BoardPosition 
 {
-    public Vector2 board_position;
-    //public Tile target_tile;
-    public BoardPosition[,] reference;
-    public bool dirty = true;
-    public TileType type;
-    public bool to_destroy = false;
+    public Vector2 BoardPos;
+    public bool Dirty  { get; set; }
+    public TileType _type;
+    public bool ToDestroy  { get; set; }
 
+    public BoardPosition()
+    {
+        Dirty = true;
+        ToDestroy = false;
+    }
     public bool IsValid()
     {
-        return type != TileType.NULL;
+        return _type != TileType.NULL;
     }
     public bool IsBaseTile()
     {
-        return type > 0 && (int)type < 6;
+        return _type > 0 && (int)_type < 6;
     }
     public bool IsSpecialTile()
     {
-        return (int)type >= 6;
+        return (int)_type >= 6;
     }
     public bool CheckType(BoardPosition other)
     {
-        return other.type == type;
+        return other._type == _type;
     }
     public bool CheckRight(List<BoardPosition> neighbours)
     {
-        if (board_position.x < 8)
+        if (Board.CoordinateInsideX((int)BoardPos.x+1))
         {
-            BoardPosition other = reference[(int)board_position.x + 1, (int)board_position.y];
+            BoardPosition other = Board.GameBoard[(int)BoardPos.x + 1, (int)BoardPos.y];
             if (other.IsValid() && CheckType(other))
             {
                 neighbours.Add(other);
@@ -56,9 +59,9 @@ public  class BoardPosition
 
         public bool CheckLeft(List<BoardPosition> neighbours)
         {
-            if (board_position.x >0)
+            if (Board.CoordinateInsideX((int)BoardPos.x-1))
             {
-                BoardPosition other = reference[(int)board_position.x - 1, (int)board_position.y];
+                BoardPosition other = Board.GameBoard[(int)BoardPos.x - 1, (int)BoardPos.y];
                 if (other.IsValid() && CheckType(other))
                 {
                 neighbours.Add(other);
@@ -71,9 +74,9 @@ public  class BoardPosition
 
     public bool CheckUp(List<BoardPosition> neighbours)
     {
-        if (board_position.y < 8)
+        if (Board.CoordinateInsideY((int)BoardPos.y+1))
         {
-            BoardPosition other = reference[(int)board_position.x, (int)board_position.y+1];
+            BoardPosition other = Board.GameBoard[(int)BoardPos.x, (int)BoardPos.y+1];
             if (other.IsValid() && CheckType(other))
             {
                 neighbours.Add(other);
@@ -86,9 +89,9 @@ public  class BoardPosition
 
     public bool CheckDown(List<BoardPosition> neighbours)
     {
-        if (board_position.y > 0)
+        if (Board.CoordinateInsideY((int)BoardPos.y-1))
         {
-            BoardPosition other = reference[(int)board_position.x, (int)board_position.y-1];
+            BoardPosition other = Board.GameBoard[(int)BoardPos.x, (int)BoardPos.y-1];
             if (other.IsValid() && CheckType(other)  )
             {
                 neighbours.Add(other);

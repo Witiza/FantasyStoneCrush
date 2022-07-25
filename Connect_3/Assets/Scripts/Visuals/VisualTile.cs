@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Tile : MonoBehaviour
+public class VisualTile : MonoBehaviour
 {
     public Sprite[] sprites = new Sprite[5];
-    public Vector2 board_pos;
-    public Vector2 original_world_pos;
+    public Vector2 BoardPos;
+    Vector2 original_world_pos;
 
     private void Awake()
     {
@@ -26,12 +26,12 @@ public class Tile : MonoBehaviour
     }
     public void SetBoardPosition(Vector2 pos)
     {
-        board_pos = pos;
+        BoardPos = pos;
         SetWorldPosition();
     }
 
     public void SetWorldPosition()
     {
-       transform.position = new Vector3(original_world_pos.x + board_pos.x * Board.tile_size, original_world_pos.y + board_pos.y* Board.tile_size, 0);
+       transform.position = new Vector3(original_world_pos.x + BoardPos.x * Board._tileSize, original_world_pos.y + BoardPos.y* Board._tileSize, 0);
     }
 }
