@@ -11,9 +11,9 @@ public class Board : MonoBehaviour
     public static BoardPosition[,] GameBoard;
     public static float _tileSize = 0.5f;
 
-
-    public static int BoardWidth = 12;
-    public static int BoardHeight = 12;
+    //Find a way to move this to the inspector but still be static
+    public static int BoardWidth = 9;
+    public static int BoardHeight = 9;
 
     IGameplayInput _gameplayInput;
 
