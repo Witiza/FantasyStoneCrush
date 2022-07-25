@@ -32,7 +32,7 @@ public class VisualFactory : MonoBehaviour
         other.SetBoardPosition(pos1);
     }
 
-    private void BoardEvents_TileDestroyed(Vector2 obj)
+    private void BoardEvents_TileDestroyed(Vector2 obj,int type)
     {
         Tile tile = GetTileAtPos(obj);
         tiles.Remove(tile);

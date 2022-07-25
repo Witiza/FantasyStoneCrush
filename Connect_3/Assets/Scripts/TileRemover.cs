@@ -34,7 +34,7 @@ public static class TileRemover
             default:
                 break;
         }
+        BoardEvents.NotifyDestroyed(tile.board_position,(int)tile.type); 
         tile.type = TileType.NULL;
-        BoardEvents.NotifyDestroyed(tile.board_position); 
     }
 }

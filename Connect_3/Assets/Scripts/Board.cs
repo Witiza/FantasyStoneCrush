@@ -66,6 +66,7 @@ public class Board : MonoBehaviour
                     if (!GetHighestValid(board[i, j]))
                     {
                         board[i, j].type = (TileType)Random.Range(1, 6);
+                        board[i, j].dirty = true;
                         BoardEvents.NotifyCreated(board[i, j].board_position, (int)board[i, j].type);
                     }
                 }
