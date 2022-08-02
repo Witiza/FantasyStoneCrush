@@ -15,7 +15,6 @@ public static class BoardEvents
     public static void NotifySwap(Vector2 origin, Vector2 destination) => TileSwapped?.Invoke(origin, destination);
 
     public static event Action<Vector2> TileSelected;
-
     public static void NotifySelected(Vector2 pos) =>TileSelected?.Invoke(pos);
 
     public static event Action<Vector2> TileUnselected;

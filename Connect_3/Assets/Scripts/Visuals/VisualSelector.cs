@@ -2,31 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VisualSelector : MonoBehaviour
+public class VisualSelector
 {
-    // Start is called before the first frame update
-    void Awake()
+    public VisualSelector()
     {
-        BoardEvents.TileSelected += BoardEvents_TileSelected;
-        BoardEvents.TileUnselected += BoardEvents_TileUnselected;
+        SubscribeEvents();
     }
 
-    private void OnDestroy()
+    ~VisualSelector()
     {
-        BoardEvents.TileSelected -= BoardEvents_TileSelected;
-        BoardEvents.TileUnselected -= BoardEvents_TileUnselected;
+        UnsubscribeEvents();
+    }
+
+    public void SubscribeEvents()
+    {
+        BoardEvents.TileSelected += BoardEventsTileSelected;
+        BoardEvents.TileUnselected += BoardEventsTileUnselected;
+    }
+
+    public  void UnsubscribeEvents()
+    {
+        BoardEvents.TileSelected -= BoardEventsTileSelected;
+        BoardEvents.TileUnselected -= BoardEventsTileUnselected;
     }
 
 
-    private void BoardEvents_TileUnselected(Vector2 obj)
+    private void BoardEventsTileUnselected(Vector2 obj)
     {
-        VisualTile tile = VisualHandler.GetTileAtPos(obj);
+        VisualTile tile = BoardView.GetTileAtPos(obj);
         tile.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
-    private void BoardEvents_TileSelected(Vector2 obj)
+    private void BoardEventsTileSelected(Vector2 obj)
     {
-        VisualTile tile = VisualHandler.GetTileAtPos(obj);
+        VisualTile tile = BoardView.GetTileAtPos(obj);
         tile.GetComponent<SpriteRenderer>().color = Color.red;
     }
 }

@@ -9,13 +9,15 @@ public class VisualTile : MonoBehaviour
     public Sprite[] sprites = new Sprite[5];
     public Vector2 BoardPos;
     Vector2 original_world_pos;
+    float _tileSize;
 
     private void Awake()
     {
         original_world_pos = GameObject.FindGameObjectWithTag("Board").transform.position;
     }
-    public void InitializeTile(TileType type, Vector2 pos)
+    public void InitializeTile(TileType type, Vector2 pos, float tileSize)
     {
+        _tileSize = tileSize;
         SetSprite(type);
         SetBoardPosition(pos);
     }
@@ -32,6 +34,6 @@ public class VisualTile : MonoBehaviour
 
     public void SetWorldPosition()
     {
-       transform.position = new Vector3(original_world_pos.x + BoardPos.x * Board._tileSize, original_world_pos.y + BoardPos.y* Board._tileSize, 0);
+       transform.position = new Vector3(original_world_pos.x + BoardPos.x * _tileSize, original_world_pos.y + BoardPos.y* _tileSize, 0);
     }
 }
