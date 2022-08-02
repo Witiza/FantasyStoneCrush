@@ -368,6 +368,22 @@ public class BoardController
         return ret;
     }
 
+    //This function and the swap one should be the same
+    bool TrySwap(BoardPosition tile, BoardPosition other)
+    {
+        bool ret = false;
+        TileType tmp = tile.Type;
+        tile.Type = other.Type;
+        other.Type = tmp;
+        if (CanSwap(tile) || CanSwap(other))
+        {
+            ret = true;
+        }
+        tmp = tile.Type;
+        tile.Type = other.Type;
+        other.Type = tmp;
+        return ret;
+    }
 
     public bool EndTouch()
     {

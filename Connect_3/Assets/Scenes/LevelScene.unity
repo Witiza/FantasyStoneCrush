@@ -1073,6 +1073,7 @@ GameObject:
   - component: {fileID: 725343614}
   - component: {fileID: 725343615}
   - component: {fileID: 725343618}
+  - component: {fileID: 725343619}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Board
@@ -1132,6 +1133,20 @@ MonoBehaviour:
   available_moves: 15
   GameWon: {fileID: 11400000, guid: 1167a1228544a4c4d98d2226810eb37e, type: 2}
   GameLost: {fileID: 11400000, guid: ca362fefcfaa17d41bd51ee41a2df97d, type: 2}
+--- !u!114 &725343619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725343612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11403521c6e139a4a8af0e5ec4ebbdaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile_prefab: {fileID: 566611581903736121, guid: 4f4d25524fdca154eb090bbff32becb0, type: 3}
+  Config: {fileID: 11400000, guid: c91af5951e9751f43a920d759298ae18, type: 2}
 --- !u!1 &802656698
 GameObject:
   m_ObjectHideFlags: 0

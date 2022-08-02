@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8832b25a9d276174095e6ffb51a52087, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  TileSize: 0
+  TileSize: 0.5
   BoardWidth: 9
   BoardHeight: 9

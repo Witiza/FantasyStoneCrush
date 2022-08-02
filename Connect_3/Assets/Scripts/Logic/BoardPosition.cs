@@ -17,7 +17,7 @@ public enum TileType
 public class BoardPosition 
 {
     public Vector2Int BoardPos;
-    public bool Dirty;
+    public bool Dirty = true;
     public TileType Type;
     public bool ToDestroy;
     public BoardModel GameBoard;
@@ -108,5 +108,31 @@ public class BoardPosition
             }
         }
         return false;
+    }
+
+    public bool SameTypeNeighbours()
+    {
+        bool ret = false;
+        BoardPosition other;
+
+        if (GameBoard.CoordinateInsideY(BoardPos.y -1))
+        {
+            other = GameBoard[BoardPos.x, BoardPos.y -1];
+            if (other.IsValid() && CheckType(other))
+            {
+                ret = true;
+            }
+        }
+        
+        if (GameBoard.CoordinateInsideX(BoardPos.x -1))
+        {
+            other = GameBoard[BoardPos.x -1, BoardPos.y];
+            if (other.IsValid() && CheckType(other))
+            {
+                ret = true;
+            }
+        }
+        
+        return ret;
     }
 }

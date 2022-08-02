@@ -31,8 +31,8 @@ public class BoardModel
             {
                 _board[i, j] = new BoardPosition();
                 _board[i, j].BoardPos = new Vector2Int(i, j);
-                _board[i, j].Type = (TileType)Random.Range(1, 6);
-                _board[i, j].GameBoard = this;  
+                _board[i, j].GameBoard = this;
+                GenerateTileType(_board[i, j]);
                 BoardEvents.NotifyCreated(_board[i, j].BoardPos, (int)_board[i, j].Type);
             }
         }
@@ -51,6 +51,58 @@ public class BoardModel
             else
             {
                 Debug.LogError("Using an already existing board with repeated members");
+            }
+        }
+    }
+
+    void GenerateTileType(BoardPosition tile)
+    {
+        do
+        {
+            tile.Type = (TileType)Random.Range(1, 6);
+        } while (tile.SameTypeNeighbours());
+    }
+
+    //Very ugly function, find a better way to do this (maybe cheat and generate a board again?
+    void ShuffleBoard()
+    {
+        List<TileType> tiles = new List<TileType>();
+        for(int i = 0;i<Width;i++)
+        {
+            for(int j=0;j<Height;j++)
+            {
+                tiles.Add(_board[i, j].Type);
+                _board[i, j].Type = TileType.NULL;
+            }
+        }
+        for(int i = 0;i<Width;i++)
+        {
+            for(int j = 0;j<Height;j++)
+            {
+                foreach(TileType tile in tiles)
+                {
+                    _board[i, j].Type = tile;
+                    if (!_board[i,j].SameTypeNeighbours())
+                    {
+                        tiles.Remove(tile);
+                        break;
+                    }
+                }
+            }
+        }
+        //Leftover tiles, wont check for matches;
+        if(tiles.Count >0)
+        {
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Height; j++)
+                {
+                    if (_board[i,j].Type == TileType.NULL)
+                    {
+                        _board[i, j].Type = tiles.Last();
+                        tiles.Remove(tiles.Last());
+                    }
+                }
             }
         }
     }
