@@ -12,7 +12,9 @@ public enum TileType
     CHALICE,
     BOMB,
     VERTICAL_ROCKET,
-    HORIZONTAL_ROCKET
+    HORIZONTAL_ROCKET,
+    BOX,
+    GRUNT
 }
 public class BoardPosition 
 {
@@ -21,6 +23,7 @@ public class BoardPosition
     public TileType Type;
     public bool ToDestroy;
     public BoardModel GameBoard;
+    
     public BoardPosition()
     {
         Dirty = true;
@@ -44,7 +47,15 @@ public class BoardPosition
     }
     public bool IsSpecialTile()
     {
-        return (int)Type >= 6;
+        return (int)Type >= 6&&(int)Type<9;
+    }
+    public bool IsBox()
+    {
+        return (int)Type == 9;
+    }
+    public bool IsEnemy()
+    {
+        return (int)Type == 10;
     }
     public bool CheckType(BoardPosition other)
     {
@@ -114,22 +125,24 @@ public class BoardPosition
     {
         bool ret = false;
         BoardPosition other;
-
-        if (GameBoard.CoordinateInsideY(BoardPos.y -1))
+        if (IsBaseTile())
         {
-            other = GameBoard[BoardPos.x, BoardPos.y -1];
-            if (other.IsValid() && CheckType(other))
+            if (GameBoard.CoordinateInsideY(BoardPos.y - 1))
             {
-                ret = true;
+                other = GameBoard[BoardPos.x, BoardPos.y - 1];
+                if (other.IsValid() && CheckType(other))
+                {
+                    ret = true;
+                }
             }
-        }
-        
-        if (GameBoard.CoordinateInsideX(BoardPos.x -1))
-        {
-            other = GameBoard[BoardPos.x -1, BoardPos.y];
-            if (other.IsValid() && CheckType(other))
+
+            if (GameBoard.CoordinateInsideX(BoardPos.x - 1))
             {
-                ret = true;
+                other = GameBoard[BoardPos.x - 1, BoardPos.y];
+                if (other.IsValid() && CheckType(other))
+                {
+                    ret = true;
+                }
             }
         }
         

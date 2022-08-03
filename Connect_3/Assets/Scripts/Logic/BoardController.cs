@@ -11,22 +11,28 @@ public class BoardController
     public BoardController(int width, int height,List<BoardPosition> board = null)
     {
         _board = new BoardModel(width, height, board);
+        CheckForMatches();
     }
 
     public void ProcessBoard()
     {
-        bool changed = true;
-        while (changed)
+        int changed = -1;
+        int iterations = 0;
+        while (changed != 0&&iterations<100)
         {
-            changed = ProcessTilesDestroyedBySpecials();
-            changed = ProcessMatches();
-            changed = ProcessTileMovement();
+            iterations++;
+            changed = 0;
+            changed += ProcessTilesDestroyedBySpecials();
+            changed += ProcessMatches();
+            changed += ProcessTileMovement();
+            changed += CheckForMatches();
         }
+        Debug.Log($"Iterations done on the board: {iterations}");
     }
 
-    bool ProcessTilesDestroyedBySpecials()
+    int ProcessTilesDestroyedBySpecials()
     {
-        bool ret = false;
+        int ret = 0;
         for (int i = 0; i < _board.Width; i++)
         {
             for (int j = 0; j < _board.Height; j++)
@@ -35,16 +41,16 @@ public class BoardController
                 {
                     DestroyTile(_board[i, j]);
                     _board[i, j].ToDestroy = false;
-                    ret = true;
+                    ret = 1;
                 }
             }
         }
         return ret;
     }
 
-    bool ProcessMatches()
+    int ProcessMatches()
     {
-        bool ret = false;
+        int ret = 0;
         for (int i = 0; i < _board.Width; i++)
         {
             for (int j = 0; j < _board.Height; j++)
@@ -54,7 +60,7 @@ public class BoardController
                     if (_board[i, j].IsBaseTile())
                     {
                         NotifyNeighbours(_board[i, j]);
-                        ret = true;
+                        ret = 1;
                     }
                 }
             }
@@ -62,9 +68,9 @@ public class BoardController
         return ret;
     }
 
-    bool ProcessTileMovement()
+    int ProcessTileMovement()
     {
-        bool ret = false;
+        int ret = 0;
         for (int i = 0; i < _board.Width; i++)
         {
             for (int j = 0; j < _board.Height; j++)
@@ -76,7 +82,7 @@ public class BoardController
                         _board[i, j].Type = (TileType)Random.Range(1, 6);
                         _board[i, j].Dirty = true;
                         BoardEvents.NotifyCreated(_board[i, j].BoardPos, (int)_board[i, j].Type);
-                        ret = true;
+                        ret = 1;
                     }
                 }
             }
@@ -105,10 +111,14 @@ public class BoardController
         BoardPosition tmp = deleted;
 
         deleted.Type = TileType.NULL;
-
         while(tmp.BoardPos.y<_board.Height-1&&!deleted.IsValid())
         {
             tmp = _board[(int)tmp.BoardPos.x, (int)tmp.BoardPos.y + 1];
+            if (tmp.IsBox())
+            {
+                ret = true;
+                break;
+            }
             if(tmp.IsValid())
             {
                 deleted.Type = tmp.Type;
@@ -116,7 +126,9 @@ public class BoardController
                 deleted.Dirty = true;
                 tmp.Type = TileType.NULL;
                 ret = true;
+                break;
             }
+            
         }
         return ret;
     }
@@ -261,16 +273,55 @@ public class BoardController
                 DestroyArea(1, tile.BoardPos);
                 break;
             case TileType.HORIZONTAL_ROCKET:
-                DestroyRow((int)tile.BoardPos.x);
+                DestroyRow(tile.BoardPos.x);
                 break;
             case TileType.VERTICAL_ROCKET:
-                DestroyColumn((int)tile.BoardPos.y);
+                DestroyColumn(tile.BoardPos.y);
                 break;
             default:
                 break;
         }
         BoardEvents.NotifyDestroyed(tile.BoardPos, (int)tile.Type);
         tile.Type = TileType.NULL;
+    }
+
+    //This function should be better coded
+    void CombineSpecialTiles(BoardPosition tile, BoardPosition other)
+    {
+        Vector2Int pos = tile.BoardPos;
+        if(tile.Type == TileType.BOMB)
+        {
+            if(other.Type == TileType.BOMB)
+            {
+                DestroyArea(3, pos);
+            }
+            else if(other.Type == TileType.VERTICAL_ROCKET||other.Type==TileType.HORIZONTAL_ROCKET)
+            {
+                DestroyRow(pos.x - 1);
+                DestroyRow(pos.x);
+                DestroyRow(pos.x + 1);
+                DestroyColumn(pos.y - 1);
+                DestroyColumn(pos.y);
+                DestroyColumn(pos.y + 1);
+            }
+        }
+        else if(tile.Type == TileType.VERTICAL_ROCKET||tile.Type ==TileType.HORIZONTAL_ROCKET)
+        {
+            if (other.Type == TileType.BOMB)
+            {
+                DestroyRow(pos.x - 1);
+                DestroyRow(pos.x);
+                DestroyRow(pos.x + 1);
+                DestroyColumn(pos.y - 1);
+                DestroyColumn(pos.y);
+                DestroyColumn(pos.y + 1);
+            }
+            else if( other.Type == TileType.VERTICAL_ROCKET||tile.Type==TileType.HORIZONTAL_ROCKET)
+            {
+                DestroyRow(pos.x);
+                DestroyColumn(pos.y);
+            }
+        }
     }
     public bool SwapAction(Direction dir)
     {
@@ -347,41 +398,88 @@ public class BoardController
         bool ret = false;
         if (other.IsValid())
         {
+            if (tile.IsBaseTile())
+            {
+                TileType tmp = tile.Type;
+                tile.Type = other.Type;
+                other.Type = tmp;
+                if (CanSwap(tile) || CanSwap(other))
+                {
+                    BoardEvents.NotifySwap(tile.BoardPos, other.BoardPos);
+                    tile.Dirty = true;
+                    other.Dirty = true;
+                    ret = true;
+                }
+                else
+                {
+                    tmp = tile.Type;
+                    tile.Type = other.Type;
+                    other.Type = tmp;
+                }
+
+            }
+            else if(tile.IsSpecialTile())
+            {
+                if(other.IsBaseTile())
+                {
+                    TileType tmp = tile.Type;
+                    tile.Type = other.Type;
+                    other.Type = tmp;
+                    tile.Dirty = true;
+                    other.Dirty = true;
+                    BoardEvents.NotifySwap(tile.BoardPos, other.BoardPos);
+                    DestroyTile(other);
+                    ret = true;
+                }
+                else if(other.IsSpecialTile())
+                {
+                    BoardEvents.NotifySwap(tile.BoardPos, other.BoardPos);
+                    CombineSpecialTiles(tile,other);
+                    ret = true;
+                }
+            }
+        }
+        return ret;
+    }
+
+    int CheckForMatches()
+    {
+        bool match_found = false;
+        for (int i = 0;i<_board.Width-1&!match_found;i++)
+        {
+            for(int j = 0;j<_board.Height-1&!match_found;j++)
+            {
+                if (TrySwap(_board[i, j], _board[i, j + 1]) || TrySwap(_board[i, j], _board[i+1,j]))
+                {
+                    match_found = true;
+                    break;
+                }
+            }
+            if (match_found) break;
+        }
+        if(!match_found)
+        {
+            _board.ShuffleBoard();
+        }
+        return match_found==true?0:1;
+    }
+    //This function and the swap one should be the same
+    bool TrySwap(BoardPosition tile, BoardPosition other)
+    {
+        bool ret = false;
+        if (other.IsValid())
+        {
             TileType tmp = tile.Type;
             tile.Type = other.Type;
             other.Type = tmp;
             if (CanSwap(tile) || CanSwap(other))
             {
-                BoardEvents.NotifySwap(tile.BoardPos, other.BoardPos);
-                tile.Dirty = true;
-                other.Dirty = true;
                 ret = true;
             }
-            else
-            {
-                tmp = tile.Type;
-                tile.Type = other.Type;
-                other.Type = tmp;
-            }
-
+            tmp = tile.Type;
+            tile.Type = other.Type;
+            other.Type = tmp;
         }
-        return ret;
-    }
-
-    //This function and the swap one should be the same
-    bool TrySwap(BoardPosition tile, BoardPosition other)
-    {
-        bool ret = false;
-        TileType tmp = tile.Type;
-        tile.Type = other.Type;
-        other.Type = tmp;
-        if (CanSwap(tile) || CanSwap(other))
-        {
-            ret = true;
-        }
-        tmp = tile.Type;
-        tile.Type = other.Type;
-        other.Type = tmp;
         return ret;
     }
 

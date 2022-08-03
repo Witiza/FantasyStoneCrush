@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
 public class BoardModel
 {
     public int Width { get; private set; }
@@ -60,18 +59,23 @@ public class BoardModel
         do
         {
             tile.Type = (TileType)Random.Range(1, 6);
+            //Debug shit
+            if(Random.Range(0,10)<3)
+            {
+                tile.Type = TileType.BOX;
+            }
         } while (tile.SameTypeNeighbours());
     }
 
     //Very ugly function, find a better way to do this (maybe cheat and generate a board again?
-    void ShuffleBoard()
+    public void ShuffleBoard()
     {
-        List<TileType> tiles = new List<TileType>();
+        List<ModelTile> tiles = new List<ModelTile>();
         for(int i = 0;i<Width;i++)
         {
             for(int j=0;j<Height;j++)
             {
-                tiles.Add(_board[i, j].Type);
+                tiles.Add(new ModelTile(new Vector2Int(i,j),_board[i, j].Type));
                 _board[i, j].Type = TileType.NULL;
             }
         }
@@ -79,12 +83,13 @@ public class BoardModel
         {
             for(int j = 0;j<Height;j++)
             {
-                foreach(TileType tile in tiles)
+                foreach(ModelTile tile in tiles)
                 {
-                    _board[i, j].Type = tile;
+                    _board[i, j].Type = tile.TileType;
                     if (!_board[i,j].SameTypeNeighbours())
                     {
                         tiles.Remove(tile);
+                        BoardEvents.NotifyMoved(tile.BoardPosition, new Vector2Int(i, j));
                         break;
                     }
                 }
@@ -93,13 +98,16 @@ public class BoardModel
         //Leftover tiles, wont check for matches;
         if(tiles.Count >0)
         {
+            ModelTile tmp;
             for (int i = 0; i < Width; i++)
             {
                 for (int j = 0; j < Height; j++)
                 {
                     if (_board[i,j].Type == TileType.NULL)
                     {
-                        _board[i, j].Type = tiles.Last();
+                        tmp = tiles.Last();
+                        _board[i, j].Type = tmp.TileType;
+                        BoardEvents.NotifyMoved(tmp .BoardPosition, new Vector2Int(i, j));
                         tiles.Remove(tiles.Last());
                     }
                 }
