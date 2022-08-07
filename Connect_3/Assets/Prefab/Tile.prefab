@@ -98,15 +98,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 21300000, guid: 2eed3194340b9414c8cef2a406aa4f99, type: 3}
-  - {fileID: 21300000, guid: 3fada31fecb6b31429bed6d2e2a515e5, type: 3}
-  - {fileID: 21300000, guid: 99192a98be0559f499b3784f781f69a5, type: 3}
-  - {fileID: 21300000, guid: f6e934887b26c7846aa20826274437a6, type: 3}
-  - {fileID: 21300000, guid: 163c822c768b8c047968d2d4372c0d6e, type: 3}
-  - {fileID: 21300000, guid: 08c4cfda21147be48aa4c93ccd11c924, type: 3}
-  - {fileID: 21300000, guid: 61613dcbcee3afa45b1d6f17cecffee8, type: 3}
-  - {fileID: 21300000, guid: 7507e21fbd8335043ab0314abb5c0e0e, type: 3}
-  - {fileID: 21300000, guid: da3d516b28932704598cd444513067a1, type: 3}
-  board_pos: {x: 0, y: 0}
-  original_world_pos: {x: 0, y: 0}
+  - {fileID: 1157655952, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: 1788054155, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: 1426990336, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: -97684806, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: -430989144, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: 757296945, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: 297661407, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: 2038904539, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: 7836981, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: -986593091, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  BoardPos: {x: 0, y: 0}

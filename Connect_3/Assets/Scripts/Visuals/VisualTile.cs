@@ -13,7 +13,7 @@ public class VisualTile : MonoBehaviour
 
     private void Awake()
     {
-        original_world_pos = GameObject.FindGameObjectWithTag("Board").transform.position;
+        original_world_pos = GameObject.FindGameObjectWithTag("Controller").transform.position;
     }
     public void InitializeTile(TileType type, Vector2 pos, float tileSize)
     {

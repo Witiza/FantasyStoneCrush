@@ -13,18 +13,18 @@ public class HeroView : MonoBehaviour
 
     public Image HealthBar;
     public Image ManaBar;
-    public EventBus ManaBooster;
+    public Booster ManaBooster;
 
-    public void Awake()
+    public void Start()
     {
         BoardEvents.TileDestroyed += BoardEventsTileDestroyed;
         SelectHeroController();
         controller.HeroDamaged += ControllerHeroDamaged;
         controller.HeroHealed += ControllerHeroHealed;
         controller.HeroManaGained += ControllerHeroManaGained;
-        ManaBooster.Event += ManaBoosterEvent;
+        ManaBooster.BoosterEvent += ManaBoosterEvent;
         UpdateBar(HealthBar, Stats.maxHp, Stats.maxHp);
-        UpdateBar(ManaBar, 0, Stats.maxMana);
+        UpdateBar(ManaBar, Stats.maxMana, Stats.maxMana);
     }
 
     private void ManaBoosterEvent()
@@ -53,9 +53,12 @@ public class HeroView : MonoBehaviour
         controller.HeroDamaged -= ControllerHeroDamaged;
         controller.HeroHealed -= ControllerHeroHealed;
         controller.HeroManaGained -= ControllerHeroManaGained;
+        ManaBooster.BoosterEvent -= ManaBoosterEvent;
+
     }
     public void AbilityButton()
     {
+        Debug.Log("Hero ability used");
         if (controller.canUseAbility())
         {
             controller.activateAbility();

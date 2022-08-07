@@ -9,7 +9,7 @@ public class BoardView : MonoBehaviour
 {
     public static List<VisualTile> tiles = new List<VisualTile>();
     public GameObject tile_prefab;
-    BoardController _board;
+    public BoardController Board;
     VisualSelector _visualSelector;
     [SerializeField]
     public BoardConfig Config;
@@ -18,8 +18,8 @@ public class BoardView : MonoBehaviour
     public TMP_Text moves_text;
     public EventBus GameWon;
     public EventBus GameLost;
-    public EventBus TileBooster;
-    public EventBus TurnBooster;
+    public Booster TileBooster;
+    public Booster TurnBooster;
     public int extraMovesBooster;
     public int extraTilesBooster;
 
@@ -31,13 +31,13 @@ public class BoardView : MonoBehaviour
         BoardEvents.TileMoved += BoardEvents_TileMoved;
         BoardEvents.TileSwapped += BoardEvents_TileSwapped;
         BoardEvents.TileDestroyed += BoardEvents_TileDestroyed;
-        TileBooster.Event += TileBoosterEvent;
-        TurnBooster.Event += TurnBoosterEvent;
+        TileBooster.BoosterEvent += TileBoosterEvent;
+        TurnBooster.BoosterEvent += TurnBoosterEvent;
         _gameplayInput = gameObject.GetComponent<IGameplayInput>();
         _gameplayInput.StartTouch += InputStartTouch; ;
         _gameplayInput.SwapTouch += InputSwapTouch; ;
         _gameplayInput.EndTouch += InputEndTouch;  
-        _board = new BoardController(Config.board.GridSize.x, Config.board.GridSize.y,Config.board);
+        Board = new BoardController(Config.board.GridSize.x, Config.board.GridSize.y,Config.board);
         _visualSelector = new VisualSelector();
     }
 
@@ -55,24 +55,24 @@ public class BoardView : MonoBehaviour
             do
             {
                 tmp = new Vector2Int(Random.Range(0, Config.BoardWidth), Random.Range(0, Config.BoardHeight));
-            } while (!_board.ChangeTile(tmp, (TileType)Random.Range(6, 9)));
+            } while (!Board.ChangeTile(tmp, (TileType)Random.Range(6, 9)));
         }
     }
 
     private void InputEndTouch()
     {
-        if (_board.EndTouch())
+        if (Board.EndTouch())
         {
-            _board.ProcessBoard();
+            Board.ProcessBoard();
             UpdateMoves();
         }
     }
 
     private void InputSwapTouch(Direction dir)
     {
-        if (_board.SwapAction(dir))
+        if (Board.SwapAction(dir))
         {
-            _board.ProcessBoard();
+            Board.ProcessBoard();
             UpdateMoves();
         }
     }
@@ -82,7 +82,7 @@ public class BoardView : MonoBehaviour
         Vector2Int coords = DetermineClosestTile(pos);
         if (coords.x != -1)
         {
-            _board.SelectTile(coords);
+            Board.SelectTile(coords);
         }
     }
 
@@ -102,8 +102,8 @@ public class BoardView : MonoBehaviour
         BoardEvents.TileMoved -= BoardEvents_TileMoved;
         BoardEvents.TileSwapped -= BoardEvents_TileSwapped;
         BoardEvents.TileDestroyed -= BoardEvents_TileDestroyed;
-        TileBooster.Event -= TileBoosterEvent;
-        TurnBooster.Event -= TurnBoosterEvent;
+        TileBooster.BoosterEvent -= TileBoosterEvent;
+        TurnBooster.BoosterEvent -= TurnBoosterEvent;
 
 
         _gameplayInput.StartTouch -= InputStartTouch;
@@ -169,5 +169,18 @@ public class BoardView : MonoBehaviour
             Debug.Log($"COULDNT FIND TILE AT {pos.x},{pos.y}");
         }
         return tile;
+    }
+
+    private void OnDrawGizmos()
+    {
+        float width = Config.TileSize * Config.BoardWidth;
+        float height = Config.TileSize * Config.BoardHeight;
+        Vector3 center = transform.position;
+        center.x += (width / 2)-Config.TileSize/2;
+        center.y += (height / 2)-Config.TileSize/2;
+        Color color = Color.black;
+        color.a = 0.5f;
+        Gizmos.color = color;
+        Gizmos.DrawCube(center, new Vector3(width, height, 1));
     }
 }

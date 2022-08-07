@@ -9,6 +9,9 @@ public class BoardController
 {
     BoardPosition _selectedTile;
     BoardModel _board;
+    public int BoardWidth { get => _board.Width; }
+    public int BoardHeight { get => _board.Height; }
+
     public BoardController(int width, int height,Array2DInt board = null)
     {
         _board = new BoardModel(width, height, board);
@@ -262,7 +265,13 @@ public class BoardController
             BoardEvents.NotifyCreated(tile.BoardPos, (int)TileType.VERTICAL_ROCKET);
         }
     }
-
+    public void TargetAndDestroyTile(Vector2Int pos)
+    {
+        if(_board.CoordinatesInsideBoard(pos.x,pos.y))
+        {
+            DestroyTile(_board[pos]);
+        }
+    }
     public  void DestroyTile(BoardPosition tile)
     {
         switch (tile.Type)

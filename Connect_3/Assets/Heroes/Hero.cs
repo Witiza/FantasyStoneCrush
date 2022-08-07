@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class HeroController
 {
     protected HeroStats _stats;
+    protected BoardController _boardController;
     public int hp;
     public int mana;
     public bool dead;
@@ -22,8 +23,9 @@ public abstract class HeroController
     {
         _stats = stats;
         hp = stats.maxHp;
-        mana = 0;
+        mana = stats.maxMana;
         dead = false;
+        _boardController = GameObject.FindGameObjectWithTag("Controller").GetComponent<BoardView>().Board;
     }
 
     public void activateAbility()

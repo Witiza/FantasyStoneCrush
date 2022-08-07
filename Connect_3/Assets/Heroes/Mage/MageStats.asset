@@ -16,3 +16,8 @@ MonoBehaviour:
   maxMana: 100
   critChance: 10
   manaGainMultiplier: 1
+  archerArrowAmount: {x: 0, y: 0}
+  mageTileAmount: {x: 10, y: 5}
+  priestHealAmount: {x: 0, y: 0}
+  rogueDamageAmount: {x: 0, y: 0}
+  warriorShieldAmount: {x: 0, y: 0}
