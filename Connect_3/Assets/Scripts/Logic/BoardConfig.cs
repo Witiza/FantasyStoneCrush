@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Array2DEditor;
 
 [CreateAssetMenu]
-public class BoardConfig:ScriptableObject
+public class BoardConfig : ScriptableObject
 {
     public float TileSize;
-    public int BoardWidth = 9;
-    public int BoardHeight = 9;
-    public int[,] board = null;
+    public Array2DInt board = new Array2DInt();
+    public int BoardWidth { get =>board.GridSize.x; }
+    public int BoardHeight { get => board.GridSize.y; }
+
 }
+
+

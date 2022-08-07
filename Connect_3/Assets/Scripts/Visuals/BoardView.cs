@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 [RequireComponent(typeof(IGameplayInput))]
 public class BoardView : MonoBehaviour
@@ -12,20 +14,49 @@ public class BoardView : MonoBehaviour
     [SerializeField]
     public BoardConfig Config;
     IGameplayInput _gameplayInput;
+    public int available_moves;
+    public TMP_Text moves_text;
+    public EventBus GameWon;
+    public EventBus GameLost;
+    public EventBus TileBooster;
+    public EventBus TurnBooster;
+    public int extraMovesBooster;
+    public int extraTilesBooster;
 
     private void Awake()  
     {
         tiles.Clear();
         BoardEvents.TileCreated += BoardEvents_TileCreated;
+        BoardEvents.TileChanged += BoardEventsTileChanged;
         BoardEvents.TileMoved += BoardEvents_TileMoved;
         BoardEvents.TileSwapped += BoardEvents_TileSwapped;
         BoardEvents.TileDestroyed += BoardEvents_TileDestroyed;
+        TileBooster.Event += TileBoosterEvent;
+        TurnBooster.Event += TurnBoosterEvent;
         _gameplayInput = gameObject.GetComponent<IGameplayInput>();
         _gameplayInput.StartTouch += InputStartTouch; ;
         _gameplayInput.SwapTouch += InputSwapTouch; ;
-        _gameplayInput.EndTouch += InputEndTouch; 
-        _board = new BoardController(Config.BoardWidth, Config.BoardHeight);
+        _gameplayInput.EndTouch += InputEndTouch;  
+        _board = new BoardController(Config.board.GridSize.x, Config.board.GridSize.y,Config.board);
         _visualSelector = new VisualSelector();
+    }
+
+    private void TurnBoosterEvent()
+    {
+        available_moves += extraMovesBooster;
+        UpdateMoves();
+    }
+
+    private void TileBoosterEvent()
+    {
+        for(int i = 0;i<extraTilesBooster;i++)
+        {
+            Vector2Int tmp;
+            do
+            {
+                tmp = new Vector2Int(Random.Range(0, Config.BoardWidth), Random.Range(0, Config.BoardHeight));
+            } while (!_board.ChangeTile(tmp, (TileType)Random.Range(6, 9)));
+        }
     }
 
     private void InputEndTouch()
@@ -33,6 +64,7 @@ public class BoardView : MonoBehaviour
         if (_board.EndTouch())
         {
             _board.ProcessBoard();
+            UpdateMoves();
         }
     }
 
@@ -41,6 +73,7 @@ public class BoardView : MonoBehaviour
         if (_board.SwapAction(dir))
         {
             _board.ProcessBoard();
+            UpdateMoves();
         }
     }
 
@@ -53,12 +86,26 @@ public class BoardView : MonoBehaviour
         }
     }
 
+    void UpdateMoves()
+    {
+        available_moves--;
+        moves_text.text = $"{available_moves}";
+        if (available_moves == 0)
+        {
+            GameLost.NotifyEvent();
+        }
+    }
     public void OnDestroy()
     {
         BoardEvents.TileCreated -= BoardEvents_TileCreated;
+        BoardEvents.TileChanged -= BoardEventsTileChanged;
         BoardEvents.TileMoved -= BoardEvents_TileMoved;
         BoardEvents.TileSwapped -= BoardEvents_TileSwapped;
         BoardEvents.TileDestroyed -= BoardEvents_TileDestroyed;
+        TileBooster.Event -= TileBoosterEvent;
+        TurnBooster.Event -= TurnBoosterEvent;
+
+
         _gameplayInput.StartTouch -= InputStartTouch;
         _gameplayInput.SwapTouch -= InputSwapTouch;
         _gameplayInput.EndTouch -= InputEndTouch;
@@ -84,12 +131,15 @@ public class BoardView : MonoBehaviour
         VisualTile tile = GetTileAtPos(origin);
         tile.SetBoardPosition(destination);
     }
+    private void BoardEventsTileChanged(Vector2 pos, int type)
+    {
+        VisualTile tile = GetTileAtPos(pos);
+        tile.InitializeTile((TileType)type, pos, Config.TileSize);
+    }
 
     private void BoardEvents_TileCreated(Vector2 pos, int type)
     {
         VisualTile tile = Object.Instantiate(tile_prefab).GetComponent<VisualTile>();
-
-        //Initialization should be methods in a viewtilehandler or sumthing
         tile.InitializeTile((TileType)type, pos,Config.TileSize);
         tiles.Add(tile);
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20531016965c3e8499f8091ef7b6274c, type: 3}
   m_Name: PriestStats
   m_EditorClassIdentifier: 
-  maxHp: 0
-  maxMana: 0
-  critChance: 0
-  manaGainMultiplier: 0
+  maxHp: 100
+  maxMana: 100
+  critChance: 10
+  manaGainMultiplier: 1

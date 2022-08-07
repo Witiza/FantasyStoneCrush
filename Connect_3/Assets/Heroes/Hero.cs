@@ -1,13 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public abstract class HeroController
 {
     protected HeroStats _stats;
-    int hp;
-    int mana;
-    bool dead;
-    bool shielded;
+    public int hp;
+    public int mana;
+    public bool dead;
+    public bool shielded = false;
+    float manaMultiplier = 1;
+
+    public  event Action HeroDamaged;
+    public  void NotifyDamaged() => HeroDamaged?.Invoke();
+    public event Action HeroHealed;
+    public void NotifyHealed() => HeroHealed?.Invoke();
+    public event Action HeroManaGained;
+    public void NotifyManaGained() => HeroManaGained?.Invoke();
 
     public HeroController(HeroStats stats)
     {
@@ -19,7 +28,7 @@ public abstract class HeroController
 
     public void activateAbility()
     {
-        if(Random.Range(0,101) <=_stats.critChance)
+        if(UnityEngine.Random.Range(0,101) <=_stats.critChance)
         {
             doAbility(true);
         }
@@ -27,16 +36,50 @@ public abstract class HeroController
         {
             doAbility(false);
         }
+        mana = 0;
+    }
+
+    public bool canUseAbility()
+    {
+        return mana >= _stats.maxMana;
     }
     public abstract void doAbility(bool crit);
 
     public void dealDamage(int dmg)
     {
-        hp -= dmg;
-        if(hp < 0)
+        if (!shielded)
         {
-            hp = 0;
-            dead = true;
+            hp -= dmg;
+            if (hp < 0)
+            {
+                hp = 0;
+                dead = true;
+            }
         }
+        else
+        {
+            shielded = false;
+        }
+        NotifyDamaged();
+    }
+
+    public void healHP(int heal)
+    {
+        hp+=heal;   
+        if(hp>_stats.maxHp)
+        {
+            hp = _stats.maxHp;
+        }
+        NotifyHealed();
+    }
+
+    public void addMana(int _mana)
+    {
+        mana += Mathf.RoundToInt(_mana*manaMultiplier);
+        if(mana > _stats.maxMana)
+        {
+            mana = _stats.maxMana;
+        }
+        NotifyManaGained();
     }
 }

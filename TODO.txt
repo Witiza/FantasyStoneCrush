@@ -1,0 +1,10 @@
+3 boosters:
+- añadir turnos
+- Topea de mana a todos los heroes
+- Transformar piezas random en piezas especiales
+
+Heroes:
+- Implementar rogue y arquero  (matar 1 pieza, matar 3 piezas random (iterar, pillar priority queue con obstaculos->special tiles)
+
+Enemigos: 
+- Enemigo fuera del tablero, puedes matarlo con habilidades de los heroes (pa enseñar interaccion entre ellos)

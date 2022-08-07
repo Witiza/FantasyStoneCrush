@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Array2DEditor;
 public class BoardModel
 {
     public int Width { get; private set; }
     public int Height { get; private set; }
     BoardPosition[,] _board;
-    public BoardModel(int width, int height, List<BoardPosition> board = null)
+    public BoardModel(int width, int height, Array2DInt board= null)
     {
         Width = width;
         Height = height;
@@ -37,19 +38,24 @@ public class BoardModel
         }
     }
 
-    void GenerateExistingBoard(List<BoardPosition> board)
+    void GenerateExistingBoard(Array2DInt board)
     {
-        foreach(BoardPosition item in board)
+        for(int i = 0;i<Width;i++)
         {
-            int x = item.BoardPos.x;
-            int y = item.BoardPos.y;
-            if (_board[x,y] == null)
+            for(int j=0;j<Height;j++)
             {
-                _board[x, y] = new BoardPosition(item);
-            }
-            else
-            {
-                Debug.LogError("Using an already existing board with repeated members");
+                _board[i, j] = new BoardPosition();
+                _board[i, j].BoardPos = new Vector2Int(i, j);
+                _board[i, j].GameBoard = this;
+                if (board[i,j] ==-1)
+                {
+                    GenerateTileType(_board[i, j]);
+                }
+                else
+                {
+                    _board[i, j].Type = (TileType)board[i, j];
+                }
+                BoardEvents.NotifyCreated(_board[i, j].BoardPos, (int)_board[i, j].Type);
             }
         }
     }
@@ -59,63 +65,73 @@ public class BoardModel
         do
         {
             tile.Type = (TileType)Random.Range(1, 6);
-            //Debug shit
-            if(Random.Range(0,10)<3)
-            {
-                tile.Type = TileType.BOX;
-            }
         } while (tile.SameTypeNeighbours());
     }
 
     //Very ugly function, find a better way to do this (maybe cheat and generate a board again?
     public void ShuffleBoard()
     {
-        List<ModelTile> tiles = new List<ModelTile>();
+        Debug.Log("Shuffling Board");
         for(int i = 0;i<Width;i++)
         {
-            for(int j=0;j<Height;j++)
+            for(int j =0;j<Height;j++)
             {
-                tiles.Add(new ModelTile(new Vector2Int(i,j),_board[i, j].Type));
-                _board[i, j].Type = TileType.NULL;
-            }
-        }
-        for(int i = 0;i<Width;i++)
-        {
-            for(int j = 0;j<Height;j++)
-            {
-                foreach(ModelTile tile in tiles)
+                if (_board[i,j].IsBaseTile())
                 {
-                    _board[i, j].Type = tile.TileType;
-                    if (!_board[i,j].SameTypeNeighbours())
-                    {
-                        tiles.Remove(tile);
-                        BoardEvents.NotifyMoved(tile.BoardPosition, new Vector2Int(i, j));
-                        break;
-                    }
+                    GenerateTileType(_board[i, j]);
+                    BoardEvents.NotifyChanged(new Vector2(i, j), (int)_board[i, j].Type);
                 }
             }
         }
-        //Leftover tiles, wont check for matches;
-        if(tiles.Count >0)
-        {
-            ModelTile tmp;
-            for (int i = 0; i < Width; i++)
-            {
-                for (int j = 0; j < Height; j++)
-                {
-                    if (_board[i,j].Type == TileType.NULL)
-                    {
-                        tmp = tiles.Last();
-                        _board[i, j].Type = tmp.TileType;
-                        BoardEvents.NotifyMoved(tmp .BoardPosition, new Vector2Int(i, j));
-                        tiles.Remove(tiles.Last());
-                    }
-                }
-            }
-        }
+        
+        #region Complex Shuffle Fuckery
+        //List<ModelTile> tiles = new List<ModelTile>();
+        //for(int i = 0;i<Width;i++)
+        //{
+        //    for(int j=0;j<Height;j++)
+        //    {
+        //        tiles.Add(new ModelTile(new Vector2Int(i,j),_board[i, j].Type));
+        //        _board[i, j].Type = TileType.NULL;
+        //    }
+        //}
+        //for(int i = 0;i<Width;i++)
+        //{
+        //    for(int j = 0;j<Height;j++)
+        //    {
+        //        foreach(ModelTile tile in tiles)
+        //        {
+        //            _board[i, j].Type = tile.TileType;
+        //            if (!_board[i,j].SameTypeNeighbours())
+        //            {
+        //                BoardEvents.NotifyMoved(tile.BoardPosition, new Vector2Int(i, j));
+        //                tiles.Remove(tile);
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
+        ////Leftover tiles, wont check for matches;
+        //if(tiles.Count >0)
+        //{
+        //    ModelTile tmp;
+        //    for (int i = 0; i < Width; i++)
+        //    {
+        //        for (int j = 0; j < Height; j++)
+        //        {
+        //            if (_board[i,j].Type == TileType.NULL)
+        //            {
+        //                tmp = tiles.Last();
+        //                _board[i, j].Type = tmp.TileType;
+        //                BoardEvents.NotifyMoved(tmp .BoardPosition, new Vector2Int(i, j));
+        //                tiles.Remove(tiles.Last());
+        //            }
+        //        }
+        //    }
+        //}
+        #endregion
     }
 
-     public bool CoordinatesInsideBoard(int x, int y)
+    public bool CoordinatesInsideBoard(int x, int y)
     {
         return CoordinateInsideX(x) && CoordinateInsideY(y);
     }

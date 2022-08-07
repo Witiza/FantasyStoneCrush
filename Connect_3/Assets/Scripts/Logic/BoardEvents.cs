@@ -5,6 +5,9 @@ public static class BoardEvents
     public static event Action<Vector2,int> TileCreated;
     public static void NotifyCreated(Vector2 pos, int type) => TileCreated?.Invoke(pos,type);
 
+    public static event Action<Vector2, int> TileChanged;
+    public static void NotifyChanged(Vector2 pos, int type) => TileChanged?.Invoke(pos,type);
+
     public static event Action<Vector2,int> TileDestroyed;
     public static void NotifyDestroyed(Vector2 pos,int type) => TileDestroyed?.Invoke(pos,type);
 

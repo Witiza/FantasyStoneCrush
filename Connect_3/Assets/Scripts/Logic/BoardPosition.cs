@@ -53,6 +53,10 @@ public class BoardPosition
     {
         return (int)Type == 9;
     }
+    public bool IsObstacle()
+    {
+        return (int)Type == 9;
+    }
     public bool IsEnemy()
     {
         return (int)Type == 10;

@@ -1,14 +1,15 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Array2DEditor;
 
 
 public class BoardController
 {
     BoardPosition _selectedTile;
     BoardModel _board;
-    public BoardController(int width, int height,List<BoardPosition> board = null)
+    public BoardController(int width, int height,Array2DInt board = null)
     {
         _board = new BoardModel(width, height, board);
         CheckForMatches();
@@ -94,7 +95,7 @@ public class BoardController
         _selectedTile = _board[coords];
         if (_selectedTile != null)
         {
-            if (_selectedTile.IsValid())
+            if (_selectedTile.IsValid()&&!_selectedTile.IsObstacle())
             {
                 BoardEvents.NotifySelected(_selectedTile.BoardPos);
             }
@@ -232,7 +233,17 @@ public class BoardController
             }
         }
     }
-
+    public bool ChangeTile(Vector2Int pos,TileType newtype)
+    {
+        bool ret = false;
+        if (_board.CoordinatesInsideBoard(pos.x, pos.y) && _board[pos].IsBaseTile())
+        {
+            _board[pos].Type = newtype;
+            BoardEvents.NotifyChanged(pos, (int)newtype);
+            ret = true;
+        }
+        return ret;
+    }
     void SpecialTileGeneration(BoardPosition tile, List<BoardPosition> vertical, List<BoardPosition> horizontal)
     {
         if(vertical.Count >=2 && horizontal.Count >= 2)
@@ -396,7 +407,7 @@ public class BoardController
     bool SwapTiles(BoardPosition tile, BoardPosition other)
     {
         bool ret = false;
-        if (other.IsValid())
+        if (other.IsValid()&&!other.IsObstacle())
         {
             if (tile.IsBaseTile())
             {
@@ -459,7 +470,9 @@ public class BoardController
         }
         if(!match_found)
         {
+            Debug.Log("Could not find any matches");
             _board.ShuffleBoard();
+            CheckForMatches();
         }
         return match_found==true?0:1;
     }
@@ -467,7 +480,7 @@ public class BoardController
     bool TrySwap(BoardPosition tile, BoardPosition other)
     {
         bool ret = false;
-        if (other.IsValid())
+        if (tile.IsValid()&&!tile.IsObstacle() && other.IsValid()&& !tile.IsObstacle())
         {
             TileType tmp = tile.Type;
             tile.Type = other.Type;
