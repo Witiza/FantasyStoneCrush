@@ -15,6 +15,7 @@ public class TouchInput : MonoBehaviour,IGameplayInput
     public EventBus GameWon;
     public EventBus GameLost;
     private bool _inputEnabled= true;
+    private bool _gameEnded = false;
     public Vector2 _initialTouch { get; set; }
     [field: SerializeField]
     public float SwapDistance { get; set; }
@@ -37,11 +38,13 @@ public class TouchInput : MonoBehaviour,IGameplayInput
     private void ScoreControllerGameLost()
     {
         _inputEnabled = false;
+        _gameEnded = true;
     }
 
     private void ScoreControllerGameWon()
     {
         _inputEnabled= false;
+        _gameEnded = true;
     }
 
     // Update is called once per frame
@@ -92,6 +95,15 @@ public class TouchInput : MonoBehaviour,IGameplayInput
                 default:
                     break;
             }
+
         }
+    }
+    
+    public IEnumerator CoroutineTurnWait()
+    {
+        _inputEnabled = false;
+        yield return new WaitForSeconds(1.3f);
+        if(!_gameEnded)
+            _inputEnabled = true;
     }
 }

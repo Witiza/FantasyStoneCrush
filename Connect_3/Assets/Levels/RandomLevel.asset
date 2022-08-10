@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: RandomLevel
   m_EditorClassIdentifier: 
   TileSize: 0.5
+  Objective: 0
+  AvailableMoves: 50
+  ScoreOrBoxesNeeded: 100
   board:
     gridSize: {x: 9, y: 9}
     cellSize: {x: 32, y: 16}

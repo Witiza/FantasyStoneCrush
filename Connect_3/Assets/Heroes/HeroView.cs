@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.ParticleSystemJobs;
 
 public class HeroView : MonoBehaviour 
 {
@@ -11,50 +12,35 @@ public class HeroView : MonoBehaviour
 
     public TileType heroType;
 
-    public Image HealthBar;
     public Image ManaBar;
     public Booster ManaBooster;
+    public ParticleSystem particles;
 
     public void Start()
     {
         BoardEvents.TileDestroyed += BoardEventsTileDestroyed;
         SelectHeroController();
-        controller.HeroDamaged += ControllerHeroDamaged;
-        controller.HeroHealed += ControllerHeroHealed;
         controller.HeroManaGained += ControllerHeroManaGained;
         ManaBooster.BoosterEvent += ManaBoosterEvent;
-        UpdateBar(HealthBar, Stats.maxHp, Stats.maxHp);
-        UpdateBar(ManaBar, Stats.maxMana, Stats.maxMana);
+        UpdateBar(ManaBar, 0, Stats.maxMana);
     }
 
-    private void ManaBoosterEvent()
+    private void ManaBoosterEvent(bool success)
     {
-        controller.addMana(Stats.maxMana);
+        if(success)
+            controller.addMana(Stats.maxMana);
     }
 
     private void ControllerHeroManaGained()
     {
         UpdateBar(ManaBar, controller.mana, Stats.maxMana);
+        particles.Emit(1);
     }
-
-    private void ControllerHeroHealed()
-    {
-        UpdateBar(HealthBar, controller.hp, Stats.maxHp);
-    }
-
-    private void ControllerHeroDamaged()
-    {
-        UpdateBar(HealthBar, controller.hp, Stats.maxHp);
-    }
-
     public void OnDestroy()
     {
         BoardEvents.TileDestroyed -= BoardEventsTileDestroyed;
-        controller.HeroDamaged -= ControllerHeroDamaged;
-        controller.HeroHealed -= ControllerHeroHealed;
         controller.HeroManaGained -= ControllerHeroManaGained;
         ManaBooster.BoosterEvent -= ManaBoosterEvent;
-
     }
     public void AbilityButton()
     {
@@ -62,6 +48,7 @@ public class HeroView : MonoBehaviour
         if (controller.canUseAbility())
         {
             controller.activateAbility();
+            UpdateBar(ManaBar, controller.mana, Stats.maxMana);
         }
     }
 

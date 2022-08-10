@@ -8,14 +8,16 @@ using TMPro;
 public class BoardView : MonoBehaviour
 {
     public static List<VisualTile> tiles = new List<VisualTile>();
-    public GameObject tile_prefab;
+    public GameObject[] TilePrefabs;
     public BoardController Board;
     VisualSelector _visualSelector;
     [SerializeField]
     public BoardConfig Config;
     IGameplayInput _gameplayInput;
-    public int available_moves;
-    public TMP_Text moves_text;
+    int _availableMoves;
+    int _currentScore = 0;
+    public TMP_Text MovesText;
+    public TMP_Text ScoreText;
     public EventBus GameWon;
     public EventBus GameLost;
     public Booster TileBooster;
@@ -39,23 +41,31 @@ public class BoardView : MonoBehaviour
         _gameplayInput.EndTouch += InputEndTouch;  
         Board = new BoardController(Config.board.GridSize.x, Config.board.GridSize.y,Config.board);
         _visualSelector = new VisualSelector();
+        _availableMoves = Config.AvailableMoves;
+        InitializeTexts();
     }
 
-    private void TurnBoosterEvent()
+    private void TurnBoosterEvent(bool success)
     {
-        available_moves += extraMovesBooster;
-        UpdateMoves();
-    }
-
-    private void TileBoosterEvent()
-    {
-        for(int i = 0;i<extraTilesBooster;i++)
+        if (success)
         {
-            Vector2Int tmp;
-            do
+            _availableMoves += extraMovesBooster;
+            UpdateMoves();
+        }
+    }
+
+    private void TileBoosterEvent(bool success)
+    {
+        if (success)
+        {
+            for (int i = 0; i < extraTilesBooster; i++)
             {
-                tmp = new Vector2Int(Random.Range(0, Config.BoardWidth), Random.Range(0, Config.BoardHeight));
-            } while (!Board.ChangeTile(tmp, (TileType)Random.Range(6, 9)));
+                Vector2Int tmp;
+                do
+                {
+                    tmp = new Vector2Int(Random.Range(0, Config.BoardWidth), Random.Range(0, Config.BoardHeight));
+                } while (!Board.ChangeTile(tmp, (TileType)Random.Range(6, 9)));
+            }
         }
     }
 
@@ -65,6 +75,7 @@ public class BoardView : MonoBehaviour
         {
             Board.ProcessBoard();
             UpdateMoves();
+            StartCoroutine(_gameplayInput.CoroutineTurnWait());
         }
     }
 
@@ -74,6 +85,7 @@ public class BoardView : MonoBehaviour
         {
             Board.ProcessBoard();
             UpdateMoves();
+            StartCoroutine(_gameplayInput.CoroutineTurnWait());
         }
     }
 
@@ -86,13 +98,28 @@ public class BoardView : MonoBehaviour
         }
     }
 
+    void InitializeTexts()
+    {
+        MovesText.text = $"{_availableMoves}";
+        ScoreText.text = $"{_currentScore}/{Config.ScoreOrBoxesNeeded}";
+    }
     void UpdateMoves()
     {
-        available_moves--;
-        moves_text.text = $"{available_moves}";
-        if (available_moves == 0)
+        _availableMoves--;
+        MovesText.text = $"{_availableMoves}";
+        if (_availableMoves == 0)
         {
             GameLost.NotifyEvent();
+        }
+    }
+
+    void UpdateScore()
+    {
+        _currentScore++;
+        ScoreText.text = $"{_currentScore}/{Config.ScoreOrBoxesNeeded}";
+        if (_currentScore >= Config.ScoreOrBoxesNeeded)
+        {
+            GameWon.NotifyEvent();
         }
     }
     public void OnDestroy()
@@ -115,32 +142,45 @@ public class BoardView : MonoBehaviour
     {
         VisualTile tile = GetTileAtPos(pos1);
         VisualTile other = GetTileAtPos(pos2);
-        tile.SetBoardPosition(pos2);
-        other.SetBoardPosition(pos1);
+        tile.SetBoardPosition(pos2,MovementType.SWAP);
+        other.SetBoardPosition(pos1,MovementType.SWAP);
     }
 
     private void BoardEvents_TileDestroyed(Vector2 obj,int type)
     {
         VisualTile tile = GetTileAtPos(obj);
         tiles.Remove(tile);
-        Destroy(tile.gameObject);
+        tile.DestroyVisualTile();
+        if(Config.Objective == GameObjectives.BOXES&&type==9)
+        {
+            UpdateScore();
+        }
+        else if(Config.Objective == GameObjectives.SCORE&&type >0&&type<=5)
+        {
+            UpdateScore();
+        }
     }
 
     private void BoardEvents_TileMoved(Vector2 origin, Vector2 destination)
     {
         VisualTile tile = GetTileAtPos(origin);
-        tile.SetBoardPosition(destination);
+        tile.SetBoardPosition(destination, MovementType.DOWNWARDS);
     }
     private void BoardEventsTileChanged(Vector2 pos, int type)
     {
         VisualTile tile = GetTileAtPos(pos);
-        tile.InitializeTile((TileType)type, pos, Config.TileSize);
+        tiles.Remove(tile);
+        tile.DestroyVisualTile();
+
+        tile = Object.Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
+        tile.InitializeTile(pos, Config.TileSize,MovementType.CHANGE);
+        tiles.Add(tile);
     }
 
     private void BoardEvents_TileCreated(Vector2 pos, int type)
     {
-        VisualTile tile = Object.Instantiate(tile_prefab).GetComponent<VisualTile>();
-        tile.InitializeTile((TileType)type, pos,Config.TileSize);
+        VisualTile tile = Object.Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
+        tile.InitializeTile( pos,Config.TileSize);
         tiles.Add(tile);
     }
 

@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: RandomWithBoxes
   m_EditorClassIdentifier: 
   TileSize: 0.5
+  Objective: 1
+  AvailableMoves: 30
+  ScoreOrBoxesNeeded: 13
   board:
     gridSize: {x: 9, y: 9}
     cellSize: {x: 32, y: 16}
     cells:
     - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-    - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-    - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-    - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    - row: ffffffffffffffffffffffffffffffff090000000900000009000000ffffffffffffffff
+    - row: ffffffffffffffffffffffffffffffff090000000900000009000000ffffffffffffffff
+    - row: 09000000090000000900000009000000090000000900000009000000ffffffffffffffff
     - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     - row: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff

@@ -191,8 +191,14 @@ public class BoardController
                     DestroyTile(neighbour);
                 }
             }
-            DestroyTile(tile);
-            SpecialTileGeneration(tile, vertical_neighbours, horizontal_neighbours);
+            if(!SpecialTileGeneration(tile, vertical_neighbours, horizontal_neighbours))
+            {
+                DestroyTile(tile);
+            }
+            else
+            {
+                BoardEvents.NotifyUnselected(tile.BoardPos);
+            }
         }
         tile.Dirty = false;
     }
@@ -247,23 +253,28 @@ public class BoardController
         }
         return ret;
     }
-    void SpecialTileGeneration(BoardPosition tile, List<BoardPosition> vertical, List<BoardPosition> horizontal)
+    bool SpecialTileGeneration(BoardPosition tile, List<BoardPosition> vertical, List<BoardPosition> horizontal)
     {
+        bool ret = false;
         if(vertical.Count >=2 && horizontal.Count >= 2)
         {
             tile.Type = TileType.BOMB;
-            BoardEvents.NotifyCreated(tile.BoardPos, (int)TileType.BOMB);
+            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.BOMB);
+            ret = true;
         }
         else if(horizontal.Count > 2)
         {
             tile.Type = TileType.HORIZONTAL_ROCKET;
-            BoardEvents.NotifyCreated(tile.BoardPos, (int)TileType.HORIZONTAL_ROCKET);
+            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.HORIZONTAL_ROCKET);
+            ret = true;
         }
         else if(vertical.Count > 2)
         {
             tile.Type = TileType.VERTICAL_ROCKET;
-            BoardEvents.NotifyCreated(tile.BoardPos, (int)TileType.VERTICAL_ROCKET);
+            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.VERTICAL_ROCKET);
+            ret = true;
         }
+        return ret;
     }
     public void TargetAndDestroyTile(Vector2Int pos)
     {

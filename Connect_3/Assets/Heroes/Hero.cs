@@ -12,18 +12,13 @@ public abstract class HeroController
     public bool shielded = false;
     float manaMultiplier = 1;
 
-    public  event Action HeroDamaged;
-    public  void NotifyDamaged() => HeroDamaged?.Invoke();
-    public event Action HeroHealed;
-    public void NotifyHealed() => HeroHealed?.Invoke();
     public event Action HeroManaGained;
     public void NotifyManaGained() => HeroManaGained?.Invoke();
 
     public HeroController(HeroStats stats)
     {
         _stats = stats;
-        hp = stats.maxHp;
-        mana = stats.maxMana;
+        mana = 0;
         dead = false;
         _boardController = GameObject.FindGameObjectWithTag("Controller").GetComponent<BoardView>().Board;
     }
@@ -46,34 +41,6 @@ public abstract class HeroController
         return mana >= _stats.maxMana;
     }
     public abstract void doAbility(bool crit);
-
-    public void dealDamage(int dmg)
-    {
-        if (!shielded)
-        {
-            hp -= dmg;
-            if (hp < 0)
-            {
-                hp = 0;
-                dead = true;
-            }
-        }
-        else
-        {
-            shielded = false;
-        }
-        NotifyDamaged();
-    }
-
-    public void healHP(int heal)
-    {
-        hp+=heal;   
-        if(hp>_stats.maxHp)
-        {
-            hp = _stats.maxHp;
-        }
-        NotifyHealed();
-    }
 
     public void addMana(int _mana)
     {

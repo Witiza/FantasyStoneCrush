@@ -13,9 +13,10 @@ public class BoosterAmountUpdater : MonoBehaviour
     {
         _booster.BoosterEvent += BoosterEvent;
         _amount = GetComponent<TextMeshProUGUI>();
+        _amount.text = _booster.amount.ToString();
     }
 
-    private void BoosterEvent()
+    private void BoosterEvent(bool success)
     {
         _amount.text = _booster.amount.ToString();
     }
