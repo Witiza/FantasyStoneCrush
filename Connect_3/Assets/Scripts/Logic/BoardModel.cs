@@ -68,7 +68,6 @@ public class BoardModel
         } while (tile.SameTypeNeighbours());
     }
 
-    //Very ugly function, find a better way to do this (maybe cheat and generate a board again?
     public void ShuffleBoard()
     {
         Debug.Log("Shuffling Board");

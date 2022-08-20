@@ -373,6 +373,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turn Booster
       objectReference: {fileID: 0}
+    - target: {fileID: 6843017864859030867, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7198171312505037936, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -455,7 +459,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 2081628033, guid: ae6e365288f1f09439fc8a958bd0a12e, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -463,7 +467,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 12
 --- !u!222 &77297949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -754,6 +758,10 @@ PrefabInstance:
     - target: {fileID: 5820672170854233834, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
       propertyPath: m_Name
       value: ManaBooster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843017864859030867, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
+      propertyPath: m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7198171312505037936, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1204,7 +1212,7 @@ MonoBehaviour:
   - {fileID: 4453784086773983751, guid: 5776cb18ec01dbb42bb0217c13f55e17, type: 3}
   - {fileID: 7903453214287968048, guid: 1540a5a2f0d673a48acf442563a8d7cd, type: 3}
   - {fileID: 465019369486349866, guid: cbe9a7ef573b69149be1b70677430b81, type: 3}
-  Config: {fileID: 11400000, guid: a4a16bc70ccbde147a22426074d7ee27, type: 2}
+  Config: {fileID: 11400000, guid: 02f81e2f7079bed4eaa6ff3a61285d26, type: 2}
   MovesText: {fileID: 290758680}
   ScoreText: {fileID: 740505789}
   GameWon: {fileID: 11400000, guid: 1167a1228544a4c4d98d2226810eb37e, type: 2}
@@ -1796,8 +1804,8 @@ RectTransform:
   m_GameObject: {fileID: 975551276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 12}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2015959857}
   m_RootOrder: 0
@@ -1828,7 +1836,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 2081628033, guid: ae6e365288f1f09439fc8a958bd0a12e, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1836,7 +1844,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 12
 --- !u!222 &975551279
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2251,7 +2259,7 @@ RectTransform:
   m_GameObject: {fileID: 1504348112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 24875466}
@@ -2340,7 +2348,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -796362401, guid: ae6e365288f1f09439fc8a958bd0a12e, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2369,6 +2377,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fa8bda55339834089c3eeb2e932006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  _canvas: {fileID: 0}
+  _loadingBar: {fileID: 0}
+  _eventBus: {fileID: 0}
 --- !u!224 &1591473705 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8157287810877462607, guid: 32696997bc522214d8d6deb596c14ff3, type: 3}
@@ -3122,9 +3134,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3906496517468886541, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5820672170854233834, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
       propertyPath: m_Name
       value: TileBooster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843017864859030867, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843017864859030867, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7198171312505037936, guid: a1f96183b644451488b6606cb7abfce7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

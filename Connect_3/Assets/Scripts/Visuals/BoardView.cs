@@ -150,7 +150,7 @@ public class BoardView : MonoBehaviour
     {
         VisualTile tile = GetTileAtPos(obj);
         tiles.Remove(tile);
-        tile.DestroyVisualTile();
+        tile.DestroyVisualTile(true);
         if(Config.Objective == GameObjectives.BOXES&&type==9)
         {
             UpdateScore();
@@ -170,7 +170,7 @@ public class BoardView : MonoBehaviour
     {
         VisualTile tile = GetTileAtPos(pos);
         tiles.Remove(tile);
-        tile.DestroyVisualTile();
+        tile.DestroyVisualTile(false);
 
         tile = Object.Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
         tile.InitializeTile(pos, Config.TileSize,MovementType.CHANGE);

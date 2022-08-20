@@ -90,10 +90,17 @@ public class VisualTile : MonoBehaviour
         _sequence.Append(transform.DOScale(scale, 0.5f));
     }
 
-    public void DestroyVisualTile()
+    public void DestroyVisualTile(bool play_particles)
     {
         //The particle system will destroy the tile when finished.
         GetComponent<SpriteRenderer>().enabled = false;
-        particles.Play();
+        if (play_particles)
+        {
+            particles.Play();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

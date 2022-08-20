@@ -14,7 +14,7 @@ public class ArcherController : HeroController
             int x = Random.Range(0,_boardController.BoardWidth);
             int y = Random.Range(0,_boardController.BoardHeight);
             _boardController.TargetAndDestroyTile(new Vector2Int(x, y));
-            _boardController.ProcessBoard();
         }
+        _boardController.ProcessBoard();
     }
 }

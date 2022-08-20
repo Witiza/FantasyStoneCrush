@@ -15,7 +15,11 @@ public class BoardController
     public BoardController(int width, int height,Array2DInt board = null)
     {
         _board = new BoardModel(width, height, board);
-        CheckForMatches();
+        int iterations = 0;
+        while(iterations <10&&CheckForMatches()==1)
+        {
+            iterations++;
+        }
     }
 
     public void ProcessBoard()
@@ -301,7 +305,7 @@ public class BoardController
             case TileType.CHALICE:
                 break;
             case TileType.BOMB:
-                DestroyArea(1, tile.BoardPos);
+                DestroyArea(2, tile.BoardPos);
                 break;
             case TileType.HORIZONTAL_ROCKET:
                 DestroyRow(tile.BoardPos.x);
@@ -324,7 +328,7 @@ public class BoardController
         {
             if(other.Type == TileType.BOMB)
             {
-                DestroyArea(3, pos);
+                DestroyArea(4, pos);
             }
             else if(other.Type == TileType.VERTICAL_ROCKET||other.Type==TileType.HORIZONTAL_ROCKET)
             {
@@ -492,7 +496,6 @@ public class BoardController
         {
             Debug.Log("Could not find any matches");
             _board.ShuffleBoard();
-            CheckForMatches();
         }
         return match_found==true?0:1;
     }

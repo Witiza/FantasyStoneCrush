@@ -1,10 +1,22 @@
-3 boosters:
-- añadir turnos
-- Topea de mana a todos los heroes
-- Transformar piezas random en piezas especiales
-
-Heroes:
-- Implementar rogue y arquero  (matar 1 pieza, matar 3 piezas random (iterar, pillar priority queue con obstaculos->special tiles)
-
-Enemigos: 
-- Enemigo fuera del tablero, puedes matarlo con habilidades de los heroes (pa enseñar interaccion entre ellos)
+SCENES:
+- Splash Screen
+- Main Menu:
+	- Level selector (nothing fancy rn)
+	- Play button
+	- Buttons to other sections
+- Gameplay Scene: what it is, plus some buttons for options, exit, etc
+- Store
+	-Be able to buy boosters and use them ingame
+	-Button to add money (debug)
+	-Button to open chests (not funcional)
+- Options
+	-Change music volume
+	-Change sfx volume
+	-Reset Progression
+- Credits
+	- Music
+	- Art
+ADD BASIC VOLUME
+ADD PARTICLES TO SPECIAL TILES
+IMPLEMENT WARRIOR, PRIEST, AND ROGUE ABILITIES
+IMPLEMENT COINS, AND HOW TO GET THEM
