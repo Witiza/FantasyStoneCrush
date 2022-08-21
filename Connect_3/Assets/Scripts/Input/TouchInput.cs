@@ -12,8 +12,8 @@ public enum Direction
 }
 public class TouchInput : MonoBehaviour,IGameplayInput
 {
-    public EventBus GameWon;
-    public EventBus GameLost;
+    public GameEndEventBus GameWon;
+    public GameEndEventBus GameLost;
     private bool _inputEnabled= true;
     private bool _gameEnded = false;
     public Vector2 _initialTouch { get; set; }
@@ -35,13 +35,13 @@ public class TouchInput : MonoBehaviour,IGameplayInput
         GameLost.Event += ScoreControllerGameLost;
     }
 
-    private void ScoreControllerGameLost()
+    private void ScoreControllerGameLost(GameEndInfo info)
     {
         _inputEnabled = false;
         _gameEnded = true;
     }
 
-    private void ScoreControllerGameWon()
+    private void ScoreControllerGameWon(GameEndInfo info)
     {
         _inputEnabled= false;
         _gameEnded = true;

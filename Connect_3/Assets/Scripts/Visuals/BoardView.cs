@@ -10,16 +10,17 @@ public class BoardView : MonoBehaviour
     public static List<VisualTile> tiles = new List<VisualTile>();
     public GameObject[] TilePrefabs;
     public BoardController Board;
-    VisualSelector _visualSelector;
     [SerializeField]
-    public BoardConfig Config;
+    public PlayerProgressionSO PlayerProgression;
     IGameplayInput _gameplayInput;
     int _availableMoves;
     int _currentScore = 0;
+    BoardConfig _config;
+    VisualSelector _visualSelector;
     public TMP_Text MovesText;
     public TMP_Text ScoreText;
-    public EventBus GameWon;
-    public EventBus GameLost;
+    public GameEndEventBus GameWon;
+    public GameEndEventBus GameLost;
     public Booster TileBooster;
     public Booster TurnBooster;
     public int extraMovesBooster;
@@ -38,10 +39,11 @@ public class BoardView : MonoBehaviour
         _gameplayInput = gameObject.GetComponent<IGameplayInput>();
         _gameplayInput.StartTouch += InputStartTouch; ;
         _gameplayInput.SwapTouch += InputSwapTouch; ;
-        _gameplayInput.EndTouch += InputEndTouch;  
-        Board = new BoardController(Config.board.GridSize.x, Config.board.GridSize.y,Config.board);
+        _gameplayInput.EndTouch += InputEndTouch;
+        _config = PlayerProgression.GetCurrentLevelBoard();
+        Board = new BoardController(_config.board.GridSize.x, _config.board.GridSize.y,_config.board);
         _visualSelector = new VisualSelector();
-        _availableMoves = Config.AvailableMoves;
+        _availableMoves = _config.AvailableMoves;
         InitializeTexts();
     }
 
@@ -63,7 +65,7 @@ public class BoardView : MonoBehaviour
                 Vector2Int tmp;
                 do
                 {
-                    tmp = new Vector2Int(Random.Range(0, Config.BoardWidth), Random.Range(0, Config.BoardHeight));
+                    tmp = new Vector2Int(Random.Range(0, _config.BoardWidth), Random.Range(0, _config.BoardHeight));
                 } while (!Board.ChangeTile(tmp, (TileType)Random.Range(6, 9)));
             }
         }
@@ -101,7 +103,7 @@ public class BoardView : MonoBehaviour
     void InitializeTexts()
     {
         MovesText.text = $"{_availableMoves}";
-        ScoreText.text = $"{_currentScore}/{Config.ScoreOrBoxesNeeded}";
+        ScoreText.text = $"{_currentScore}/{_config.ScoreOrBoxesNeeded}";
     }
     void UpdateMoves()
     {
@@ -109,19 +111,26 @@ public class BoardView : MonoBehaviour
         MovesText.text = $"{_availableMoves}";
         if (_availableMoves == 0)
         {
-            GameLost.NotifyEvent();
+            GameLost.NotifyEvent(BuildGameEndInfo(false));
         }
     }
 
     void UpdateScore()
     {
         _currentScore++;
-        ScoreText.text = $"{_currentScore}/{Config.ScoreOrBoxesNeeded}";
-        if (_currentScore >= Config.ScoreOrBoxesNeeded)
+        ScoreText.text = $"{_currentScore}/{_config.ScoreOrBoxesNeeded}";
+        if (_currentScore >= _config.ScoreOrBoxesNeeded)
         {
-            GameWon.NotifyEvent();
+            GameWon.NotifyEvent(BuildGameEndInfo(true));
         }
     }
+
+    GameEndInfo BuildGameEndInfo(bool won)
+    {
+        GameEndInfo gameEndInfo = new GameEndInfo(_availableMoves,_currentScore,PlayerProgression.CurrentLevel,PlayerProgression.MaxLevelUnlocked,won);
+        return gameEndInfo;
+    }
+
     public void OnDestroy()
     {
         BoardEvents.TileCreated -= BoardEvents_TileCreated;
@@ -151,11 +160,11 @@ public class BoardView : MonoBehaviour
         VisualTile tile = GetTileAtPos(obj);
         tiles.Remove(tile);
         tile.DestroyVisualTile(true);
-        if(Config.Objective == GameObjectives.BOXES&&type==9)
+        if(_config.Objective == GameObjectives.BOXES&&type==9)
         {
             UpdateScore();
         }
-        else if(Config.Objective == GameObjectives.SCORE&&type >0&&type<=5)
+        else if(_config.Objective == GameObjectives.SCORE&&type >0&&type<=5)
         {
             UpdateScore();
         }
@@ -172,15 +181,15 @@ public class BoardView : MonoBehaviour
         tiles.Remove(tile);
         tile.DestroyVisualTile(false);
 
-        tile = Object.Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
-        tile.InitializeTile(pos, Config.TileSize,MovementType.CHANGE);
+        tile = Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
+        tile.InitializeTile(pos, _config.TileSize,MovementType.CHANGE);
         tiles.Add(tile);
     }
 
     private void BoardEvents_TileCreated(Vector2 pos, int type)
     {
-        VisualTile tile = Object.Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
-        tile.InitializeTile( pos,Config.TileSize);
+        VisualTile tile = Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
+        tile.InitializeTile( pos,_config.TileSize);
         tiles.Add(tile);
     }
 
@@ -190,11 +199,11 @@ public class BoardView : MonoBehaviour
         Vector3 pos = Camera.main.ScreenToWorldPoint(screen_pos);
         Vector3 tmp = pos - transform.position;
         pos.z = 0;
-        float x = (tmp.x / (Config.TileSize));
-        float y = (tmp.y / (Config.TileSize));
+        float x = (tmp.x / (_config.TileSize));
+        float y = (tmp.y / (_config.TileSize));
         int rounded_x = (int)Mathf.Round(x);
         int rounded_y = (int)Mathf.Round(y);
-        if (rounded_x >= 0 && rounded_x < Config.BoardWidth && rounded_y >= 0 && rounded_y < Config.BoardHeight)
+        if (rounded_x >= 0 && rounded_x < _config.BoardWidth && rounded_y >= 0 && rounded_y < _config.BoardHeight)
         {
             ret = new Vector2Int(rounded_x, rounded_y);
         }
@@ -213,11 +222,11 @@ public class BoardView : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        float width = Config.TileSize * Config.BoardWidth;
-        float height = Config.TileSize * Config.BoardHeight;
+        float width = _config.TileSize * _config.BoardWidth;
+        float height = _config.TileSize * _config.BoardHeight;
         Vector3 center = transform.position;
-        center.x += (width / 2)-Config.TileSize/2;
-        center.y += (height / 2)-Config.TileSize/2;
+        center.x += (width / 2)-_config.TileSize/2;
+        center.y += (height / 2)-_config.TileSize/2;
         Color color = Color.black;
         color.a = 0.5f;
         Gizmos.color = color;

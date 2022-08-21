@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c08844931c5e834ab23127854042ae1, type: 3}
-  m_Name: GameLost
+  m_Script: {fileID: 11500000, guid: a93eef5fb327a764ca59290c668c860b, type: 3}
+  m_Name: LoadLevel
   m_EditorClassIdentifier: 

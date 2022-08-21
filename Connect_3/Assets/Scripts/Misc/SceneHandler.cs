@@ -10,14 +10,10 @@ public class SceneHandler : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] CanvasGroup _canvas;
     [SerializeField] SlicedFilledImage _loadingBar;
-    [SerializeField] StringEventBus _eventBus;
+    [SerializeField] StringEventBus _loadEvent;
     Coroutine _currentCoroutine;
 
-    private void Awake()
-    {
-        _eventBus.Event += LoadScene;
-        LoadScene("Test 1");
-    }
+
     public void ReloadScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
@@ -54,5 +50,16 @@ public class SceneHandler : MonoBehaviour
         _currentScene = SceneManager.GetSceneAt(1);
         _currentCoroutine = null;
         _canvas.gameObject.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        _loadEvent.Event += LoadScene;
+        LoadScene("Test 1");
+    }
+
+    private void OnDestroy()
+    {
+        _loadEvent.Event -= LoadScene;
     }
 }

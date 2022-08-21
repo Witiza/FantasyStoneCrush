@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "EventBuses/StringEvent")]
 public class StringEventBus : ScriptableObject
 {
     public event Action<string> Event;
-    public void NotifyEvent(string str) => Event?.Invoke(str);
+    public void NotifyEvent(string val) => Event?.Invoke(val);
 }
 

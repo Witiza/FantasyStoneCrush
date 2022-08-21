@@ -47,7 +47,7 @@ public class BoardModel
                 _board[i, j] = new BoardPosition();
                 _board[i, j].BoardPos = new Vector2Int(i, j);
                 _board[i, j].GameBoard = this;
-                if (board[i,j] ==-1)
+                if (board[i,j] ==0)
                 {
                     GenerateTileType(_board[i, j]);
                 }
