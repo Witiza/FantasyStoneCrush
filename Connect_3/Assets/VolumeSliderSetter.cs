@@ -17,3 +17,4 @@ public class VolumeSliderSetter : MonoBehaviour
         SFX.value = volume.SFXVolume;
     }
 }
+

@@ -122,8 +122,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
+        m_TargetAssemblyTypeName: StringEventBus, Assembly-CSharp
+        m_MethodName: NotifyEvent
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

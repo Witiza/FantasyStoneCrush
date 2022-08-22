@@ -222,11 +222,12 @@ public class BoardView : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        float width = _config.TileSize * _config.BoardWidth;
-        float height = _config.TileSize * _config.BoardHeight;
+        BoardConfig config = PlayerProgression.levels[PlayerProgression.CurrentLevel];
+        float width =  config.TileSize * config.BoardWidth;
+        float height = config.TileSize * config.BoardHeight;
         Vector3 center = transform.position;
-        center.x += (width / 2)-_config.TileSize/2;
-        center.y += (height / 2)-_config.TileSize/2;
+        center.x += (width / 2)-config.TileSize/2;
+        center.y += (height / 2)-config.TileSize/2;
         Color color = Color.black;
         color.a = 0.5f;
         Gizmos.color = color;

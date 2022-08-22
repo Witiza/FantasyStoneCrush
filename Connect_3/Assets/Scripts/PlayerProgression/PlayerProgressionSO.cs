@@ -21,6 +21,7 @@ public class PlayerProgressionSO  : ScriptableObject
     public void ResetProgression()
     {
         CurrentLevel = 0;
+        MaxLevelUnlocked = 0;
         Coins = 0;
         TileBooster.amount = 0;
         TurnBooster.amount = 0;
@@ -42,4 +43,33 @@ public class PlayerProgressionSO  : ScriptableObject
         CoinsChange.NotifyEvent(coins);
         Coins += coins;
     }
+
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame(new ProgressionSerializable(CurrentLevel,MaxLevelUnlocked,Coins));
+    }
+    public void LoadGame()
+    {
+        ProgressionSerializable tmp = SaveSystem.LoadGame();
+        if (tmp!=null)
+        {
+            CurrentLevel = tmp.CurrentLevel;
+            MaxLevelUnlocked = tmp.MaxLevelUnlocked;
+            Coins = tmp.Coins;
+        }
+    }
+}
+[System.Serializable]
+public class ProgressionSerializable
+{
+    public ProgressionSerializable() { }
+    public ProgressionSerializable(int level, int maxLevel, int coins)
+    {
+        CurrentLevel = level;
+        MaxLevelUnlocked = maxLevel;
+        Coins = coins;
+    }
+   public int CurrentLevel;
+   public int MaxLevelUnlocked;
+   public int Coins;
 }
