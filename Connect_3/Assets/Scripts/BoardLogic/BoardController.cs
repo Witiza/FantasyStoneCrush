@@ -291,19 +291,6 @@ public class BoardController
     {
         switch (tile.Type)
         {
-            case TileType.NULL:
-                return;
-                break;
-            case TileType.SHIELD:
-                break;
-            case TileType.DAGGER:
-                break;
-            case TileType.ARROW:
-                break;
-            case TileType.WAND:
-                break;
-            case TileType.CHALICE:
-                break;
             case TileType.BOMB:
                 DestroyArea(2, tile.BoardPos);
                 break;
@@ -376,8 +363,6 @@ public class BoardController
                     break;
                 case Direction.DOWN:
                     ret = SwapBottom();
-                    break;
-                default:
                     break;
             }
             BoardEvents.NotifyUnselected(_selectedTile.BoardPos);

@@ -25,23 +25,8 @@ public class HeroView : MonoBehaviour
         UpdateBar(ManaBar, 0, Stats.maxMana);
     }
 
-    private void ManaBoosterEvent(bool success)
-    {
-        if(success)
-            controller.addMana(Stats.maxMana);
-    }
 
-    private void ControllerHeroManaGained()
-    {
-        UpdateBar(ManaBar, controller.mana, Stats.maxMana);
-        particles.Emit(1);
-    }
-    public void OnDestroy()
-    {
-        BoardEvents.TileDestroyed -= BoardEventsTileDestroyed;
-        controller.HeroManaGained -= ControllerHeroManaGained;
-        ManaBooster.BoosterEvent -= ManaBoosterEvent;
-    }
+
     public void AbilityButton()
     {
         Debug.Log("Hero ability used");
@@ -58,11 +43,6 @@ public class HeroView : MonoBehaviour
         {
             controller.addMana(5);
         }
-    }
-
-    public void UpdateBar(Image bar, int value, int max_value )
-    {
-        bar.fillAmount = (float)value / (float)max_value;
     }
 
     public void SelectHeroController()
@@ -84,9 +64,30 @@ public class HeroView : MonoBehaviour
             case TileType.CHALICE:
                 controller = new PriestController(Stats);
                 break;
-            default:
-                Debug.LogError("YOU CAN ONLY SELECT BASE TYPES FOR HEROES");
-                break;
         }
+    }
+
+    private void ManaBoosterEvent(bool success)
+    {
+        if (success)
+            controller.addMana(Stats.maxMana);
+    }
+
+    private void ControllerHeroManaGained()
+    {
+        UpdateBar(ManaBar, controller.mana, Stats.maxMana);
+        particles.Emit(1);
+    }
+
+    public void OnDestroy()
+    {
+        BoardEvents.TileDestroyed -= BoardEventsTileDestroyed;
+        controller.HeroManaGained -= ControllerHeroManaGained;
+        ManaBooster.BoosterEvent -= ManaBoosterEvent;
+    }
+
+    public void UpdateBar(Image bar, int value, int max_value)
+    {
+        bar.fillAmount = (float)value / (float)max_value;
     }
 }

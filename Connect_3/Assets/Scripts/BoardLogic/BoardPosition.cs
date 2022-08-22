@@ -13,8 +13,7 @@ public enum TileType
     BOMB,
     VERTICAL_ROCKET,
     HORIZONTAL_ROCKET,
-    BOX,
-    GRUNT
+    BOX
 }
 public class BoardPosition 
 {
@@ -56,10 +55,6 @@ public class BoardPosition
     public bool IsObstacle()
     {
         return (int)Type == 9;
-    }
-    public bool IsEnemy()
-    {
-        return (int)Type == 10;
     }
     public bool CheckType(BoardPosition other)
     {

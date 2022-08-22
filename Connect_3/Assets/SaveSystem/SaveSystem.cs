@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-
+//TODO: Find a way to use the same function for options and progression
 public static class SaveSystem
 {
     public static void SaveGame(ProgressionSerializable progression)
