@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: TileBooster
   m_EditorClassIdentifier: 
   amount: 10
+  cost: 20

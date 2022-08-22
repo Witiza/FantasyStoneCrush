@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileSize: 0.5
   Objective: 0
-  AvailableMoves: 10
-  ScoreOrBoxesNeeded: 10
+  AvailableMoves: 20
+  ScoreOrBoxesNeeded: 100
   board:
     gridSize: {x: 9, y: 9}
     cellSize: {x: 32, y: 16}

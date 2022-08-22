@@ -9,9 +9,10 @@ public class PlayerProgressionSO  : ScriptableObject
     public int Coins;
 
     public List<BoardConfig> levels;
-    public int TurnBoosterAmount;
-    public int ManaBoosterAmount;
-    public int TileBoosterAmount;
+    public Booster TileBooster;
+    public Booster TurnBooster;
+    public Booster ManaBooster;
+    public IntEventBus CoinsChange;
 
     public BoardConfig GetCurrentLevelBoard()
     {
@@ -21,8 +22,24 @@ public class PlayerProgressionSO  : ScriptableObject
     {
         CurrentLevel = 0;
         Coins = 0;
-        TurnBoosterAmount = 0;
-        ManaBoosterAmount = 0;
-        TileBoosterAmount = 0;
+        TileBooster.amount = 0;
+        TurnBooster.amount = 0;
+        ManaBooster.amount = 0;
+    }
+
+    public void AttemptToBuyBooster(Booster booster)
+    {
+        if(booster.cost <= Coins)
+        {
+            booster.amount = 10;
+            Coins -= booster.cost;
+            CoinsChange.NotifyEvent(booster.cost);
+        }
+    }
+
+    public void AddCoins(int coins)
+    {
+        CoinsChange.NotifyEvent(coins);
+        Coins += coins;
     }
 }

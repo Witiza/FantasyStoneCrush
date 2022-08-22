@@ -14,16 +14,22 @@ public class GameEndController : MonoBehaviour
     public GameEndEventBus GameLost;
     public StringEventBus LevelEvent;
     public IntEventBus CoinsWon;
+    bool _gameEnded = false;
 
     void EndGame(GameEndInfo info)
     {
-        gameObject.SetActive(true);
-        CalculateEndCoins(info._remainingMoves, info._score,info._level,info._highestLevel);
-        if(info._gameWon)
+        if (!_gameEnded)
         {
-            if(PlayerProgression.CurrentLevel<PlayerProgression.levels.Count)
+            _gameEnded = true;
+            gameObject.SetActive(true);
+            CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
+            if (info._gameWon)
             {
-                PlayerProgression.CurrentLevel++;
+                if (PlayerProgression.CurrentLevel < PlayerProgression.levels.Count)
+                {
+                    PlayerProgression.CurrentLevel++;
+                    PlayerProgression.MaxLevelUnlocked++;
+                }
             }
         }
     }
@@ -42,12 +48,6 @@ public class GameEndController : MonoBehaviour
             CoinsWon.NotifyEvent(amount);
         }
         PlayerProgression.Coins += amount;
-    }
-
-    public void PlayNextGameLevel()
-    {
-        string name = "Level "+PlayerProgression.CurrentLevel;
-        LevelEvent.NotifyEvent(name);
     }
 
     private void Awake()

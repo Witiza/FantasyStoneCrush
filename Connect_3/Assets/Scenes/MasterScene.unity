@@ -570,7 +570,8 @@ MonoBehaviour:
   _camera: {fileID: 1060862646}
   _canvas: {fileID: 1595794700}
   _loadingBar: {fileID: 846689401}
-  _eventBus: {fileID: 11400000, guid: 361f4478784c4fc4dae2a0573d44abe0, type: 2}
+  _loadEvent: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}
+  LoadInitialScene: 0
 --- !u!4 &2007131365
 Transform:
   m_ObjectHideFlags: 0

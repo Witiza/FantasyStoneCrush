@@ -13,7 +13,6 @@ public class SceneHandler : MonoBehaviour
     [SerializeField] StringEventBus _loadEvent;
     Coroutine _currentCoroutine;
 
-
     public void ReloadScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
@@ -55,7 +54,15 @@ public class SceneHandler : MonoBehaviour
     private void Awake()
     {
         _loadEvent.Event += LoadScene;
-        LoadScene("Test 1");
+        if (SceneManager.sceneCount==1)
+        {
+            LoadScene("MainMenu");
+        }
+        else
+        {
+            _currentScene = SceneManager.GetSceneAt(1);
+        }
+
     }
 
     private void OnDestroy()
