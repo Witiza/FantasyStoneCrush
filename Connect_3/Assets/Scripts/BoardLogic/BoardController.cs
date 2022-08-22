@@ -213,7 +213,7 @@ public class BoardController
         {
             for(int i = 0;i<_board.Width;i++)
             {
-                _board[row, i].ToDestroy = true;
+                _board[i, row].ToDestroy = true;
             }
         }
     }
@@ -224,7 +224,7 @@ public class BoardController
         {
             for (int i = 0; i < _board.Height; i++)
             {
-                _board[i, column].ToDestroy = true;
+                _board[column, i].ToDestroy = true;
             }
         }
     }
@@ -268,14 +268,14 @@ public class BoardController
         }
         else if(horizontal.Count > 2)
         {
-            tile.Type = TileType.HORIZONTAL_ROCKET;
-            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.HORIZONTAL_ROCKET);
+            tile.Type = TileType.VERTICAL_ROCKET;
+            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.VERTICAL_ROCKET);
             ret = true;
         }
         else if(vertical.Count > 2)
         {
-            tile.Type = TileType.VERTICAL_ROCKET;
-            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.VERTICAL_ROCKET);
+            tile.Type = TileType.HORIZONTAL_ROCKET;
+            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.HORIZONTAL_ROCKET);
             ret = true;
         }
         return ret;
@@ -308,10 +308,10 @@ public class BoardController
                 DestroyArea(2, tile.BoardPos);
                 break;
             case TileType.HORIZONTAL_ROCKET:
-                DestroyRow(tile.BoardPos.x);
+                DestroyRow(tile.BoardPos.y);
                 break;
             case TileType.VERTICAL_ROCKET:
-                DestroyColumn(tile.BoardPos.y);
+                DestroyColumn(tile.BoardPos.x);
                 break;
             default:
                 break;
@@ -332,29 +332,29 @@ public class BoardController
             }
             else if(other.Type == TileType.VERTICAL_ROCKET||other.Type==TileType.HORIZONTAL_ROCKET)
             {
-                DestroyRow(pos.x - 1);
-                DestroyRow(pos.x);
-                DestroyRow(pos.x + 1);
-                DestroyColumn(pos.y - 1);
-                DestroyColumn(pos.y);
-                DestroyColumn(pos.y + 1);
+                DestroyRow(pos.y - 1);
+                DestroyRow(pos.y);
+                DestroyRow(pos.y + 1);
+                DestroyColumn(pos.x - 1);
+                DestroyColumn(pos.x);
+                DestroyColumn(pos.x + 1);
             }
         }
         else if(tile.Type == TileType.VERTICAL_ROCKET||tile.Type ==TileType.HORIZONTAL_ROCKET)
         {
             if (other.Type == TileType.BOMB)
             {
-                DestroyRow(pos.x - 1);
-                DestroyRow(pos.x);
-                DestroyRow(pos.x + 1);
-                DestroyColumn(pos.y - 1);
-                DestroyColumn(pos.y);
-                DestroyColumn(pos.y + 1);
+                DestroyRow(pos.y - 1);
+                DestroyRow(pos.y);
+                DestroyRow(pos.y + 1);
+                DestroyColumn(pos.x - 1);
+                DestroyColumn(pos.x);
+                DestroyColumn(pos.x + 1);
             }
             else if( other.Type == TileType.VERTICAL_ROCKET||tile.Type==TileType.HORIZONTAL_ROCKET)
             {
-                DestroyRow(pos.x);
-                DestroyColumn(pos.y);
+                DestroyRow(pos.y);
+                DestroyColumn(pos.x);
             }
         }
     }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: New Board Config
   m_EditorClassIdentifier: 
   TileSize: 0.5
-  Objective: 0
+  Objective: 1
   AvailableMoves: 20
-  ScoreOrBoxesNeeded: 20
+  ScoreOrBoxesNeeded: 0
   board:
     gridSize: {x: 6, y: 6}
     cellSize: {x: 32, y: 16}

@@ -7,15 +7,22 @@ public class EventActiveSwitch : MonoBehaviour
 {
     public GameEndEventBus bus;
     public bool InitialState = false;
+    bool switched = false;
     private void Awake()
     {
+        Debug.Log("Awoken");
         bus.Event += BusEvent;
         gameObject.SetActive(InitialState);
     }
 
+    //TODO: Look where game end is triggered various times so I can get rid of switched
     private void BusEvent(GameEndInfo val)
     {
-        gameObject.SetActive(!InitialState);
+        if (!switched)
+        {
+            gameObject.SetActive(!InitialState);
+            switched = true;
+        }
     }
 
     private void OnDestroy()

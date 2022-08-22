@@ -181,14 +181,14 @@ public class BoardView : MonoBehaviour
         tiles.Remove(tile);
         tile.DestroyVisualTile(false);
 
-        tile = Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
+        tile = Instantiate(TilePrefabs[type],gameObject.transform).GetComponent<VisualTile>();
         tile.InitializeTile(pos, _config.TileSize,MovementType.CHANGE);
         tiles.Add(tile);
     }
 
     private void BoardEvents_TileCreated(Vector2 pos, int type)
     {
-        VisualTile tile = Instantiate(TilePrefabs[type]).GetComponent<VisualTile>();
+        VisualTile tile = Instantiate(TilePrefabs[type],gameObject.transform).GetComponent<VisualTile>();
         tile.InitializeTile( pos,_config.TileSize);
         tiles.Add(tile);
     }

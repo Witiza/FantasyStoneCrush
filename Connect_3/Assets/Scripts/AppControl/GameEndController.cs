@@ -6,7 +6,6 @@ public class GameEndController : MonoBehaviour
 {
     public PlayerProgressionSO PlayerProgression;
    
-    public float ScoreMultiplier;
     public float MovesMultiplier;
     [Header("amount/(LowerLevelMultiplier*(maxlvl-lvl))")]
     public float LowerLevelMultiplier;
@@ -15,6 +14,9 @@ public class GameEndController : MonoBehaviour
     public StringEventBus LevelEvent;
     public IntEventBus CoinsWon;
     bool _gameEnded = false;
+
+    public GameObject WonGO;
+    public GameObject LostGO;
 
     void EndGame(GameEndInfo info)
     {
@@ -25,18 +27,26 @@ public class GameEndController : MonoBehaviour
             CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
             if (info._gameWon)
             {
+                WonGO.SetActive(true);
                 if (PlayerProgression.CurrentLevel < PlayerProgression.levels.Count)
                 {
                     PlayerProgression.CurrentLevel++;
-                    PlayerProgression.MaxLevelUnlocked++;
+                    if (PlayerProgression.CurrentLevel == PlayerProgression.MaxLevelUnlocked)
+                    {
+                        PlayerProgression.MaxLevelUnlocked++;
+                    }
                 }
+            }
+            else
+            {
+                LostGO.SetActive(true);
             }
         }
     }
 
     void CalculateEndCoins(int moves,int score, int level, int maxLevel)
     {
-        int amount = Mathf.RoundToInt(moves * MovesMultiplier + score * ScoreMultiplier);
+        int amount = Mathf.RoundToInt(moves * MovesMultiplier);
         if (level == maxLevel)
         {
             CoinsWon.NotifyEvent(amount);
