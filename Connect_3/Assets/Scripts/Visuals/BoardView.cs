@@ -155,16 +155,17 @@ public class BoardView : MonoBehaviour
         other.SetBoardPosition(pos1,MovementType.SWAP);
     }
 
-    private void BoardEvents_TileDestroyed(Vector2 obj,int type)
+    private void BoardEvents_TileDestroyed(Vector2 obj, TileType type)
     {
+        Debug.Log("Tile Destroyed called");
         VisualTile tile = GetTileAtPos(obj);
         tiles.Remove(tile);
         tile.DestroyVisualTile(true);
-        if(_config.Objective == GameObjectives.BOXES&&type==9)
+        if(_config.Objective == GameObjectives.BOXES&&(int)type==9)
         {
             UpdateScore();
         }
-        else if(_config.Objective == GameObjectives.SCORE&&type >0&&type<=5)
+        else if(_config.Objective == GameObjectives.SCORE&&type >0&&(int)type<=5)
         {
             UpdateScore();
         }
@@ -175,20 +176,20 @@ public class BoardView : MonoBehaviour
         VisualTile tile = GetTileAtPos(origin);
         tile.SetBoardPosition(destination, MovementType.DOWNWARDS);
     }
-    private void BoardEventsTileChanged(Vector2 pos, int type)
+    private void BoardEventsTileChanged(Vector2 pos, TileType type)
     {
         VisualTile tile = GetTileAtPos(pos);
         tiles.Remove(tile);
         tile.DestroyVisualTile(false);
 
-        tile = Instantiate(TilePrefabs[type],gameObject.transform).GetComponent<VisualTile>();
+        tile = Instantiate(TilePrefabs[(int)type],gameObject.transform).GetComponent<VisualTile>();
         tile.InitializeTile(pos, _config.TileSize,MovementType.CHANGE);
         tiles.Add(tile);
     }
 
-    private void BoardEvents_TileCreated(Vector2 pos, int type)
+    private void BoardEvents_TileCreated(Vector2 pos, TileType type)
     {
-        VisualTile tile = Instantiate(TilePrefabs[type],gameObject.transform).GetComponent<VisualTile>();
+        VisualTile tile = Instantiate(TilePrefabs[(int)type],gameObject.transform).GetComponent<VisualTile>();
         tile.InitializeTile( pos,_config.TileSize);
         tiles.Add(tile);
     }

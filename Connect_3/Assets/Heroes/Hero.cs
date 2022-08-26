@@ -25,7 +25,7 @@ public abstract class HeroController
 
     public void activateAbility()
     {
-        if(UnityEngine.Random.Range(0,101) <=_stats.critChance)
+        if(UnityEngine.Random.Range(0, 101) <= _stats.critChance)
         {
             doAbility(true);
         }
@@ -39,7 +39,8 @@ public abstract class HeroController
     public bool canUseAbility()
     {
         return mana >= _stats.maxMana;
-    }
+    } 
+
     public abstract void doAbility(bool crit);
 
     public void addMana(int _mana)

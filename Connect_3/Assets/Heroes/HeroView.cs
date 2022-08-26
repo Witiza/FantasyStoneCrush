@@ -25,8 +25,6 @@ public class HeroView : MonoBehaviour
         UpdateBar(ManaBar, 0, Stats.maxMana);
     }
 
-
-
     public void AbilityButton()
     {
         Debug.Log("Hero ability used");
@@ -37,9 +35,9 @@ public class HeroView : MonoBehaviour
         }
     }
 
-    public void BoardEventsTileDestroyed(Vector2 pos, int type)
+    public void BoardEventsTileDestroyed(Vector2 pos, TileType type)
     {
-        if ((TileType)type == heroType)
+        if (type == heroType)
         {
             controller.addMana(5);
         }

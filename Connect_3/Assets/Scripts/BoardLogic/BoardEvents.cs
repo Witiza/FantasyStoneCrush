@@ -2,14 +2,14 @@ using System;
 using UnityEngine;
 public static class BoardEvents 
 {
-    public static event Action<Vector2,int> TileCreated;
-    public static void NotifyCreated(Vector2 pos, int type) => TileCreated?.Invoke(pos,type);
+    public static event Action<Vector2, TileType> TileCreated;
+    public static void NotifyCreated(Vector2 pos, TileType type) => TileCreated?.Invoke(pos,type);
 
-    public static event Action<Vector2, int> TileChanged;
-    public static void NotifyChanged(Vector2 pos, int type) => TileChanged?.Invoke(pos,type);
+    public static event Action<Vector2, TileType> TileChanged;
+    public static void NotifyChanged(Vector2 pos, TileType type) => TileChanged?.Invoke(pos,type);
 
-    public static event Action<Vector2,int> TileDestroyed;
-    public static void NotifyDestroyed(Vector2 pos,int type) => TileDestroyed?.Invoke(pos,type);
+    public static event Action<Vector2, TileType> TileDestroyed;
+    public static void NotifyDestroyed(Vector2 pos, TileType type) => TileDestroyed?.Invoke(pos,type);
 
     public static event Action<Vector2, Vector2> TileMoved;
     public static void NotifyMoved(Vector2 origin, Vector2 destination) => TileMoved?.Invoke(origin,destination);

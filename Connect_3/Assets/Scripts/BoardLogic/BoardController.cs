@@ -26,7 +26,7 @@ public class BoardController
     {
         int changed = -1;
         int iterations = 0;
-        while (changed != 0&&iterations<100)
+        while (changed != 0 && iterations < 100)
         {
             iterations++;
             changed = 0;
@@ -87,9 +87,7 @@ public class BoardController
                 {
                     if (!GetHighestValid(_board[i, j]))
                     {
-                        _board[i, j].Type = (TileType)Random.Range(1, 6);
-                        _board[i, j].Dirty = true;
-                        BoardEvents.NotifyCreated(_board[i, j].BoardPos, (int)_board[i, j].Type);
+                        _board.CreateTile(new Vector2Int(i, j));
                         ret = 1;
                     }
                 }
@@ -97,6 +95,7 @@ public class BoardController
         }
         return ret;
     }
+
     public void SelectTile(Vector2Int coords)
     {
         _selectedTile = _board[coords];
@@ -119,9 +118,9 @@ public class BoardController
         BoardPosition tmp = deleted;
 
         deleted.Type = TileType.NULL;
-        while(tmp.BoardPos.y<_board.Height-1&&!deleted.IsValid())
+        while(tmp.BoardPos.y < _board.Height - 1 && !deleted.IsValid())
         {
-            tmp = _board[(int)tmp.BoardPos.x, (int)tmp.BoardPos.y + 1];
+            tmp = _board[tmp.BoardPos.x, tmp.BoardPos.y + 1];
             if (tmp.IsBox())
             {
                 ret = true;
@@ -161,6 +160,7 @@ public class BoardController
         }
         return ret;
     }
+
     void GetNeighbours(BoardPosition tile, out List<BoardPosition> horizontal, out List<BoardPosition> vertical)
     {
         horizontal = new List<BoardPosition>();
@@ -171,6 +171,7 @@ public class BoardController
         tile.CheckUp(vertical);
         tile.CheckDown(vertical);
     }
+
     void NotifyNeighbours(BoardPosition tile)
     {
         List<BoardPosition> horizontal_neighbours;
@@ -246,47 +247,51 @@ public class BoardController
             }
         }
     }
+
     public bool ChangeTile(Vector2Int pos,TileType newtype)
     {
         bool ret = false;
         if (_board.CoordinatesInsideBoard(pos.x, pos.y) && _board[pos].IsBaseTile())
         {
             _board[pos].Type = newtype;
-            BoardEvents.NotifyChanged(pos, (int)newtype);
+            BoardEvents.NotifyChanged(pos, newtype);
             ret = true;
         }
         return ret;
     }
+
     bool SpecialTileGeneration(BoardPosition tile, List<BoardPosition> vertical, List<BoardPosition> horizontal)
     {
         bool ret = false;
         if(vertical.Count >=2 && horizontal.Count >= 2)
         {
             tile.Type = TileType.BOMB;
-            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.BOMB);
+            BoardEvents.NotifyChanged(tile.BoardPos,TileType.BOMB);
             ret = true;
         }
         else if(horizontal.Count > 2)
         {
             tile.Type = TileType.VERTICAL_ROCKET;
-            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.VERTICAL_ROCKET);
+            BoardEvents.NotifyChanged(tile.BoardPos, TileType.VERTICAL_ROCKET);
             ret = true;
         }
         else if(vertical.Count > 2)
         {
             tile.Type = TileType.HORIZONTAL_ROCKET;
-            BoardEvents.NotifyChanged(tile.BoardPos, (int)TileType.HORIZONTAL_ROCKET);
+            BoardEvents.NotifyChanged(tile.BoardPos, TileType.HORIZONTAL_ROCKET);
             ret = true;
         }
         return ret;
     }
+
     public void TargetAndDestroyTile(Vector2Int pos)
     {
-        if(_board.CoordinatesInsideBoard(pos.x,pos.y))
+        if (_board.CoordinatesInsideBoard(pos.x, pos.y) && _board[pos].IsValid())
         {
             DestroyTile(_board[pos]);
         }
     }
+
     public  void DestroyTile(BoardPosition tile)
     {
         switch (tile.Type)
@@ -300,24 +305,22 @@ public class BoardController
             case TileType.VERTICAL_ROCKET:
                 DestroyColumn(tile.BoardPos.x);
                 break;
-            default:
-                break;
         }
-        BoardEvents.NotifyDestroyed(tile.BoardPos, (int)tile.Type);
+        BoardEvents.NotifyDestroyed(tile.BoardPos, tile.Type);
         tile.Type = TileType.NULL;
     }
 
     //This function should be better coded
     void CombineSpecialTiles(BoardPosition tile, BoardPosition other)
     {
-        Vector2Int pos = tile.BoardPos;
+        Vector2Int pos = other.BoardPos;
         if(tile.Type == TileType.BOMB)
         {
             if(other.Type == TileType.BOMB)
             {
                 DestroyArea(4, pos);
             }
-            else if(other.Type == TileType.VERTICAL_ROCKET||other.Type==TileType.HORIZONTAL_ROCKET)
+            else if(other.Type is TileType.VERTICAL_ROCKET or TileType.HORIZONTAL_ROCKET)
             {
                 DestroyRow(pos.y - 1);
                 DestroyRow(pos.y);
@@ -327,7 +330,7 @@ public class BoardController
                 DestroyColumn(pos.x + 1);
             }
         }
-        else if(tile.Type == TileType.VERTICAL_ROCKET||tile.Type ==TileType.HORIZONTAL_ROCKET)
+        else if(tile.Type is TileType.VERTICAL_ROCKET or TileType.HORIZONTAL_ROCKET)
         {
             if (other.Type == TileType.BOMB)
             {
@@ -338,13 +341,16 @@ public class BoardController
                 DestroyColumn(pos.x);
                 DestroyColumn(pos.x + 1);
             }
-            else if( other.Type == TileType.VERTICAL_ROCKET||tile.Type==TileType.HORIZONTAL_ROCKET)
+            else if( other.Type is TileType.VERTICAL_ROCKET or TileType.HORIZONTAL_ROCKET)
             {
                 DestroyRow(pos.y);
                 DestroyColumn(pos.x);
             }
         }
+        tile.Type = TileType.NULL;
+        tile.Type = TileType.NULL;
     }
+
     public bool SwapAction(Direction dir)
     {
         bool ret = false;
@@ -381,6 +387,7 @@ public class BoardController
         }
         return ret;
     }
+
     bool SwapBottom()
     {
         bool ret = false;
@@ -391,6 +398,7 @@ public class BoardController
         }
         return ret;
     }
+
     bool SwapRight()
     {
         bool ret=false;
@@ -484,6 +492,7 @@ public class BoardController
         }
         return match_found==true?0:1;
     }
+
     //This function and the swap one should be the same
     bool TrySwap(BoardPosition tile, BoardPosition other)
     {

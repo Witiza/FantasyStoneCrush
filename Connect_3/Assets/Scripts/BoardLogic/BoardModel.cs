@@ -8,63 +8,51 @@ public class BoardModel
     public int Width { get; private set; }
     public int Height { get; private set; }
     BoardPosition[,] _board;
+
     public BoardModel(int width, int height, Array2DInt board= null)
     {
         Width = width;
         Height = height;
         _board = new BoardPosition[Width, Height];
-        if (board == null)
+       GenerateBoard(board);
+    }
+
+    void GenerateBoard(Array2DInt board)
+    {
+        for(int i = 0; i < Width; i++)
         {
-            GenerateNewBoard();
+            for(int j = 0; j < Height ;j++)
+            {
+                _board[i, j] = new BoardPosition();
+                CreateTile(new Vector2Int(i, j), (TileType)board[i, j]);
+            }
+        }
+    }
+
+
+
+    public void CreateTile(Vector2Int pos,TileType type = TileType.NULL)
+    {
+        BoardPosition tmp = _board[pos.x, pos.y];
+        tmp.BoardPos = pos;
+        tmp.GameBoard = this;
+        tmp.Dirty = true;
+        if (type == TileType.NULL)
+        {
+            GenerateTileType(tmp);
         }
         else
         {
-            GenerateExistingBoard(board);
-        }
-    }
-
-    void GenerateNewBoard()
-    {
-        for (int i = 0; i < Width; i++)
-        {
-            for (int j = 0; j < Height; j++)
-            {
-                _board[i, j] = new BoardPosition();
-                _board[i, j].BoardPos = new Vector2Int(i, j);
-                _board[i, j].GameBoard = this;
-                GenerateTileType(_board[i, j]);
-                BoardEvents.NotifyCreated(_board[i, j].BoardPos, (int)_board[i, j].Type);
-            }
-        }
-    }
-
-    void GenerateExistingBoard(Array2DInt board)
-    {
-        for(int i = 0;i<Width;i++)
-        {
-            for(int j=0;j<Height;j++)
-            {
-                _board[i, j] = new BoardPosition();
-                _board[i, j].BoardPos = new Vector2Int(i, j);
-                _board[i, j].GameBoard = this;
-                if (board[i,j] ==0)
-                {
-                    GenerateTileType(_board[i, j]);
-                }
-                else
-                {
-                    _board[i, j].Type = (TileType)board[i, j];
-                }
-                BoardEvents.NotifyCreated(_board[i, j].BoardPos, (int)_board[i, j].Type);
-            }
-        }
+            tmp.Type = type;
+        }  
+        BoardEvents.NotifyCreated(tmp.BoardPos, tmp.Type);
     }
 
     void GenerateTileType(BoardPosition tile)
     {
         do
         {
-            tile.Type = (TileType)Random.Range(1, 6);
+            tile.Type = (TileType)Random.Range(1, 5);
         } while (tile.SameTypeNeighbours());
     }
 
@@ -78,11 +66,10 @@ public class BoardModel
                 if (_board[i,j].IsBaseTile())
                 {
                     GenerateTileType(_board[i, j]);
-                    BoardEvents.NotifyChanged(new Vector2(i, j), (int)_board[i, j].Type);
+                    BoardEvents.NotifyChanged(new Vector2(i, j), _board[i, j].Type);
                 }
             }
         }
-        
         #region Complex Shuffle Fuckery
         //List<ModelTile> tiles = new List<ModelTile>();
         //for(int i = 0;i<Width;i++)
@@ -139,6 +126,7 @@ public class BoardModel
     {
         return coord >= 0 && coord < Height;
     }
+
     public  bool CoordinateInsideX(int coord)
     {
         return coord >= 0 && coord < Width;
@@ -154,8 +142,8 @@ public class BoardModel
     {
         get => _board[pos.x, pos.y];
     }
-    public BoardPosition GetCell(int x, int y) => this[x, y];
 
+    public BoardPosition GetCell(int x, int y) => this[x, y];
 
     public BoardPosition GetCell(Vector2Int pos) => _board[pos.x, pos.y];
 }

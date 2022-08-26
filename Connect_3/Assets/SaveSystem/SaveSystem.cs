@@ -24,7 +24,6 @@ public static class SaveSystem
         Debug.Log("Loading game from " + path);
         if (File.Exists(path))
         {
-
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
             data = formatter.Deserialize(stream) as ProgressionSerializable;
