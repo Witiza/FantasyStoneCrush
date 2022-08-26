@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fec47b31c6d504e9023963c02f99fa, type: 3}
   m_Name: PlayerProgression
   m_EditorClassIdentifier: 
-  CurrentLevel: 2
-  MaxLevelUnlocked: 2
-  Coins: 722
+  CurrentLevel: 0
+  MaxLevelUnlocked: 0
+  Coins: 447
   levels:
   - {fileID: 11400000, guid: b22bdd7563205db449a59b36d8e82898, type: 2}
   - {fileID: 11400000, guid: c91af5951e9751f43a920d759298ae18, type: 2}

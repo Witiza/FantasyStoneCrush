@@ -15,6 +15,13 @@ public enum TileType
     HORIZONTAL_ROCKET,
     BOX
 }
+
+public enum SpecialTileCombination
+{
+    NULL,
+    ROCKETBOMB,
+    MEGABOMB
+}
 public class BoardPosition 
 {
     public Vector2Int BoardPos;

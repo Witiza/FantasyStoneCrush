@@ -1403,6 +1403,10 @@ MonoBehaviour:
   - {fileID: 7903453214287968048, guid: 1540a5a2f0d673a48acf442563a8d7cd, type: 3}
   - {fileID: 4453784086773983751, guid: 5776cb18ec01dbb42bb0217c13f55e17, type: 3}
   - {fileID: 465019369486349866, guid: cbe9a7ef573b69149be1b70677430b81, type: 3}
+  ParticlePrefabs:
+  - {fileID: 0}
+  - {fileID: 7713419062699667838, guid: 9206e224c3395a8409194debc4a412e1, type: 3}
+  - {fileID: 1621754480726929605, guid: e1cc670bf1a6eb7408a9c51b93539eeb, type: 3}
   PlayerProgression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
   MovesText: {fileID: 290758680}
   ScoreText: {fileID: 740505789}

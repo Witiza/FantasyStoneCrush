@@ -9,6 +9,7 @@ public class BoardView : MonoBehaviour
 {
     public static List<VisualTile> tiles = new List<VisualTile>();
     public GameObject[] TilePrefabs;
+    public GameObject[] ParticlePrefabs;
     public BoardController Board;
     [SerializeField]
     public PlayerProgressionSO PlayerProgression;
@@ -29,11 +30,12 @@ public class BoardView : MonoBehaviour
     private void Awake()  
     {
         tiles.Clear();
-        BoardEvents.TileCreated += BoardEvents_TileCreated;
+        BoardEvents.TileCreated += BoardEventsTileCreated;
         BoardEvents.TileChanged += BoardEventsTileChanged;
-        BoardEvents.TileMoved += BoardEvents_TileMoved;
-        BoardEvents.TileSwapped += BoardEvents_TileSwapped;
-        BoardEvents.TileDestroyed += BoardEvents_TileDestroyed;
+        BoardEvents.TileMoved += BoardEventsTileMoved;
+        BoardEvents.TileSwapped += BoardEventsTileSwapped;
+        BoardEvents.TileDestroyed += BoardEventsTileDestroyed;
+        BoardEvents.SpecialTileDestroyed += BoardEventsSpecialTileDestroyed;
         TileBooster.BoosterEvent += TileBoosterEvent;
         TurnBooster.BoosterEvent += TurnBoosterEvent;
         _gameplayInput = gameObject.GetComponent<IGameplayInput>();
@@ -133,11 +135,11 @@ public class BoardView : MonoBehaviour
 
     public void OnDestroy()
     {
-        BoardEvents.TileCreated -= BoardEvents_TileCreated;
+        BoardEvents.TileCreated -= BoardEventsTileCreated;
         BoardEvents.TileChanged -= BoardEventsTileChanged;
-        BoardEvents.TileMoved -= BoardEvents_TileMoved;
-        BoardEvents.TileSwapped -= BoardEvents_TileSwapped;
-        BoardEvents.TileDestroyed -= BoardEvents_TileDestroyed;
+        BoardEvents.TileMoved -= BoardEventsTileMoved;
+        BoardEvents.TileSwapped -= BoardEventsTileSwapped;
+        BoardEvents.TileDestroyed -= BoardEventsTileDestroyed;
         TileBooster.BoosterEvent -= TileBoosterEvent;
         TurnBooster.BoosterEvent -= TurnBoosterEvent;
 
@@ -147,7 +149,7 @@ public class BoardView : MonoBehaviour
         _gameplayInput.EndTouch -= InputEndTouch;
     }
 
-    private void BoardEvents_TileSwapped(Vector2 pos1, Vector2 pos2)
+    private void BoardEventsTileSwapped(Vector2 pos1, Vector2 pos2)
     {
         VisualTile tile = GetTileAtPos(pos1);
         VisualTile other = GetTileAtPos(pos2);
@@ -155,7 +157,7 @@ public class BoardView : MonoBehaviour
         other.SetBoardPosition(pos1,MovementType.SWAP);
     }
 
-    private void BoardEvents_TileDestroyed(Vector2 obj, TileType type)
+    private void BoardEventsTileDestroyed(Vector2 obj, TileType type)
     {
         Debug.Log("Tile Destroyed called");
         VisualTile tile = GetTileAtPos(obj);
@@ -171,7 +173,7 @@ public class BoardView : MonoBehaviour
         }
     }
 
-    private void BoardEvents_TileMoved(Vector2 origin, Vector2 destination)
+    private void BoardEventsTileMoved(Vector2 origin, Vector2 destination)
     {
         VisualTile tile = GetTileAtPos(origin);
         tile.SetBoardPosition(destination, MovementType.DOWNWARDS);
@@ -187,11 +189,17 @@ public class BoardView : MonoBehaviour
         tiles.Add(tile);
     }
 
-    private void BoardEvents_TileCreated(Vector2 pos, TileType type)
+    private void BoardEventsTileCreated(Vector2 pos, TileType type)
     {
         VisualTile tile = Instantiate(TilePrefabs[(int)type],gameObject.transform).GetComponent<VisualTile>();
         tile.InitializeTile( pos,_config.TileSize);
         tiles.Add(tile);
+    }
+
+    private void BoardEventsSpecialTileDestroyed(Vector2Int pos, SpecialTileCombination type)
+    { 
+        GameObject tmp = Instantiate(ParticlePrefabs[(int)type], gameObject.transform);
+        tmp.transform.position = GetTileAtPos(pos).transform.position;
     }
 
     Vector2Int DetermineClosestTile(Vector2 screen_pos)

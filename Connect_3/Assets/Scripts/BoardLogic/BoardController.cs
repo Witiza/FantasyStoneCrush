@@ -318,7 +318,8 @@ public class BoardController
         {
             if(other.Type == TileType.BOMB)
             {
-                DestroyArea(4, pos);
+                DestroyArea(3, pos);
+                BoardEvents.NotifySpecialTileCombination(tile.BoardPos, SpecialTileCombination.MEGABOMB);
             }
             else if(other.Type is TileType.VERTICAL_ROCKET or TileType.HORIZONTAL_ROCKET)
             {
@@ -328,6 +329,7 @@ public class BoardController
                 DestroyColumn(pos.x - 1);
                 DestroyColumn(pos.x);
                 DestroyColumn(pos.x + 1);
+                BoardEvents.NotifySpecialTileCombination(tile.BoardPos, SpecialTileCombination.ROCKETBOMB);
             }
         }
         else if(tile.Type is TileType.VERTICAL_ROCKET or TileType.HORIZONTAL_ROCKET)
@@ -340,6 +342,7 @@ public class BoardController
                 DestroyColumn(pos.x - 1);
                 DestroyColumn(pos.x);
                 DestroyColumn(pos.x + 1);
+                BoardEvents.NotifySpecialTileCombination(tile.BoardPos, SpecialTileCombination.ROCKETBOMB);
             }
             else if( other.Type is TileType.VERTICAL_ROCKET or TileType.HORIZONTAL_ROCKET)
             {
@@ -348,7 +351,7 @@ public class BoardController
             }
         }
         tile.Type = TileType.NULL;
-        tile.Type = TileType.NULL;
+        other.Type = TileType.NULL;
     }
 
     public bool SwapAction(Direction dir)

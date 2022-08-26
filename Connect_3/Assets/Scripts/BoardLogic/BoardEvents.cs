@@ -22,4 +22,7 @@ public static class BoardEvents
 
     public static event Action<Vector2> TileUnselected;
     public static void NotifyUnselected(Vector2 pos) =>TileUnselected?.Invoke(pos);
+
+    public static event Action<Vector2Int, SpecialTileCombination> SpecialTileDestroyed;
+    public static void NotifySpecialTileCombination(Vector2Int pos,SpecialTileCombination type)=>SpecialTileDestroyed?.Invoke(pos,type);
 }
