@@ -20,11 +20,12 @@ public class VisualTile : MonoBehaviour
     float _tileSize;
     Sequence _sequence;
     ParticleSystem particles;
+    bool destroyed = false;
 
     private void Awake()
     {
-        particles = GetComponent<ParticleSystem>();
         _sequence = DOTween.Sequence();
+        particles = GetComponent<ParticleSystem>();
         original_world_pos = GameObject.FindGameObjectWithTag("Controller").transform.position;
     }
     public void InitializeTile(Vector2 pos, float tileSize,MovementType movement = MovementType.INITIAL)
@@ -34,30 +35,34 @@ public class VisualTile : MonoBehaviour
     }
     public void SetBoardPosition(Vector2 pos,MovementType movementType)
     {
-        BoardPos = pos;
-        switch (movementType)
+        if (!destroyed)
         {
-            case MovementType.NULL:
-                break;
-            case MovementType.SWAP:
-                SwapMovement();
-                break;
-            case MovementType.DOWNWARDS:
-                MoveDownwards();
-                break;
-            case MovementType.INITIAL:
-                SetInitialWorldPosition();
-                break;
-            case MovementType.CHANGE:
-                ChangeTileMovement();
-                break;
-            default:
-                break;
+            BoardPos = pos;
+            switch (movementType)
+            {
+                case MovementType.NULL:
+                    break;
+                case MovementType.SWAP:
+                    SwapMovement();
+                    break;
+                case MovementType.DOWNWARDS:
+                    MoveDownwards();
+                    break;
+                case MovementType.INITIAL:
+                    SetInitialWorldPosition();
+                    break;
+                case MovementType.CHANGE:
+                    ChangeTileMovement();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     public void MoveDownwards()
     {
+
         float y = original_world_pos.y + BoardPos.y * _tileSize;
         float x = original_world_pos.x + BoardPos.x * _tileSize;
         Vector3 movement = new Vector3(x, y, 0);
@@ -92,7 +97,8 @@ public class VisualTile : MonoBehaviour
 
     public void DestroyVisualTile(bool play_particles)
     {
-        //The particle system will destroy the tile when finished.
+        destroyed = true;
+        _sequence.Kill(false);
         GetComponent<SpriteRenderer>().enabled = false;
         if (play_particles)
         {

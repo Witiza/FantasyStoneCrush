@@ -7,63 +7,54 @@ using UnityEngine;
 //TODO: Find a way to use the same function for options and progression
 public static class SaveSystem
 {
+    private static string ProgressionPath = Application.persistentDataPath + "/savegame.json";
     public static void SaveGame(ProgressionSerializable progression)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/savegame.qinc";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-        formatter.Serialize(stream, progression);
-        stream.Close();
+        string to_save = JsonUtility.ToJson(progression);
+        Save(ProgressionPath, to_save);
     }
 
     public static ProgressionSerializable LoadGame()
     {
-        ProgressionSerializable data=null;
-        string path = Application.persistentDataPath + "/savegame.qinc";
-        Debug.Log("Loading game from " + path);
-        if (File.Exists(path))
+        ProgressionSerializable data=new ProgressionSerializable();
+        string to_load = Load(ProgressionPath);
+        if (to_load != "")
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
-            data = formatter.Deserialize(stream) as ProgressionSerializable;
-            stream.Close();
-        }
-        else
-        {
-            Debug.Log("Creating new savegame");
+            data = JsonUtility.FromJson<ProgressionSerializable>(to_load);
         }
         return data;
     }
 
     public static void SaveOptions(VolumeOptionsSerializable data)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/options.qinc";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-        formatter.Serialize(stream, data);
-        stream.Close();
+        PlayerPrefs.SetFloat("MasterVolume",data.MasterVolume);
+        PlayerPrefs.SetFloat("MusicVolume",data.MusicVolume);
+        PlayerPrefs.SetFloat("SFXVolume", data.SFXVolume);
     }
 
     public static VolumeOptionsSerializable LoadOptions()
     {
-        VolumeOptionsSerializable data=null;
-        string path = Application.persistentDataPath + "/options.qinc";
-        Debug.Log("Loading options from " + path);
+        VolumeOptionsSerializable data=new VolumeOptionsSerializable();
+        data.MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        data.MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        data.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
 
-        if (File.Exists(path))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
-            data = formatter.Deserialize(stream) as VolumeOptionsSerializable;
-            stream.Close();
-        }
-        else
-        {
-            Debug.Log("Creating new options");
-        }
         return data;
+    }
+
+    private static void Save(string path, string file)
+    {
+        File.WriteAllText(path, file);
+    }
+
+    private static string Load(string path)
+    {
+        string ret = "";
+        if(File.Exists(path))
+        {
+            ret = File.ReadAllText(path);
+        }
+        return ret;
     }
 }
 

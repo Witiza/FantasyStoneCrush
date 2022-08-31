@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20531016965c3e8499f8091ef7b6274c, type: 3}
+  m_Script: {fileID: 11500000, guid: f663c7906ac2d0a4b814309662c41553, type: 3}
   m_Name: ArcherStats
   m_EditorClassIdentifier: 
-  maxMana: 100
-  critChance: 10
-  manaGainMultiplier: 1
-  archerArrowAmount: {x: 12, y: 6}
-  mageTileAmount: {x: 0, y: 0}
-  priestHealAmount: {x: 0, y: 0}
-  rogueDamageAmount: {x: 0, y: 0}
-  warriorShieldAmount: {x: 0, y: 0}
+  Inventory: {fileID: 0}
+  BaseNormalStrength: 0
+  BaseCriticalStrength: 0
+  BaseManaGain: 0
+  MaxMana: 0
+  BaseMultipliers:
+    CritChance: 0
+    NormalMultiplier: 0
+    CriticalMultiplier: 0
+    ManaGainMultiplier: 0

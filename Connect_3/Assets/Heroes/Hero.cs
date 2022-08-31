@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public abstract class HeroController
 {
-    protected HeroStats _stats;
+    protected HeroModel _stats;
     protected BoardController _boardController;
     public int hp;
     public int mana;
@@ -15,9 +15,10 @@ public abstract class HeroController
     public event Action HeroManaGained;
     public void NotifyManaGained() => HeroManaGained?.Invoke();
 
-    public HeroController(HeroStats stats)
+    public HeroController(HeroModel stats)
     {
         _stats = stats;
+        _stats.GenerateFinalStats();
         mana = 0;
         dead = false;
         _boardController = GameObject.FindGameObjectWithTag("Controller").GetComponent<BoardView>().Board;
@@ -25,7 +26,7 @@ public abstract class HeroController
 
     public void activateAbility()
     {
-        if(UnityEngine.Random.Range(0, 101) <= _stats.critChance)
+        if(UnityEngine.Random.Range(0, 101) <= _stats.CritChance)
         {
             doAbility(true);
         }
@@ -38,7 +39,7 @@ public abstract class HeroController
 
     public bool canUseAbility()
     {
-        return mana >= _stats.maxMana;
+        return mana >= _stats.MaxMana;
     } 
 
     public abstract void doAbility(bool crit);
@@ -46,9 +47,9 @@ public abstract class HeroController
     public void addMana(int _mana)
     {
         mana += Mathf.RoundToInt(_mana*manaMultiplier);
-        if(mana > _stats.maxMana)
+        if(mana > _stats.MaxMana)
         {
-            mana = _stats.maxMana;
+            mana = _stats.MaxMana;
         }
         NotifyManaGained();
     }

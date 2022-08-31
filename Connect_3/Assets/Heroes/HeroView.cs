@@ -8,7 +8,7 @@ public class HeroView : MonoBehaviour
 {
     protected HeroController controller;
 
-    public HeroStats Stats;
+    public HeroModel Stats;
 
     public TileType heroType;
 
@@ -22,7 +22,7 @@ public class HeroView : MonoBehaviour
         SelectHeroController();
         controller.HeroManaGained += ControllerHeroManaGained;
         ManaBooster.BoosterEvent += ManaBoosterEvent;
-        UpdateBar(ManaBar, 0, Stats.maxMana);
+        UpdateBar(ManaBar, 0, Stats.MaxMana);
     }
 
     public void AbilityButton()
@@ -31,7 +31,7 @@ public class HeroView : MonoBehaviour
         if (controller.canUseAbility())
         {
             controller.activateAbility();
-            UpdateBar(ManaBar, controller.mana, Stats.maxMana);
+            UpdateBar(ManaBar, controller.mana, Stats.MaxMana);
         }
     }
 
@@ -39,7 +39,7 @@ public class HeroView : MonoBehaviour
     {
         if (type == heroType)
         {
-            controller.addMana(5);
+            controller.addMana(Stats.ManaGain);
         }
     }
 
@@ -68,12 +68,12 @@ public class HeroView : MonoBehaviour
     private void ManaBoosterEvent(bool success)
     {
         if (success)
-            controller.addMana(Stats.maxMana);
+            controller.addMana(Stats.MaxMana);
     }
 
     private void ControllerHeroManaGained()
     {
-        UpdateBar(ManaBar, controller.mana, Stats.maxMana);
+        UpdateBar(ManaBar, controller.mana, Stats.MaxMana);
         particles.Emit(1);
     }
 

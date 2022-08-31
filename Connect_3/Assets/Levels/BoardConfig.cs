@@ -23,6 +23,7 @@ public class BoardConfig : ScriptableObject
     public int BoardHeight { get => board.GridSize.y; }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(BoardConfig))]
 public class BoardEditor : Editor
 {
@@ -51,5 +52,6 @@ public class BoardEditor : Editor
         }
     }
 }
+#endif
 
 

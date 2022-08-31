@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 public class ArcherController : HeroController
 {
-    public ArcherController(HeroStats stats) : base(stats)
+    public ArcherController(HeroModel stats) : base(stats)
     {
 
     }
 
     public override void doAbility(bool crit)
     {
-        int amount = crit == true ? _stats.archerArrowAmount.x : _stats.archerArrowAmount.y;
+        int amount = crit == true ? _stats.CriticalStrength : _stats.NormalStrength;
         for(int i = 0; i < amount; i++)
         {
             int x = Random.Range(0,_boardController.BoardWidth);

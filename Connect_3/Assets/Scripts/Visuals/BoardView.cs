@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 
 [RequireComponent(typeof(IGameplayInput))]
@@ -29,6 +30,7 @@ public class BoardView : MonoBehaviour
 
     private void Awake()  
     {
+        DOTween.Init().SetCapacity(400, 400);
         tiles.Clear();
         BoardEvents.TileCreated += BoardEventsTileCreated;
         BoardEvents.TileChanged += BoardEventsTileChanged;
@@ -159,7 +161,6 @@ public class BoardView : MonoBehaviour
 
     private void BoardEventsTileDestroyed(Vector2 obj, TileType type)
     {
-        Debug.Log("Tile Destroyed called");
         VisualTile tile = GetTileAtPos(obj);
         tiles.Remove(tile);
         tile.DestroyVisualTile(true);
