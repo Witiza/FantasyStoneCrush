@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public abstract class InventoryItem
+[System.Serializable]
+public class ItemModel
 {
     string name;
 

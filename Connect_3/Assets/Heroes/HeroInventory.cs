@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Heroes/HeroInventory")]
 public class HeroInventory : ScriptableObject
 {
-    List<InventoryItem> items;
+    List<ItemModel> items;
 
     public void ApplyItems(Multipliers target)
     {
-        foreach (InventoryItem item in items)
+        foreach (ItemModel item in items)
         {
             item.ApplyMultipliers(target);
         }
