@@ -1420,10 +1420,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1050271138}
-  - {fileID: 588290035}
   - {fileID: 747799186}
   - {fileID: 1860061661}
   - {fileID: 865905852}
+  - {fileID: 588290035}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1453,7 +1453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1947,7 +1947,7 @@ RectTransform:
   - {fileID: 1788297607}
   - {fileID: 368733413}
   m_Father: {fileID: 576677253}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2123,7 +2123,7 @@ RectTransform:
   - {fileID: 935952063}
   - {fileID: 184334109994699559}
   m_Father: {fileID: 576677253}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4915,7 +4915,7 @@ RectTransform:
   - {fileID: 501594168}
   - {fileID: 1264691909}
   m_Father: {fileID: 576677253}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5513,10 +5513,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}
-        m_TargetAssemblyTypeName: StringEventBus, Assembly-CSharp
-        m_MethodName: NotifyEvent
-        m_Mode: 5
+      - m_Target: {fileID: 865905851}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
