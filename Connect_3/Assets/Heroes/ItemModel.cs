@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class ItemModel
 {
-    string name;
+    public string name;
 
     public Multipliers ItemMultipliers;
 

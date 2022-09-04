@@ -20,24 +20,13 @@ public class HeroModel : ScriptableObject
         Inventory.ApplyItems(_finalMultipliers);
     }
 
+    public bool HasItem(ItemModel item)
+    {
+        return Inventory.HasItem(item);
+    }
+
     public int NormalStrength { get => Mathf.RoundToInt(BaseNormalStrength*_finalMultipliers.NormalMultiplier); }
     public int CriticalStrength { get => Mathf.RoundToInt(BaseCriticalStrength*_finalMultipliers.CriticalMultiplier); }
     public int ManaGain { get => Mathf.RoundToInt(BaseManaGain * _finalMultipliers.ManaGainMultiplier); }
     public float CritChance { get=>_finalMultipliers.CritChance; } 
-}
-
-[System.Serializable]
-public class Multipliers
-{
-    public Multipliers(Multipliers other)
-    {
-        CritChance = other.CritChance;
-        NormalMultiplier = other.NormalMultiplier;
-        CriticalMultiplier = other.CriticalMultiplier;
-        ManaGainMultiplier = other.ManaGainMultiplier;
-    }
-    public int CritChance = 10;
-    public float NormalMultiplier = 4;
-    public float CriticalMultiplier = 8;
-    public float ManaGainMultiplier = 5;
 }

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663c7906ac2d0a4b814309662c41553, type: 3}
   m_Name: MageStats
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 0}
-  BaseNormalStrength: 0
-  BaseCriticalStrength: 0
-  BaseManaGain: 0
-  MaxMana: 0
+  Inventory: {fileID: 11400000, guid: cd37fc0eb98a1384d8c0aaecf86190c5, type: 2}
+  BaseNormalStrength: 1
+  BaseCriticalStrength: 2
+  BaseManaGain: 5
+  MaxMana: 100
   BaseMultipliers:
-    CritChance: 0
-    NormalMultiplier: 0
-    CriticalMultiplier: 0
-    ManaGainMultiplier: 0
+    CritChance: 5
+    NormalMultiplier: 1
+    CriticalMultiplier: 1
+    ManaGainMultiplier: 1.3
