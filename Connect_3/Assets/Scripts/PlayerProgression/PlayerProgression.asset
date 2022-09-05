@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentLevel: 0
   MaxLevelUnlocked: 0
-  Coins: 447
+  Coins: 1027
+  Gems: 1400
   levels:
   - {fileID: 11400000, guid: b22bdd7563205db449a59b36d8e82898, type: 2}
   - {fileID: 11400000, guid: c91af5951e9751f43a920d759298ae18, type: 2}
@@ -31,3 +32,4 @@ MonoBehaviour:
   TurnBooster: {fileID: 11400000, guid: 773ff909597a3f04f814e1535663c9e5, type: 2}
   ManaBooster: {fileID: 11400000, guid: 4e4466dec5309ac4b8ee04844233cf31, type: 2}
   CoinsChange: {fileID: 11400000, guid: 36f1364c3ab29b442bd668bf46191237, type: 2}
+  GemsChange: {fileID: 11400000, guid: d8e8c37d57fb4cd4dbd587c97ac6e117, type: 2}

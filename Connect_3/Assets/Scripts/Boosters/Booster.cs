@@ -17,8 +17,6 @@ public class Booster : ScriptableObject
         }
         else
         {
-            Debug.Log("Refilling booster for debugging purposes");
-            amount = 10;
             BoosterEvent?.Invoke(false);
         }
     }

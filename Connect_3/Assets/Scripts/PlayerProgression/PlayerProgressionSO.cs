@@ -8,12 +8,14 @@ public class PlayerProgressionSO  : ScriptableObject
     public int CurrentLevel;
     public int MaxLevelUnlocked;
     public int Coins;
+    public int Gems;
 
     public List<BoardConfig> levels;
     public Booster TileBooster;
     public Booster TurnBooster;
     public Booster ManaBooster;
     public IntEventBus CoinsChange;
+    public IntEventBus GemsChange;
 
     public BoardConfig GetCurrentLevelBoard()
     {
@@ -41,13 +43,20 @@ public class PlayerProgressionSO  : ScriptableObject
 
     public void AddCoins(int coins)
     {
-        CoinsChange.NotifyEvent(coins);
         Coins += coins;
+        CoinsChange.NotifyEvent(coins);
     }
+
+    public void AddGems(int gems)
+    {
+        Gems += gems;
+        GemsChange.NotifyEvent(gems);
+    }
+
 
     public void SaveGame()
     {
-        SaveSystem.SaveGame(new ProgressionSerializable(CurrentLevel,MaxLevelUnlocked,Coins));
+        SaveSystem.SaveGame(new ProgressionSerializable(CurrentLevel,MaxLevelUnlocked,Coins,Gems));
     }
     public void LoadGame()
     {

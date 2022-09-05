@@ -30,19 +30,13 @@ public class ItemDetails : MonoBehaviour
 
     private void Start()
     {
-        if(ItemEquipped())
-        {
-            _equipButton.text = "Unequip";
-        }
-        else
-        {
-            _equipButton.text = "Equip";
-        }
+        ChangeEquipButton();
     }
 
     private void HeroSelectedEvent(HeroModel hero)
     {
-        _currentHero = hero;    
+        _currentHero = hero;
+        ChangeEquipButton();
     }
 
     public void SetupDetails(ItemModel model)
@@ -57,6 +51,20 @@ public class ItemDetails : MonoBehaviour
         _name.text = _currentItem.name;
     }
 
+    void ChangeEquipButton()
+    {
+        if (_currentHero)
+        {
+            if (ItemEquipped())
+            {
+                _equipButton.text = "Unequip";
+            }
+            else
+            {
+                _equipButton.text = "Equip";
+            }
+        }
+    }
     bool ItemEquipped()
     {
         return _currentHero.HasItem(_currentItem);
