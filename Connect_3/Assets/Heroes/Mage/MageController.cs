@@ -14,7 +14,8 @@ public class MageController : HeroController
         {
             int x = Random.Range(0, _boardController.BoardWidth);
             int y = Random.Range(0, _boardController.BoardHeight);
-            _boardController.ChangeTile(new Vector2Int(x, y), TileType.BOMB);
+            if (!_boardController.ChangeTile(new Vector2Int(x, y), TileType.BOMB))
+                i--;
         }
         _boardController.ProcessBoard();
     }

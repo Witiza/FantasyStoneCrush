@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663c7906ac2d0a4b814309662c41553, type: 3}
   m_Name: RogueStats
   m_EditorClassIdentifier: 
+  id: 1
   Inventory: {fileID: 11400000, guid: 6fe814624062dc44b9d7ccb9106b482d, type: 2}
   BaseNormalStrength: 1
   BaseCriticalStrength: 4

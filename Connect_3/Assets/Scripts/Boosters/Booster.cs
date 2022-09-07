@@ -6,7 +6,6 @@ public class Booster : ScriptableObject
 {
     public event Action<bool> BoosterEvent;
     public int amount;
-    public int cost = 20;
    
     public void NotifyEvent()
     {

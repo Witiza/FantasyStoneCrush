@@ -12,23 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e237c90b44d22854596c463539bd6adb, type: 3}
   m_Name: GeneralInventory
   m_EditorClassIdentifier: 
-  test: 0
   items:
-  - name: Sword
-    ItemMultipliers:
-      CritChance: 10
-      NormalMultiplier: 0.1
-      CriticalMultiplier: 0.2
-      ManaGainMultiplier: 0
-  - name: Shield
-    ItemMultipliers:
-      CritChance: 0
-      NormalMultiplier: 0
-      CriticalMultiplier: 0.5
-      ManaGainMultiplier: 0.2
-  - name: Willpower
+  - name: Sample Item No52
     ItemMultipliers:
       CritChance: 0
       NormalMultiplier: 0
       CriticalMultiplier: 0
-      ManaGainMultiplier: 1
+      ManaGainMultiplier: 0
+  - name: Sample Item No59
+    ItemMultipliers:
+      CritChance: 0
+      NormalMultiplier: 0
+      CriticalMultiplier: 0
+      ManaGainMultiplier: 0.27069208

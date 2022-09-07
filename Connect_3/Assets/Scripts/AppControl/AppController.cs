@@ -6,16 +6,22 @@ public class AppController : MonoBehaviour
 {
     public PlayerProgressionSO progression;
     public VolumeOptionsSO volumeOptions;
-
+    public bool UseSavegame;
     void Awake()
     {
-        progression.LoadGame();
-        volumeOptions.LoadOptions();
+        if (UseSavegame)
+        {
+            progression.LoadGame();
+            volumeOptions.LoadOptions();
+        }
     }
 
     void OnDestroy()
     {
-        progression.SaveGame();
-        volumeOptions.SaveOptions();
+        if (UseSavegame)
+        {
+            progression.SaveGame();
+            volumeOptions.SaveOptions();
+        }
     }
 }

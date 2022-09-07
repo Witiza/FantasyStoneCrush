@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663c7906ac2d0a4b814309662c41553, type: 3}
   m_Name: ArcherStats
   m_EditorClassIdentifier: 
+  id: 2
   Inventory: {fileID: 11400000, guid: 008474b48055d12408177a29337152ae, type: 2}
   BaseNormalStrength: 1
   BaseCriticalStrength: 3

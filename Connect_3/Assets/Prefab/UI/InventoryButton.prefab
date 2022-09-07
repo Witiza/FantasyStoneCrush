@@ -283,4 +283,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equip: {fileID: 2472332513512099900}
+  _buttonText: {fileID: 1692352324557897767}
   image: {fileID: 0}

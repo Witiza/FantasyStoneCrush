@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fec47b31c6d504e9023963c02f99fa, type: 3}
   m_Name: PlayerProgression
   m_EditorClassIdentifier: 
-  CurrentLevel: 0
-  MaxLevelUnlocked: 0
-  Coins: 1027
-  Gems: 1400
+  CurrentLevel: 1
+  MaxLevelUnlocked: 1
+  Coins: 1156
+  Gems: 1000
+  inventory: {fileID: 11400000, guid: d8f748481329a57439528eda5dc9c71f, type: 2}
+  warriorInventory: {fileID: 11400000, guid: e7b9921d25b0ac84fba739ee8f9619e7, type: 2}
+  rogueInventory: {fileID: 11400000, guid: 6fe814624062dc44b9d7ccb9106b482d, type: 2}
+  archerInventory: {fileID: 11400000, guid: 008474b48055d12408177a29337152ae, type: 2}
+  mageInventory: {fileID: 11400000, guid: cd37fc0eb98a1384d8c0aaecf86190c5, type: 2}
   levels:
   - {fileID: 11400000, guid: b22bdd7563205db449a59b36d8e82898, type: 2}
   - {fileID: 11400000, guid: c91af5951e9751f43a920d759298ae18, type: 2}

@@ -9,13 +9,18 @@ public class PlayerProgressionSO  : ScriptableObject
     public int MaxLevelUnlocked;
     public int Coins;
     public int Gems;
-
+    public PlayerInventory inventory;
+    public HeroInventory warriorInventory;
+    public HeroInventory rogueInventory;
+    public HeroInventory archerInventory;
+    public HeroInventory mageInventory;
     public List<BoardConfig> levels;
     public Booster TileBooster;
     public Booster TurnBooster;
     public Booster ManaBooster;
     public IntEventBus CoinsChange;
     public IntEventBus GemsChange;
+
 
     public BoardConfig GetCurrentLevelBoard()
     {
@@ -26,20 +31,17 @@ public class PlayerProgressionSO  : ScriptableObject
         CurrentLevel = 0;
         MaxLevelUnlocked = 0;
         Coins = 0;
+        Gems = 0;
         TileBooster.amount = 0;
         TurnBooster.amount = 0;
         ManaBooster.amount = 0;
+        inventory.items.Clear();
+        warriorInventory.items.Clear();
+        rogueInventory.items.Clear();
+        archerInventory.items.Clear();
+        mageInventory.items.Clear();
     }
 
-    public void AttemptToBuyBooster(Booster booster)
-    {
-        if(booster.cost <= Coins)
-        {
-            booster.amount = 10;
-            Coins -= booster.cost;
-            CoinsChange.NotifyEvent(booster.cost);
-        }
-    }
 
     public void AddCoins(int coins)
     {
@@ -53,19 +55,28 @@ public class PlayerProgressionSO  : ScriptableObject
         GemsChange.NotifyEvent(gems);
     }
 
-
     public void SaveGame()
     {
-        SaveSystem.SaveGame(new ProgressionSerializable(CurrentLevel,MaxLevelUnlocked,Coins,Gems));
+        SaveSystem.SaveGame(new SaveGameJsonWrapper(this));
     }
     public void LoadGame()
     {
-        ProgressionSerializable tmp = SaveSystem.LoadGame();
-        if (tmp!=null)
+        bool success;
+        SaveGameJsonWrapper tmp = SaveSystem.LoadGame(out success);
+        if (success)
         {
             CurrentLevel = tmp.CurrentLevel;
             MaxLevelUnlocked = tmp.MaxLevelUnlocked;
             Coins = tmp.Coins;
+            Gems = tmp.Gems;
+            inventory.items = tmp.playerInventory;
+            warriorInventory.items = tmp.warriorInventory;
+            rogueInventory.items = tmp.rogueInventory;
+            archerInventory.items = tmp.archerInventory;
+            mageInventory.items = tmp.mageInventory;
+            TileBooster.amount = tmp.TileBoosterAmount;
+            TurnBooster.amount = tmp.TurnBoosterAmount;
+            ManaBooster.amount = tmp.ManaBoosterAmount;
         }
     }
 }

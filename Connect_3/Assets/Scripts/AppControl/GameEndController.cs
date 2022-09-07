@@ -24,23 +24,23 @@ public class GameEndController : MonoBehaviour
         {
             _gameEnded = true;
             gameObject.SetActive(true);
-            CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
             if (info._gameWon)
             {
                 WonGO.SetActive(true);
                 if (PlayerProgression.CurrentLevel < PlayerProgression.levels.Count)
                 {
-                    PlayerProgression.CurrentLevel++;
                     if (PlayerProgression.CurrentLevel == PlayerProgression.MaxLevelUnlocked)
                     {
                         PlayerProgression.MaxLevelUnlocked++;
                     }
+                    PlayerProgression.CurrentLevel++;
                 }
             }
             else
             {
                 LostGO.SetActive(true);
             }
+            CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
         }
     }
 

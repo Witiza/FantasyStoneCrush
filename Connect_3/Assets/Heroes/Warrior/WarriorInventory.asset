@@ -12,3 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3579f32f4c34c4195f6d67fa8ae9bb, type: 3}
   m_Name: WarriorInventory
   m_EditorClassIdentifier: 
+  items:
+  - name: Sample Item No13
+    ItemMultipliers:
+      CritChance: 0
+      NormalMultiplier: 0.07334496
+      CriticalMultiplier: 0
+      ManaGainMultiplier: 0.4936881
+  - name: Sample Item No0
+    ItemMultipliers:
+      CritChance: 0
+      NormalMultiplier: 0.37308007
+      CriticalMultiplier: 0
+      ManaGainMultiplier: 0

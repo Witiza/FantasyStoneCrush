@@ -24,7 +24,7 @@ public class VisualTile : MonoBehaviour
 
     private void Awake()
     {
-        _sequence = DOTween.Sequence();
+        _sequence = DOTween.Sequence(this);
         particles = GetComponent<ParticleSystem>();
         original_world_pos = GameObject.FindGameObjectWithTag("Controller").transform.position;
     }

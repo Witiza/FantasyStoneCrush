@@ -534,12 +534,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_ReferenceResolution: {x: 1080, y: 2160}
+  m_ScreenMatchMode: 1
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -610,6 +610,9 @@ GameObject:
   - component: {fileID: 2007131365}
   - component: {fileID: 2007131364}
   - component: {fileID: 2007131366}
+  - component: {fileID: 2007131369}
+  - component: {fileID: 2007131368}
+  - component: {fileID: 2007131367}
   m_Layer: 0
   m_Name: AppManager
   m_TagString: Untagged
@@ -629,7 +632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fa8bda55339834089c3eeb2e932006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
   _canvas: {fileID: 1595794700}
   _loadingBar: {fileID: 846689401}
   _loadEvent: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}
@@ -662,3 +664,147 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
   volumeOptions: {fileID: 11400000, guid: 55e79ec35d2f84940a6e28b2aac4389b, type: 2}
+  UseSavegame: 1
+--- !u!82 &2007131367
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007131363}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a646d4122a84c8340864964c6c67f794, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!81 &2007131368
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007131363}
+  m_Enabled: 1
+--- !u!114 &2007131369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007131363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3753f2126368f14cac34ae5cb61890f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayersSize: 100
+  audioPlayerPrefab: {fileID: 4296788660059147917, guid: f297871858ad0c048b57172899f7254a, type: 3}
+  _tileDestroyed: {fileID: 8300000, guid: 6fb5d99f13c8dba4480413d1ea41d822, type: 3}
+  _specialTileCreated: {fileID: 8300000, guid: 67f3ef085c3b1444a9f202577c29e850, type: 3}
+  _bombDestroyed: {fileID: 8300000, guid: d8dc953de7f0d5e40b2efe62e7dead3a, type: 3}
+  _missileDestroyed: {fileID: 8300000, guid: 9fab239eb79257141bb3fccaeaabd3e7, type: 3}
+  _stoneDestroyed: {fileID: 8300000, guid: 76146d6cd81c599448d9772b73ef7220, type: 3}
+  _specialBombDestroyed: {fileID: 8300000, guid: 1c1cd599308bed147aba076e75d09473, type: 3}
+  _missileBombDestroyed: {fileID: 8300000, guid: 159145189c8482242b63e6ba0ad01086, type: 3}
+  _chestBought: {fileID: 8300000, guid: 363343d10a322f84abc98a5a27dc8303, type: 3}
+  _specialChestBought: {fileID: 8300000, guid: d347e196bf8f9b44ba7eec1b5a8ab265, type: 3}
+  _boosterBought: {fileID: 8300000, guid: 0d44204f8b321e64ebf6dca73dea416d, type: 3}
+  _coinsBought: {fileID: 8300000, guid: 863fc318cc321e148857496fdcc73cf2, type: 3}
+  _boughtEvents:
+  - {fileID: 11400000, guid: 9a9a2071d02e76c4991c075041cb495d, type: 2}
+  - {fileID: 11400000, guid: 7236a059d3de34147acb0d1c565735cd, type: 2}
+  - {fileID: 11400000, guid: ecf921a2ee46c894ea6bdb25518b73d0, type: 2}
+  - {fileID: 11400000, guid: deec38de56e65f54a8dedc2c24242ba9, type: 2}
+  - {fileID: 11400000, guid: b2364a734313b5746b7a141c24874d7e, type: 2}
+  - {fileID: 11400000, guid: ecc796df1bcffa448852ddb19aaa5659, type: 2}
+  - {fileID: 11400000, guid: 9ac8577c5472b064a9875dbc4542e239, type: 2}
+  _menuMusic: {fileID: 8300000, guid: a646d4122a84c8340864964c6c67f794, type: 3}
+  _gameMusic: {fileID: 8300000, guid: 2bd15bea91aa7f24a8da302f740a8f3f, type: 3}
+  musicSource: {fileID: 2007131367}
+  volumeOptions: {fileID: 11400000, guid: 55e79ec35d2f84940a6e28b2aac4389b, type: 2}
+  volumeChanged: {fileID: 11400000, guid: 15e8c9fee61946a4a96f4a9553aae862, type: 2}
+  loadEvent: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}

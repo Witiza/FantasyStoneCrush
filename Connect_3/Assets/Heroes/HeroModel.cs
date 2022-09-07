@@ -3,7 +3,7 @@
 [CreateAssetMenu]
 public class HeroModel : ScriptableObject
 {
-
+    public int id;
     public HeroInventory Inventory;
     public int BaseNormalStrength;
     public int BaseCriticalStrength;
