@@ -10,7 +10,7 @@ public class SceneHandler : MonoBehaviour
     [SerializeField] CanvasGroup _canvas;
     [SerializeField] SlicedFilledImage _loadingBar;
     [SerializeField] StringEventBus _loadEvent;
-    Coroutine _currentCoroutine;
+    Coroutine _currentCoroutine = null;
 
     public void LoadScene(string scene)
     {

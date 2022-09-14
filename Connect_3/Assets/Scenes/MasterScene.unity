@@ -666,8 +666,8 @@ MonoBehaviour:
   volumeOptions: {fileID: 11400000, guid: 55e79ec35d2f84940a6e28b2aac4389b, type: 2}
   _loadEvent: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}
   UseSavegame: 1
-  DevelopmentID: a0cdd690-5697-40c3-80a5-26f141dd419a
-  ProducionID: b5f32d8e-8e55-456d-a2a6-22b9c6dcba38
+  DevelopmentID: development
+  ProducionID: production
   _devBuild: 1
 --- !u!82 &2007131367
 AudioSource:

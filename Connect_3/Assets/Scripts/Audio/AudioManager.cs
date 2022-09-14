@@ -61,7 +61,9 @@ public class AudioManager : MonoBehaviour
         loadEvent.Event += SceneChanged;
         BoardEvents.TileDestroyed += BoardEventsTileDestroyed; ;
         BoardEvents.SpecialTileDestroyed += BoardEventsSpecialTileDestroyed;
-        for(int i = 0;i<audioPlayersSize;i++)
+
+        volumeOptions.LoadOptions();
+        for (int i = 0;i<audioPlayersSize;i++)
         {
             audioPlayers.Add(Instantiate(audioPlayerPrefab, gameObject.transform).GetComponent<AudioSource>());
         }

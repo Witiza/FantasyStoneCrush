@@ -19,16 +19,13 @@ public class ServicesController : MonoBehaviour
 
     private TaskCompletionSource<bool> _cancellationTaskSource;
 
-    async void  Awake()
+    public void Awake()
     {
-        _cancellationTaskSource = new TaskCompletionSource<bool>();
-        
-        await LoadServicesCancellable().ContinueWith(task =>
+
+        _cancellationTaskSource = new();      
+        LoadServicesCancellable().ContinueWith(task =>
                     Debug.LogException(task.Exception),
                 TaskContinuationOptions.OnlyOnFaulted);
-        //Where do I put this
-        volumeOptions.LoadOptions();
-        _loadEvent.NotifyEvent("MainMenu");
     }
     private async Task LoadServicesCancellable()
     {
@@ -37,7 +34,9 @@ public class ServicesController : MonoBehaviour
 
     private async Task LoadServices()
     {
-        await Initialize(_devBuild ? DevelopmentID : ProducionID).ContinueWith(task => Debug.LogException(task.Exception), TaskContinuationOptions.OnlyOnFaulted);
+        string ID = _devBuild ? DevelopmentID : ProducionID;
+        Debug.Log(ID);
+        await Initialize(ID);
 
         GameLoginService gameLoginService = new GameLoginService();
         RemoteGameConfigService remoteGameConfigService = new RemoteGameConfigService();
@@ -49,13 +48,14 @@ public class ServicesController : MonoBehaviour
         ServiceLocator.AddService<GameConfigService>(gameConfigService);
         ServiceLocator.AddService<PlayerProgressionService>(playerProgressionService);
 
-        await gameLoginService.Initialize().ContinueWith(task => Debug.LogException(task.Exception), TaskContinuationOptions.OnlyOnFaulted);
-        await remoteGameConfigService.Initialize().ContinueWith(task => Debug.LogException(task.Exception), TaskContinuationOptions.OnlyOnFaulted);
-        await gameConfigService.Initialize().ContinueWith(task => Debug.LogException(task.Exception), TaskContinuationOptions.OnlyOnFaulted);
+        await gameLoginService.Initialize();
+        await remoteGameConfigService.Initialize();
+        gameConfigService.Initialize();
         if (UseSavegame)
         {
-            await playerProgressionService.Initialize().ContinueWith(task => Debug.LogException(task.Exception), TaskContinuationOptions.OnlyOnFaulted);
+            playerProgressionService.Initialize();
         }
+        _loadEvent.NotifyEvent("MainMenu");
     }
     public async Task Initialize(string environmentID)
     {

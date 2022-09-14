@@ -16,8 +16,9 @@ public class GameConfigService : IService
     public void Clear()
     { }
 
-    public async Task Initialize()
+    public void Initialize()
     {
+        IsInitialized = true;
         RemoteGameConfigService config = ServiceLocator.GetService<RemoteGameConfigService>();
         initialGems = config.Get("InitialGems", 10);
         initialCoins = config.Get("InitialCoins", 200);

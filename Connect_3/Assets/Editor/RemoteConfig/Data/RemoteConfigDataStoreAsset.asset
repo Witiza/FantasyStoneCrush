@@ -12,30 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c2d056b1-6d9d-408e-85a0-331d558dc60c\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"98a92940-0e22-41f8-b693-adda77f1e9fd\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"IGems\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"7dd43489-e503-4d1e-8acf-6e12ff539a07\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"5748cbb4-3c8b-4d44-a9ac-902352cf1e60\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ICoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"23a9f353-2474-416f-b455-367ab785bbbb\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3144277d-aeab-4417-a1ba-d014dee8563d\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"ITurnBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"24222890-2f8f-45f6-8369-ade6fe013c0c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"c7e71efd-84ee-4428-88b0-dd7b12e0e0b7\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"IManaBooster\",\r\n      \"type\": \"int\",\r\n      \"value\": 3\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f5406980-8151-44b9-9123-a944b80090fd\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"cea6697f-030c-465f-b6c2-8be0c266b364\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"ITileBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c2d056b1-6d9d-408e-85a0-331d558dc60c\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"98a92940-0e22-41f8-b693-adda77f1e9fd\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"IGems\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"7dd43489-e503-4d1e-8acf-6e12ff539a07\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"5748cbb4-3c8b-4d44-a9ac-902352cf1e60\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ICoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"23a9f353-2474-416f-b455-367ab785bbbb\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3144277d-aeab-4417-a1ba-d014dee8563d\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"ITurnBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"24222890-2f8f-45f6-8369-ade6fe013c0c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"c7e71efd-84ee-4428-88b0-dd7b12e0e0b7\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"IManaBooster\",\r\n      \"type\": \"int\",\r\n      \"value\": 3\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f5406980-8151-44b9-9123-a944b80090fd\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"cea6697f-030c-465f-b6c2-8be0c266b364\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"ITileBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"8e8d5eb2-5409-43a3-9f4d-10809cb91ada\",\r\n   

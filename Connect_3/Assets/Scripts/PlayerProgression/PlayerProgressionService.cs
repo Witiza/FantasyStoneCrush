@@ -109,7 +109,7 @@ public class PlayerProgressionService  : ScriptableObject , IService
     {
 
     }
-    public  async Task Initialize()
+    public void Initialize()
     {
         LoadGame();
     }
