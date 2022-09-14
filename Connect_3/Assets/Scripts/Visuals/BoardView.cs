@@ -13,7 +13,7 @@ public class BoardView : MonoBehaviour
     public GameObject[] ParticlePrefabs;
     public BoardController Board;
     [SerializeField]
-    public PlayerProgressionSO PlayerProgression;
+    public PlayerProgressionService PlayerProgression;
     IGameplayInput _gameplayInput;
     int _availableMoves;
     int _currentScore = 0;

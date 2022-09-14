@@ -5,7 +5,7 @@ using TMPro;
 
 public class CoinsDisplay : MonoBehaviour
 {
-    public PlayerProgressionSO progression;
+    public PlayerProgressionService progression;
     public string DefaultText;
     public TMP_Text text;
     public IntEventBus CoinsEvent;

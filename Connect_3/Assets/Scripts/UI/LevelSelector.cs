@@ -7,7 +7,7 @@ public class LevelSelector : MonoBehaviour
 {
     Scrollbar bar;
     
-    public PlayerProgressionSO Progression;
+    public PlayerProgressionService Progression;
     public StringEventBus PlayLevel;
     // Start is called before the first frame update
     void Start()

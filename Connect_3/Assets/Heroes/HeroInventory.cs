@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Heroes/HeroInventory")]
 public class HeroInventory : ScriptableObject
 {
-    public List<ItemModel> items;
+    public List<ItemModel> items = new List<ItemModel>();
 
     public void ApplyItems(Multipliers target)
     {

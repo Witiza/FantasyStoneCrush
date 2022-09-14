@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Heroes/PlayerInventory")]
 public class PlayerInventory : ScriptableObject
 {
-    public List<ItemModel> items;
+    public List<ItemModel> items = new List<ItemModel>();
 
     public void AddItem(ItemModel item)
     {

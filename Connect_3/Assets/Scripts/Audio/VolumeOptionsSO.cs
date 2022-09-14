@@ -9,16 +9,13 @@ public class VolumeOptionsSO : ScriptableObject
 
     public void SaveOptions()
     {
-        SaveSystem.SaveOptions(new VolumeOptionsSerializable(MasterVolume,MusicVolume,SFXVolume));
+        SaveSystem.SaveOptions(this);
     }
     public void LoadOptions()
     {
-        VolumeOptionsSerializable tmp = SaveSystem.LoadOptions();
-        if (tmp != null)
-        {
-            MasterVolume = tmp.MasterVolume;
-            MusicVolume = tmp.MusicVolume;
-            SFXVolume = tmp.SFXVolume;
-        }
+        VolumeOptionsSO tmp = SaveSystem.LoadOptions();
+        MasterVolume = tmp.MasterVolume;
+        MusicVolume = tmp.MusicVolume;
+        SFXVolume = tmp.SFXVolume;
     }
 }

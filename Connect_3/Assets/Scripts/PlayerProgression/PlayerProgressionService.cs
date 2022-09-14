@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 
 [CreateAssetMenu]
-public class PlayerProgressionSO  : ScriptableObject
+public class PlayerProgressionService  : ScriptableObject , IService
 {
-    public int CurrentLevel;
-    public int MaxLevelUnlocked;
+    public int CurrentLevel = 0;
+    public int MaxLevelUnlocked = 0;
     public int Coins;
     public int Gems;
     public PlayerInventory inventory;
@@ -42,17 +44,31 @@ public class PlayerProgressionSO  : ScriptableObject
         mageInventory.items.Clear();
     }
 
-
-    public void AddCoins(int coins)
+    public void ModifyCoins(int coins)
     {
         Coins += coins;
         CoinsChange.NotifyEvent(coins);
     }
 
-    public void AddGems(int gems)
+    public void ModifyGems(int gems)
     {
         Gems += gems;
         GemsChange.NotifyEvent(gems);
+    }
+
+    public void ModifyTileBooster(int amount)
+    {
+        TileBooster.amount += amount;
+    }
+
+    public void ModifyManaBooster(int amount)
+    {
+        ManaBooster.amount += amount;
+    }
+
+    public void ModifyTurnBooster(int amount)
+    {
+        TurnBooster.amount += amount;
     }
 
     public void SaveGame()
@@ -61,6 +77,7 @@ public class PlayerProgressionSO  : ScriptableObject
     }
     public void LoadGame()
     {
+        GameConfigService config = ServiceLocator.GetService<GameConfigService>();
         bool success;
         SaveGameJsonWrapper tmp = SaveSystem.LoadGame(out success);
         if (success)
@@ -78,5 +95,22 @@ public class PlayerProgressionSO  : ScriptableObject
             TurnBooster.amount = tmp.TurnBoosterAmount;
             ManaBooster.amount = tmp.ManaBoosterAmount;
         }
+        else
+        {
+            Coins = config.initialCoins;
+            Gems = config.initialGems;
+            TileBooster.amount = config.initialTileBooster;
+            TurnBooster.amount = config.initialTurnBooster;
+            ManaBooster.amount = config.initialManaBooster;
+        }
+    }
+
+    public void Clear()
+    {
+
+    }
+    public  async Task Initialize()
+    {
+        LoadGame();
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LevelLocker : MonoBehaviour
 {
     public int level;
-    public PlayerProgressionSO progression;
+    public PlayerProgressionService progression;
     Image image;
     public Color disabled;
     

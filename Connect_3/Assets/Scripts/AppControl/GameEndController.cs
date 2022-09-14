@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class GameEndController : MonoBehaviour
 {
-    public PlayerProgressionSO PlayerProgression;
+    public PlayerProgressionService PlayerProgression;
    
-    public float MovesMultiplier;
-    [Header("amount/(LowerLevelMultiplier*(maxlvl-lvl))")]
-    public float LowerLevelMultiplier;
+    float MovesMultiplier;
+    float LowerLevelMultiplier;
     public GameEndEventBus GameWon;
     public GameEndEventBus GameLost;
     public StringEventBus LevelEvent;
@@ -65,6 +64,12 @@ public class GameEndController : MonoBehaviour
         GameWon.Event += EndGame;
         GameLost.Event += EndGame;
         gameObject.SetActive(false);
+
+       //amount/(LowerLevelMultiplier*(maxlvl-lvl))
+
+        GameConfigService config = ServiceLocator.GetService<GameConfigService>();
+        MovesMultiplier = config.coinsWonMultiplier;
+        LowerLevelMultiplier = config.coinsWonMultiplierLowLevel;
     }
     private void OnDestroy()
     {

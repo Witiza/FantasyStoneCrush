@@ -3,7 +3,7 @@ public class SaveGameJsonWrapper
 {
     public SaveGameJsonWrapper()
     { }
-    public SaveGameJsonWrapper(PlayerProgressionSO progression)
+    public SaveGameJsonWrapper(PlayerProgressionService progression)
     {
         CurrentLevel = progression.CurrentLevel;
         MaxLevelUnlocked = progression.MaxLevelUnlocked;

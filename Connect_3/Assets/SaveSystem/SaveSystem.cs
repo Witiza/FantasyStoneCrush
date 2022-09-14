@@ -34,16 +34,16 @@ public static partial class SaveSystem
         return data;
     }
 
-    public static void SaveOptions(VolumeOptionsSerializable data)
+    public static void SaveOptions(VolumeOptionsSO data)
     {
         PlayerPrefs.SetFloat("MasterVolume",data.MasterVolume);
         PlayerPrefs.SetFloat("MusicVolume",data.MusicVolume);
         PlayerPrefs.SetFloat("SFXVolume", data.SFXVolume);
     }
 
-    public static VolumeOptionsSerializable LoadOptions()
+    public static VolumeOptionsSO LoadOptions()
     {
-        VolumeOptionsSerializable data=new VolumeOptionsSerializable();
+        VolumeOptionsSO data =ScriptableObject.CreateInstance<VolumeOptionsSO>();
         data.MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
         data.MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
         data.SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);

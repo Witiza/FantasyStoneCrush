@@ -13,7 +13,7 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     List<IntEventBus> _boughtEvents = new List<IntEventBus>();
     [SerializeField]
-    PlayerProgressionSO _playerProgression;
+    PlayerProgressionService _playerProgression;
     [SerializeField]
     TMP_Text _coins;
     [SerializeField]

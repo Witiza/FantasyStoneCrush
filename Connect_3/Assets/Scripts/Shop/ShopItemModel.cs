@@ -16,7 +16,7 @@ public  class ShopItemModel
     public int id;
     public CostType type;
 
-    public bool canBuy(PlayerProgressionSO player)
+    public bool canBuy(PlayerProgressionService player)
     {
         bool ret = false;
         switch (type)

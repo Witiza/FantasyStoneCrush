@@ -14,7 +14,7 @@ public class ShopItemView : MonoBehaviour
     ShopItemModel model;
 
     [SerializeField]
-    PlayerProgressionSO progression;
+    PlayerProgressionService progression;
 
     [SerializeField]
     IntEventBus boughtEvent;
