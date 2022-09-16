@@ -20,6 +20,7 @@ public class ShopItemView : MonoBehaviour
     IntEventBus boughtEvent;
     public void UpdateView()
     {
+        model.SetPrice();
         cost.text = model.cost.ToString();
         switch (model.type)
         {

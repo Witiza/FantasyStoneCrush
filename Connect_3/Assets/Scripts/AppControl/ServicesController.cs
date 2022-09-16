@@ -42,19 +42,20 @@ public class ServicesController : MonoBehaviour
         RemoteGameConfigService remoteGameConfigService = new RemoteGameConfigService();
         GameConfigService gameConfigService = new GameConfigService();
         PlayerProgressionService playerProgressionService = progression;
+        GameAnalyticsService gameAnalyticsService = new GameAnalyticsService();
 
         ServiceLocator.AddService<GameLoginService>(gameLoginService);
         ServiceLocator.AddService<RemoteGameConfigService>(remoteGameConfigService);
         ServiceLocator.AddService<GameConfigService>(gameConfigService);
         ServiceLocator.AddService<PlayerProgressionService>(playerProgressionService);
+        ServiceLocator.AddService<GameAnalyticsService>(gameAnalyticsService);
 
         await gameLoginService.Initialize();
         await remoteGameConfigService.Initialize();
         gameConfigService.Initialize();
-        if (UseSavegame)
-        {
-            playerProgressionService.Initialize();
-        }
+        playerProgressionService.Initialize();
+        await gameAnalyticsService.Initialize();
+
         _loadEvent.NotifyEvent("MainMenu");
     }
     public async Task Initialize(string environmentID)

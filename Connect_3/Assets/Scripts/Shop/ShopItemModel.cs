@@ -11,10 +11,13 @@ public enum CostType
 [System.Serializable]
 public  class ShopItemModel 
 {
+    public int cost { get; private set; }
+
     public string name;
-    public int cost;
     public int id;
     public CostType type;
+    GameConfigService _gameConfigService = null;
+
 
     public bool canBuy(PlayerProgressionService player)
     {
@@ -35,6 +38,13 @@ public  class ShopItemModel
                 break;
         }
         return ret;
+    }
+
+    public void SetPrice()
+    {
+        if(_gameConfigService == null)
+            _gameConfigService = ServiceLocator.GetService<GameConfigService>();
+        cost = _gameConfigService.GetShopCost(id);
     }
 }
 

@@ -30,13 +30,15 @@ public class PlayerProgressionService  : ScriptableObject , IService
     }
     public void ResetProgression()
     {
+        GameConfigService config = ServiceLocator.GetService<GameConfigService>();
+
         CurrentLevel = 0;
         MaxLevelUnlocked = 0;
-        Coins = 0;
-        Gems = 0;
-        TileBooster.amount = 0;
-        TurnBooster.amount = 0;
-        ManaBooster.amount = 0;
+        Coins = config.initialCoins;
+        Gems = config.initialGems;
+        TileBooster.amount = config.initialTileBooster;
+        TurnBooster.amount = config.initialTurnBooster;
+        ManaBooster.amount = config.initialManaBooster;
         inventory.items.Clear();
         warriorInventory.items.Clear();
         rogueInventory.items.Clear();

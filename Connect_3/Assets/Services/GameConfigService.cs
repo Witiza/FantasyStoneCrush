@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Unity.Services.RemoteConfig;
+﻿using Unity.Services.RemoteConfig;
 
 
 public class GameConfigService : IService
@@ -12,6 +11,16 @@ public class GameConfigService : IService
 
     public float coinsWonMultiplier { get; private set; }
     public float coinsWonMultiplierLowLevel { get;private set; }
+
+    public int costTurnBooster { get; private set; }
+    public int costManaBooster { get; private set; }
+    public int costTileBooster { get; private set; }
+
+    public int costNormalChest { get; private set; }
+    public int costBigChest { get; private set; }
+    public int costGemsChest { get; private set; }
+    public int bigChestItemAmount { get; private set; }
+
 
     public void Clear()
     { }
@@ -26,5 +35,39 @@ public class GameConfigService : IService
         initialTileBooster = config.Get("InitialTileBooster", 3);
         coinsWonMultiplier = config.Get("CoinsWonMultiplier", 5);
         coinsWonMultiplierLowLevel = config.Get("CoinsWonMultiplierLowLevel", 5);
+        costTurnBooster = config.Get("TurnBoosterCost", 3);
+        costManaBooster = config.Get("ManaBoosterCost", 3);
+        costTileBooster = config.Get("TileBoosterCost", 3);
+        costNormalChest = config.Get("NormalChestCost", 200);
+        costBigChest = config.Get("BigChestCost", 400);
+        costGemsChest = config.Get("GemsChestCost", 500);
+        bigChestItemAmount = config.Get("BigChestItemAmount", 3);
+    }
+
+    public int GetShopCost(int id)
+    {
+        int ret = 0;
+        switch (id)
+        {
+            case 1:
+                ret = costTurnBooster;
+                break;
+            case 2:
+                ret = costManaBooster;
+                break;
+            case 3:
+                ret = costTileBooster;
+                break;
+            case 4:
+                ret = costNormalChest;
+                break;
+            case 5:
+                ret = costBigChest;
+                break;
+            case 6:
+                ret = costGemsChest;
+                break;
+        }
+        return ret;
     }
 }

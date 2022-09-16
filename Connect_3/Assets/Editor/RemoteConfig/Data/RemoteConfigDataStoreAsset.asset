@@ -12,32 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a84ea25a-7de2-40e6-85b5-b51f6678e495\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"IGems\",\r\n      \"type\": \"int\",\r\n     
-    \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"f27d8a52-148c-41e5-a364-21450ca81b60\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"ICoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a218f575-2d5e-4fa9-9452-50b6dc873263\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"ITurnBooster\",\r\n      \"type\": \"int\",\r\n     
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"0c9e0974-820a-4f9d-911b-2148e16b2061\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"InitialGems\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 1000\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3d22947b-4924-4f05-b730-26c2a8bf71b0\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"InitialCoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c038daea-516d-4cbe-874b-62610e0417b9\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"InitialTurnBooster\",\r\n      \"type\":
+    \"int\",\r\n      \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
+    \"entityId\": \"949f8dfd-940d-4a4c-a458-682eedf31fcd\"\r\n    },\r\n    \"rs\":
+    {\r\n      \"key\": \"InitialManaBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"6cd914a1-4753-48a9-96c5-99487490be89\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"IManaBooster\",\r\n      \"type\": \"int\",\r\n      \"value\": 3\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"6743fd25-5a68-4d7e-9568-ee230f2f5d99\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"ITileBooster\",\r\n      \"type\": \"int\",\r\n     
-    \"value\": 3\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a84ea25a-7de2-40e6-85b5-b51f6678e495\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"IGems\",\r\n      \"type\": \"int\",\r\n     
-    \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"f27d8a52-148c-41e5-a364-21450ca81b60\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"ICoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a218f575-2d5e-4fa9-9452-50b6dc873263\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"ITurnBooster\",\r\n      \"type\": \"int\",\r\n     
+    \"1c30b8ab-3eaa-420a-98b2-9565a54897cf\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"InitialTileBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
+    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"674fd864-56bd-448e-a311-4f042d732892\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplier\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
+    {\r\n      \"entityId\": \"ab3f3f7b-0bc5-460f-a7c5-8e22884f5f88\"\r\n    },\r\n   
+    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplierLowLevel\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"0c9e0974-820a-4f9d-911b-2148e16b2061\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"InitialGems\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 1000\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3d22947b-4924-4f05-b730-26c2a8bf71b0\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"InitialCoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c038daea-516d-4cbe-874b-62610e0417b9\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"InitialTurnBooster\",\r\n      \"type\":
+    \"int\",\r\n      \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
+    \"entityId\": \"949f8dfd-940d-4a4c-a458-682eedf31fcd\"\r\n    },\r\n    \"rs\":
+    {\r\n      \"key\": \"InitialManaBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"6cd914a1-4753-48a9-96c5-99487490be89\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"IManaBooster\",\r\n      \"type\": \"int\",\r\n      \"value\": 3\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"6743fd25-5a68-4d7e-9568-ee230f2f5d99\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"ITileBooster\",\r\n      \"type\": \"int\",\r\n     
-    \"value\": 3\r\n    }\r\n  }\r\n]"
+    \"1c30b8ab-3eaa-420a-98b2-9565a54897cf\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"InitialTileBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
+    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"674fd864-56bd-448e-a311-4f042d732892\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplier\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
+    {\r\n      \"entityId\": \"ab3f3f7b-0bc5-460f-a7c5-8e22884f5f88\"\r\n    },\r\n   
+    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplierLowLevel\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"8e8d5eb2-5409-43a3-9f4d-10809cb91ada\",\r\n   
     \"name\": \"development\",\r\n    \"id\": \"a0cdd690-5697-40c3-80a5-26f141dd419a\",\r\n   
     \"isDefault\": false,\r\n    \"createdAt\": \"2022-09-07T17:52:13Z\",\r\n   

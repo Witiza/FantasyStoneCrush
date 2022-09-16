@@ -160,7 +160,7 @@ RectTransform:
   - {fileID: 1299980744}
   - {fileID: 1336945800}
   m_Father: {fileID: 576677253}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -279,10 +279,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 180
+    m_Top: 297
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 40.14
+  m_Spacing: 124.4
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -350,8 +350,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Design: Lori\xE9n Portella L\xF3pez"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fac228da24936034fb5ad94268829a17, type: 2}
+  m_sharedMaterial: {fileID: -7570135243985537058, guid: fac228da24936034fb5ad94268829a17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -375,8 +375,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 49.66
+  m_fontSizeBase: 49.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -593,8 +593,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 612904707}
-  - {fileID: 588290035}
   - {fileID: 329194470}
+  - {fileID: 588290035}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -628,23 +628,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 178.7
+      value: 178.70001
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_SizeDelta.y
@@ -680,11 +680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 437.1
+      value: -102.899994
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 813
+      value: -160.59998
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -865,10 +865,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Music: N\xFAria yokese"
+  m_text: "Music: N\xFAria Barquero Ejarque"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fac228da24936034fb5ad94268829a17, type: 2}
+  m_sharedMaterial: {fileID: -7570135243985537058, guid: fac228da24936034fb5ad94268829a17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -892,8 +892,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 49.66
+  m_fontSizeBase: 49.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1002,8 +1002,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Sound Effects: freesound.org'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fac228da24936034fb5ad94268829a17, type: 2}
+  m_sharedMaterial: {fileID: -7570135243985537058, guid: fac228da24936034fb5ad94268829a17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1027,8 +1027,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 49.66
+  m_fontSizeBase: 49.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1137,8 +1137,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Sprites and UI: Buch from OpenGameArt'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fac228da24936034fb5ad94268829a17, type: 2}
+  m_sharedMaterial: {fileID: -7570135243985537058, guid: fac228da24936034fb5ad94268829a17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1162,8 +1162,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 49.66
+  m_fontSizeBase: 49.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1272,8 +1272,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Programming: Lor\xEDen Portella L\xF3pez"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fac228da24936034fb5ad94268829a17, type: 2}
+  m_sharedMaterial: {fileID: -7570135243985537058, guid: fac228da24936034fb5ad94268829a17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1297,8 +1297,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 49.66
+  m_fontSizeBase: 49.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -6,8 +6,7 @@ using TMPro;
 //This class should be divided into smaller classes
 public class ShopController : MonoBehaviour
 {
-    [SerializeField]
-    Vector2Int BigChestVariableAmount;
+    GameConfigService config;
     [SerializeField]
     List<ShopItemView> _items = new List<ShopItemView>();
     [SerializeField]
@@ -28,6 +27,7 @@ public class ShopController : MonoBehaviour
         {
             bought.Event += BoughtEvent;
         }
+        config = ServiceLocator.GetService<GameConfigService>();
     }
 
     private void BoughtEvent(int index)
@@ -44,13 +44,10 @@ public class ShopController : MonoBehaviour
                 _playerProgression.TileBooster.amount++;
                 break;
             case 4:
-                //normal chest;
                 OpenChest(false);
                 break;
             case 5:
-                //big chest;
-                int times = Random.Range(BigChestVariableAmount.x, BigChestVariableAmount.y);
-                for(int i = 0;i<times;i++)
+                for(int i = 0;i<config.bigChestItemAmount;i++)
                 {
                     OpenChest(false);
                 }
