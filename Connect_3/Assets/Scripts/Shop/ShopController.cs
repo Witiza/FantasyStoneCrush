@@ -50,15 +50,15 @@ public class ShopController : MonoBehaviour
         switch (index)
         {
             case 1:
-                _playerProgression.TurnBooster.amount++;
+                _playerProgression.ModifyTurnBooster(1);
                 _analytics.SendEvent("TurnBoosterBought");
             break;
-            case 2: 
-                _playerProgression.ManaBooster.amount++;
+            case 2:
+                _playerProgression.ModifyManaBooster(1);
                 _analytics.SendEvent("ManaBoosterBought");
                 break;
             case 3:
-                _playerProgression.TileBooster.amount++;
+                _playerProgression.ModifyTileBooster(1);
                 _analytics.SendEvent("TileBoosterBought");
                 break;
             case 4:
@@ -75,7 +75,6 @@ public class ShopController : MonoBehaviour
             case 6:
                 OpenChest(true);
                 _analytics.SendEvent("GemsChestBought");
-                //gems chest
                 break;
         }
         UpdateItems();
@@ -86,8 +85,6 @@ public class ShopController : MonoBehaviour
         ItemModel item = _itemGenerator.GenerateItem(premium);
         Instantiate(_itemPopup,gameObject.transform).GetComponent<ItemDetails>().SetupDetails(item);
     }
-    // Start is called before the first frame update
-
 
     private void UpdateItems()
     {

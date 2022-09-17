@@ -1257,7 +1257,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19607843, g: 0.4745098, b: 0.39607844, a: 0}
+  m_BackGroundColor: {r: 0.41176474, g: 0.4156863, b: 0.4156863, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2395,8 +2395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerProgression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
-  MovesMultiplier: 5
-  LowerLevelMultiplier: 5
   GameWon: {fileID: 11400000, guid: 1167a1228544a4c4d98d2226810eb37e, type: 2}
   GameLost: {fileID: 11400000, guid: ca362fefcfaa17d41bd51ee41a2df97d, type: 2}
   LevelEvent: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}

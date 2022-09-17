@@ -350,8 +350,9 @@ public class BoardController
                 DestroyColumn(pos.x);
             }
         }
-        tile.Type = TileType.NULL;
-        other.Type = TileType.NULL;
+        //If I set them to null, I get the ghost tiles bug, chalice isnt used for nothing anyway.
+        tile.Type = TileType.CHALICE;
+        other.Type = TileType.CHALICE;
     }
 
     public bool SwapAction(Direction dir)

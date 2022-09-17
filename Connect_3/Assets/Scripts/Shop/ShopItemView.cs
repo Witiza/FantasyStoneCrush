@@ -47,6 +47,15 @@ public class ShopItemView : MonoBehaviour
     {
         if (model.canBuy(progression))
         {
+            switch (model.type)
+            {
+                case CostType.COINS:
+                    progression.ModifyCoins(-model.cost);
+                    break;
+                case CostType.GEMS:
+                    progression.ModifyGems(-model.cost);
+                    break;
+            }
             boughtEvent.NotifyEvent(model.id);
         }
     }
