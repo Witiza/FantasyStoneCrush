@@ -6,7 +6,7 @@ using TMPro;
 //This class should be divided into smaller classes
 public class ShopController : MonoBehaviour
 {
-    GameConfigService config;
+
     [SerializeField]
     List<ShopItemView> _items = new List<ShopItemView>();
     [SerializeField]
@@ -21,13 +21,28 @@ public class ShopController : MonoBehaviour
     GameObject _itemPopup;
     [SerializeField]
     ItemGenerator _itemGenerator;
+
+    GameConfigService _config;
+    GameAnalyticsService _analytics;
     private void Awake()
     {
         foreach(IntEventBus bought in _boughtEvents)
         {
             bought.Event += BoughtEvent;
         }
-        config = ServiceLocator.GetService<GameConfigService>();
+        _config = ServiceLocator.GetService<GameConfigService>();
+        _analytics = ServiceLocator.GetService<GameAnalyticsService>();
+    }
+    void Start()
+    {
+        UpdateItems();
+    }
+    private void OnDestroy()
+    {
+        foreach (IntEventBus bought in _boughtEvents)
+        {
+            bought.Event -= BoughtEvent;
+        }
     }
 
     private void BoughtEvent(int index)
@@ -36,24 +51,30 @@ public class ShopController : MonoBehaviour
         {
             case 1:
                 _playerProgression.TurnBooster.amount++;
+                _analytics.SendEvent("TurnBoosterBought");
             break;
             case 2: 
                 _playerProgression.ManaBooster.amount++;
+                _analytics.SendEvent("ManaBoosterBought");
                 break;
             case 3:
                 _playerProgression.TileBooster.amount++;
+                _analytics.SendEvent("TileBoosterBought");
                 break;
             case 4:
                 OpenChest(false);
+                _analytics.SendEvent("NormalChestBought");
                 break;
             case 5:
-                for(int i = 0;i<config.bigChestItemAmount;i++)
+                for(int i = 0;i<_config.bigChestItemAmount;i++)
                 {
                     OpenChest(false);
                 }
+                _analytics.SendEvent("BigChestBought");
                 break;
             case 6:
                 OpenChest(true);
+                _analytics.SendEvent("GemsChestBought");
                 //gems chest
                 break;
         }
@@ -66,10 +87,7 @@ public class ShopController : MonoBehaviour
         Instantiate(_itemPopup,gameObject.transform).GetComponent<ItemDetails>().SetupDetails(item);
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        UpdateItems();
-    }
+
 
     private void UpdateItems()
     {

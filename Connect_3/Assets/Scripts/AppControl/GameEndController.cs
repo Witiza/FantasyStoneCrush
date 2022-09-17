@@ -17,6 +17,8 @@ public class GameEndController : MonoBehaviour
     public GameObject WonGO;
     public GameObject LostGO;
 
+    GameAnalyticsService _analytics;
+
     void EndGame(GameEndInfo info)
     {
         if (!_gameEnded)
@@ -25,6 +27,7 @@ public class GameEndController : MonoBehaviour
             gameObject.SetActive(true);
             if (info._gameWon)
             {
+                _analytics.SendEvent("LevelWon", new Dictionary<string, object> { ["CurrentLevel"] = info._level });
                 WonGO.SetActive(true);
                 if (PlayerProgression.CurrentLevel < PlayerProgression.levels.Count)
                 {
@@ -37,6 +40,7 @@ public class GameEndController : MonoBehaviour
             }
             else
             {
+                _analytics.SendEvent("LevelFailed", new Dictionary<string, object> { ["CurrentLevel"] = info._level });
                 LostGO.SetActive(true);
             }
             CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
@@ -56,7 +60,7 @@ public class GameEndController : MonoBehaviour
             amount = amount>=1?amount:1;
             CoinsWon.NotifyEvent(amount);
         }
-        PlayerProgression.Coins += amount;
+        PlayerProgression.ModifyCoins(amount); 
     }
 
     private void Awake()
@@ -67,6 +71,7 @@ public class GameEndController : MonoBehaviour
 
        //amount/(LowerLevelMultiplier*(maxlvl-lvl))
 
+        _analytics = ServiceLocator.GetService<GameAnalyticsService>();
         GameConfigService config = ServiceLocator.GetService<GameConfigService>();
         MovesMultiplier = config.coinsWonMultiplier;
         LowerLevelMultiplier = config.coinsWonMultiplierLowLevel;

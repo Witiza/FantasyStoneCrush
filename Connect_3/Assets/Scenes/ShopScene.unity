@@ -183,7 +183,6 @@ MonoBehaviour:
   reward: {fileID: 1439619770}
   model:
     name: Normal Chest
-    cost: 200
     id: 4
     type: 1
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
@@ -2050,8 +2049,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
-        m_TargetAssemblyTypeName: PlayerProgressionSO, Assembly-CSharp
-        m_MethodName: AddCoins
+        m_TargetAssemblyTypeName: PlayerProgressionService, Assembly-CSharp
+        m_MethodName: ModifyCoins
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2221,7 +2220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0efc5d3b6d3054ca34b6f2d884adc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BigChestVariableAmount: {x: 3, y: 4}
   _items:
   - {fileID: 1230377397}
   - {fileID: 1179458335}
@@ -2592,7 +2590,6 @@ MonoBehaviour:
   reward: {fileID: 1586673465}
   model:
     name: Special Chest
-    cost: 500
     id: 6
     type: 2
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
@@ -2923,7 +2920,6 @@ MonoBehaviour:
   reward: {fileID: 838083495}
   model:
     name: Mana Booster
-    cost: 20
     id: 2
     type: 2
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
@@ -2983,7 +2979,6 @@ MonoBehaviour:
   reward: {fileID: 1743612834}
   model:
     name: Turn Booster
-    cost: 20
     id: 1
     type: 2
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
@@ -3723,7 +3718,6 @@ MonoBehaviour:
   reward: {fileID: 1059620932}
   model:
     name: Big Chest
-    cost: 600
     id: 5
     type: 1
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
@@ -4189,7 +4183,6 @@ MonoBehaviour:
   reward: {fileID: 977090915}
   model:
     name: Tile Booster
-    cost: 20
     id: 3
     type: 2
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
@@ -4279,8 +4272,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
-        m_TargetAssemblyTypeName: PlayerProgressionSO, Assembly-CSharp
-        m_MethodName: AddGems
+        m_TargetAssemblyTypeName: PlayerProgressionService, Assembly-CSharp
+        m_MethodName: ModifyGems
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

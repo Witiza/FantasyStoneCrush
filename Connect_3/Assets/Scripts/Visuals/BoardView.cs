@@ -27,6 +27,8 @@ public class BoardView : MonoBehaviour
     public Booster TurnBooster;
     public int extraMovesBooster;
     public int extraTilesBooster;
+    bool _bonusMovesUsed = false;
+    GameAnalyticsService _analyticsService;
 
     private void Awake()  
     {
@@ -48,6 +50,8 @@ public class BoardView : MonoBehaviour
         Board = new BoardController(_config.board.GridSize.x, _config.board.GridSize.y,_config.board);
         _visualSelector = new VisualSelector();
         _availableMoves = _config.AvailableMoves;
+        _analyticsService = ServiceLocator.GetService<GameAnalyticsService>();
+        _analyticsService.SendEvent("LevelStarted", new Dictionary<string, object> { ["CurrentLevel"] = PlayerProgression.CurrentLevel });
         InitializeTexts();
     }
 
@@ -115,7 +119,14 @@ public class BoardView : MonoBehaviour
         MovesText.text = $"{_availableMoves}";
         if (_availableMoves == 0)
         {
-            GameLost.NotifyEvent(BuildGameEndInfo(false));
+            if (_bonusMovesUsed)
+            {
+                GameLost.NotifyEvent(BuildGameEndInfo(false));
+            }
+            else
+            {
+                //Advertisment;
+            }
         }
     }
 

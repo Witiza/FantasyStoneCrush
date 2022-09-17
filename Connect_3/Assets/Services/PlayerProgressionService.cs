@@ -9,8 +9,8 @@ public class PlayerProgressionService  : ScriptableObject , IService
 {
     public int CurrentLevel = 0;
     public int MaxLevelUnlocked = 0;
-    public int Coins;
-    public int Gems;
+    public int Coins { get; private set; }
+    public int Gems { get; private set; }
     public PlayerInventory inventory;
     public HeroInventory warriorInventory;
     public HeroInventory rogueInventory;
@@ -56,6 +56,16 @@ public class PlayerProgressionService  : ScriptableObject , IService
     {
         Gems += gems;
         GemsChange.NotifyEvent(gems);
+    }
+
+    public void SetCoins(int amount)
+    {
+        Coins = amount;
+    }
+
+    public void SetGems(int amount)
+    {
+        Gems = amount;
     }
 
     public void ModifyTileBooster(int amount)
