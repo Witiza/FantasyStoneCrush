@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameEndController : MonoBehaviour
 {
     public PlayerProgressionService PlayerProgression;
@@ -10,14 +11,18 @@ public class GameEndController : MonoBehaviour
     float LowerLevelMultiplier;
     public GameEndEventBus GameWon;
     public GameEndEventBus GameLost;
+    public EventBus MovesAdded;
     public StringEventBus LevelEvent;
     public IntEventBus CoinsWon;
     bool _gameEnded = false;
+    bool _bonusMovesUsed = false;
 
     public GameObject WonGO;
     public GameObject LostGO;
+    public GameObject AddMovesGO;
 
     GameAnalyticsService _analytics;
+    GameAdsService _ads;
 
     void EndGame(GameEndInfo info)
     {
@@ -37,13 +42,20 @@ public class GameEndController : MonoBehaviour
                     }
                     PlayerProgression.CurrentLevel++;
                 }
+                CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
             }
             else
             {
-                _analytics.SendEvent("LevelFailed", new Dictionary<string, object> { ["CurrentLevel"] = info._level });
                 LostGO.SetActive(true);
+                if(!_bonusMovesUsed)
+                {
+                    AddMovesGO.SetActive(true);
+                }
+                else
+                {
+                    AddMovesGO.SetActive(false);
+                }
             }
-            CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
         }
     }
 
@@ -68,14 +80,30 @@ public class GameEndController : MonoBehaviour
         GameWon.Event += EndGame;
         GameLost.Event += EndGame;
         gameObject.SetActive(false);
-
-       //amount/(LowerLevelMultiplier*(maxlvl-lvl))
-
+        LostGO.SetActive(false);
+        WonGO.SetActive(false);
         _analytics = ServiceLocator.GetService<GameAnalyticsService>();
+        _ads = ServiceLocator.GetService<GameAdsService>();
         GameConfigService config = ServiceLocator.GetService<GameConfigService>();
         MovesMultiplier = config.coinsWonMultiplier;
         LowerLevelMultiplier = config.coinsWonMultiplierLowLevel;
     }
+
+    public async void MovesAd()
+    {
+        if(await _ads.ShowAd())
+        {
+            MovesAdded.NotifyEvent();
+            gameObject.SetActive(false);
+            _gameEnded = false;
+        }
+    }
+
+    public void ConcludeLostLevel()
+    {
+        _analytics.SendEvent("LevelFailed", new Dictionary<string, object> { ["CurrentLevel"] = PlayerProgression.CurrentLevel });
+    }
+
     private void OnDestroy()
     {
         GameWon.Event -= EndGame;

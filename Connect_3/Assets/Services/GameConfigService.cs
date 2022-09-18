@@ -11,6 +11,10 @@ public class GameConfigService : IService
 
     public float coinsWonMultiplier { get; private set; }
     public float coinsWonMultiplierLowLevel { get;private set; }
+    public int movesAddedByAd { get; private set; }
+    public int movesAddedByBooster { get; private set; }
+    public int tilesAddedByBooster { get; private set; }
+
 
     public int costTurnBooster { get; private set; }
     public int costManaBooster { get; private set; }
@@ -35,6 +39,9 @@ public class GameConfigService : IService
         initialTileBooster = config.Get("InitialTileBooster", 3);
         coinsWonMultiplier = config.Get("CoinsWonMultiplier", 5);
         coinsWonMultiplierLowLevel = config.Get("CoinsWonMultiplierLowLevel", 5);
+        movesAddedByAd = config.Get("MovesAddedByAd", 5);
+        movesAddedByBooster = config.Get("MovesAddedByBooster", 5);
+        tilesAddedByBooster = config.Get("TilesAddedByBooster", 5);
         costTurnBooster = config.Get("TurnBoosterCost", 3);
         costManaBooster = config.Get("ManaBoosterCost", 3);
         costTileBooster = config.Get("TileBoosterCost", 3);

@@ -16,7 +16,6 @@ public class ServicesController : MonoBehaviour
     public string ProducionID;
     [SerializeField] bool _devBuild = true;
 
-
     private TaskCompletionSource<bool> _cancellationTaskSource;
 
     public void Awake()
@@ -43,18 +42,21 @@ public class ServicesController : MonoBehaviour
         GameConfigService gameConfigService = new GameConfigService();
         PlayerProgressionService playerProgressionService = progression;
         GameAnalyticsService gameAnalyticsService = new GameAnalyticsService();
+        GameAdsService gameAdsService = new GameAdsService("4928653", "Rewarded_Android");
 
         ServiceLocator.AddService<GameLoginService>(gameLoginService);
         ServiceLocator.AddService<RemoteGameConfigService>(remoteGameConfigService);
         ServiceLocator.AddService<GameConfigService>(gameConfigService);
         ServiceLocator.AddService<PlayerProgressionService>(playerProgressionService);
         ServiceLocator.AddService<GameAnalyticsService>(gameAnalyticsService);
+        ServiceLocator.AddService<GameAdsService>(gameAdsService);
 
         await gameLoginService.Initialize();
         await remoteGameConfigService.Initialize();
         gameConfigService.Initialize();
         playerProgressionService.Initialize();
         await gameAnalyticsService.Initialize();
+        await gameAdsService.Initialize();
 
         _loadEvent.NotifyEvent("MainMenu");
     }

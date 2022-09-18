@@ -23,12 +23,11 @@ public class BoardView : MonoBehaviour
     public TMP_Text ScoreText;
     public GameEndEventBus GameWon;
     public GameEndEventBus GameLost;
+    public EventBus MovesAdded;
     public Booster TileBooster;
     public Booster TurnBooster;
-    public int extraMovesBooster;
-    public int extraTilesBooster;
-    bool _bonusMovesUsed = false;
     GameAnalyticsService _analyticsService;
+    GameConfigService _gameConfigService;
 
     private void Awake()  
     {
@@ -42,6 +41,7 @@ public class BoardView : MonoBehaviour
         BoardEvents.SpecialTileDestroyed += BoardEventsSpecialTileDestroyed;
         TileBooster.BoosterEvent += TileBoosterEvent;
         TurnBooster.BoosterEvent += TurnBoosterEvent;
+        MovesAdded.Event += MovesAddedEvent;
         _gameplayInput = gameObject.GetComponent<IGameplayInput>();
         _gameplayInput.StartTouch += InputStartTouch; ;
         _gameplayInput.SwapTouch += InputSwapTouch; ;
@@ -51,15 +51,22 @@ public class BoardView : MonoBehaviour
         _visualSelector = new VisualSelector();
         _availableMoves = _config.AvailableMoves;
         _analyticsService = ServiceLocator.GetService<GameAnalyticsService>();
+        _gameConfigService = ServiceLocator.GetService<GameConfigService>();
         _analyticsService.SendEvent("LevelStarted", new Dictionary<string, object> { ["CurrentLevel"] = PlayerProgression.CurrentLevel });
         InitializeTexts();
+    }
+
+    private void MovesAddedEvent()
+    {
+        _availableMoves += _gameConfigService.movesAddedByAd;
+        UpdateMoves();
     }
 
     private void TurnBoosterEvent(bool success)
     {
         if (success)
         {
-            _availableMoves += extraMovesBooster;
+            _availableMoves += _gameConfigService.movesAddedByBooster;
             UpdateMoves();
         }
     }
@@ -68,7 +75,7 @@ public class BoardView : MonoBehaviour
     {
         if (success)
         {
-            for (int i = 0; i < extraTilesBooster; i++)
+            for (int i = 0; i < _gameConfigService.tilesAddedByBooster; i++)
             {
                 Vector2Int tmp;
                 do
@@ -119,14 +126,7 @@ public class BoardView : MonoBehaviour
         MovesText.text = $"{_availableMoves}";
         if (_availableMoves == 0)
         {
-            if (_bonusMovesUsed)
-            {
-                GameLost.NotifyEvent(BuildGameEndInfo(false));
-            }
-            else
-            {
-                //Advertisment;
-            }
+            GameLost.NotifyEvent(BuildGameEndInfo(false));
         }
     }
 

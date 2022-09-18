@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileSize: 0.5
   Objective: 0
-  AvailableMoves: 100
+  AvailableMoves: 2
   ScoreOrBoxesNeeded: 1000
   board:
     gridSize: {x: 9, y: 9}

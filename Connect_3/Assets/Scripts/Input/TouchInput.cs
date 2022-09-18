@@ -14,6 +14,7 @@ public class TouchInput : MonoBehaviour,IGameplayInput
 {
     public GameEndEventBus GameWon;
     public GameEndEventBus GameLost;
+    public EventBus MovesAdded;
     private bool _inputEnabled= true;
     private bool _gameEnded = false;
     public Vector2 _initialTouch { get; set; }
@@ -29,21 +30,15 @@ public class TouchInput : MonoBehaviour,IGameplayInput
     public event Action EndTouch;
     public void NotifyEndTouch() =>EndTouch?.Invoke();  
 
-    void Awake()
+    private void MovesAddedEvent()
     {
-        GameWon.Event += ScoreControllerGameWon;
-        GameLost.Event += ScoreControllerGameLost;
+        _inputEnabled = true;
+        _gameEnded = false;
     }
 
-    private void ScoreControllerGameLost(GameEndInfo info)
+    private void GameEndedEvent(GameEndInfo info)
     {
         _inputEnabled = false;
-        _gameEnded = true;
-    }
-
-    private void ScoreControllerGameWon(GameEndInfo info)
-    {
-        _inputEnabled= false;
         _gameEnded = true;
     }
 
@@ -98,7 +93,21 @@ public class TouchInput : MonoBehaviour,IGameplayInput
 
         }
     }
-    
+
+    void Awake()
+    {
+        GameWon.Event += GameEndedEvent;
+        GameLost.Event += GameEndedEvent;
+        MovesAdded.Event += MovesAddedEvent;
+    }
+
+    void OnDestroy()
+    {
+        GameWon.Event -= GameEndedEvent;
+        GameLost.Event -= GameEndedEvent;
+        MovesAdded.Event -= MovesAddedEvent;
+    }
+
     public IEnumerator CoroutineTurnWait()
     {
         _inputEnabled = false;
