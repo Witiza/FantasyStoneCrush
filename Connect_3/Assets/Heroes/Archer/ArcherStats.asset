@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   Inventory: {fileID: 11400000, guid: 008474b48055d12408177a29337152ae, type: 2}
-  BaseNormalStrength: 1
-  BaseCriticalStrength: 3
+  BaseNormalStrength: 5
+  BaseCriticalStrength: 8
   BaseManaGain: 5
   MaxMana: 100
   BaseMultipliers:

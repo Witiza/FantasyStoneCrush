@@ -8,7 +8,6 @@ public class ItemDetails : MonoBehaviour
 {
     [SerializeField]
     EquipmentEvent equipOrUnequipItem;
-
     [SerializeField]
     TMP_Text _normalMultiplier;
     [SerializeField]

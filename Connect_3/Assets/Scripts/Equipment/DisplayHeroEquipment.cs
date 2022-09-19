@@ -28,13 +28,6 @@ public class DisplayHeroEquipment : MonoBehaviour
     Image _spriteRenderer;
 
     HeroModel _currentHero;
-    // Start is called before the first frame update
-    void Awake()
-    {
-        _heroSelected.Event += HeroSelectedEvent;
-        _equipmentEvent.Event += EquipmentEvent;
-        _heroSelected.NotifyEvent(defaultHero);
-    }
 
     private void EquipmentEvent(ItemModel item, bool equipping)
     {
@@ -76,12 +69,18 @@ public class DisplayHeroEquipment : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
+
+    void Awake()
+    {
+        _heroSelected.Event += HeroSelectedEvent;
+        _equipmentEvent.Event += EquipmentEvent;
+        _heroSelected.NotifyEvent(defaultHero);
+    }
+
     void OnDestroy()
     {
         _heroSelected.Event -= HeroSelectedEvent;
         _equipmentEvent.Event -= EquipmentEvent;
-
     }
 }
 

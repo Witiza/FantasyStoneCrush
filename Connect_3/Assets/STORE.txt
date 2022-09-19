@@ -1,5 +1,0 @@
-Icon: 512x512 1MB
-Imatge destacada: 1024x500 1MB
-Capturas telefono 4: 9:16 costats entre 320 i 3840 px
-Tauleta 7 polzades: 9:16 8MB
-Tauleta 10 polzades: 9;16 8MB

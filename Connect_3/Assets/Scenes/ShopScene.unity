@@ -2204,15 +2204,15 @@ MonoBehaviour:
       CriticalMultiplier: 1
       ManaGainMultiplier: 1
     NormalVariance:
-      CritChance: 1
-      NormalMultiplier: 0.2
-      CriticalMultiplier: 0.2
-      ManaGainMultiplier: 0.5
-    PremiumVariance:
       CritChance: 2
       NormalMultiplier: 0.5
       CriticalMultiplier: 0.5
-      ManaGainMultiplier: 1
+      ManaGainMultiplier: 2
+    PremiumVariance:
+      CritChance: 5
+      NormalMultiplier: 2
+      CriticalMultiplier: 2
+      ManaGainMultiplier: 5
     inventory: {fileID: 11400000, guid: d8f748481329a57439528eda5dc9c71f, type: 2}
 --- !u!1 &1059620930
 GameObject:

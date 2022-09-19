@@ -16,7 +16,7 @@ MonoBehaviour:
   Inventory: {fileID: 11400000, guid: 6fe814624062dc44b9d7ccb9106b482d, type: 2}
   BaseNormalStrength: 1
   BaseCriticalStrength: 4
-  BaseManaGain: 5
+  BaseManaGain: 6
   MaxMana: 100
   BaseMultipliers:
     CritChance: 20

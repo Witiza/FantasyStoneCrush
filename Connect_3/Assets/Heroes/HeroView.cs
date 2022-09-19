@@ -59,9 +59,6 @@ public class HeroView : MonoBehaviour
             case TileType.WAND:
                 controller = new MageController(Stats);
                 break;
-            case TileType.CHALICE:
-                controller = new PriestController(Stats);
-                break;
         }
     }
 

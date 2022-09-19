@@ -7,9 +7,6 @@ public class RemoteGameConfigService:IService
 {
     private RuntimeConfig _config;
 
-    public void Clear()
-    { }
-
     public async Task Initialize()
     {
         //await RemoteConfigService.Instance.Fet
@@ -27,6 +24,7 @@ public class RemoteGameConfigService:IService
                 break;
         }
     }
+
     private struct appData
     {
     }
@@ -34,7 +32,8 @@ public class RemoteGameConfigService:IService
     private struct userData
     {
     }
-
+    public void Clear()
+    { }
     // :)
     [System.Serializable]
     private class Wrapper<T>
