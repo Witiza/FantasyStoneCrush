@@ -94,6 +94,7 @@ public class GameEndController : MonoBehaviour
             _gameEnded = false;
             _bonusMovesUsed = true;
             AddMovesGO.SetActive(false);
+            LostGO.SetActive(false);
         }
     }
 
