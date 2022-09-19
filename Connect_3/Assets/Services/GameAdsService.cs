@@ -9,9 +9,11 @@ public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadList
     private string _adsGameId;
     private string _adUnitId;
 
+    private bool _isAdLoaded = false;
+
     TaskStatus _initializationStatus = TaskStatus.Created;
     TaskStatus _showAdStatus = TaskStatus.Created;
-    public bool IsAdReady => Advertisement.IsReady(_adUnitId);
+    public bool IsAdReady => _isAdLoaded;
 
     public GameAdsService(string adsGameId, string adUnitId)
     {
@@ -22,7 +24,7 @@ public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadList
     public async Task Initialize(bool testMode = false)
     {
         _initializationStatus = TaskStatus.Running;
-        Advertisement.Initialize(_adsGameId, testMode, true, this);
+        Advertisement.Initialize(_adsGameId, testMode, this);
         while(_initializationStatus == TaskStatus.Running)
         {
             await Task.Delay(100);
@@ -44,12 +46,14 @@ public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadList
 
     public void LoadAd()
     {
+        _isAdLoaded = false;
         Debug.Log("Loading Ad: " + _adUnitId);
         Advertisement.Load(_adUnitId, this);
     }
 
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
+        _isAdLoaded = true;
         Debug.Log("Ad Loaded: " + adUnitId);
     }
 
