@@ -30,6 +30,9 @@ public class ShopItemView : MonoBehaviour
             case CostType.GEMS:
                 cost.text += " G.";
                 break;
+            case CostType.AD:
+                cost.text = ">";
+                break;
         }
 
         if (model.canBuy(progression))
@@ -43,7 +46,7 @@ public class ShopItemView : MonoBehaviour
         reward.text = model.name;
     }
 
-    public void AttemptToBuy()
+    public async void AttemptToBuy()
     {
         if (model.canBuy(progression))
         {
@@ -51,12 +54,20 @@ public class ShopItemView : MonoBehaviour
             {
                 case CostType.COINS:
                     progression.ModifyCoins(-model.cost);
+                    boughtEvent.NotifyEvent(model.id);
                     break;
                 case CostType.GEMS:
                     progression.ModifyGems(-model.cost);
+                    boughtEvent.NotifyEvent(model.id);
+                    break;
+                case CostType.AD:
+                    if(await ServiceLocator.GetService<GameAdsService>().ShowAd())
+                    {
+                        boughtEvent.NotifyEvent(model.id);
+                    }
                     break;
             }
-            boughtEvent.NotifyEvent(model.id);
+
         }
     }
 }

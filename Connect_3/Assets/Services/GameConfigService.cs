@@ -11,6 +11,7 @@ public class GameConfigService : IService
 
     public float coinsWonMultiplier { get; private set; }
     public float coinsWonMultiplierLowLevel { get;private set; }
+    public int gemsAddedByAd { get; private set; }
     public int movesAddedByAd { get; private set; }
     public int movesAddedByBooster { get; private set; }
     public int tilesAddedByBooster { get; private set; }
@@ -39,6 +40,7 @@ public class GameConfigService : IService
         initialTileBooster = config.Get("InitialTileBooster", 3);
         coinsWonMultiplier = config.Get("CoinsWonMultiplier", 5);
         coinsWonMultiplierLowLevel = config.Get("CoinsWonMultiplierLowLevel", 5);
+        gemsAddedByAd = config.Get("GemsAddedByAd", 5);
         movesAddedByAd = config.Get("MovesAddedByAd", 5);
         movesAddedByBooster = config.Get("MovesAddedByBooster", 5);
         tilesAddedByBooster = config.Get("TilesAddedByBooster", 5);
@@ -73,6 +75,9 @@ public class GameConfigService : IService
                 break;
             case 6:
                 ret = costGemsChest;
+                break;
+            default:
+                ret = 0;
                 break;
         }
         return ret;

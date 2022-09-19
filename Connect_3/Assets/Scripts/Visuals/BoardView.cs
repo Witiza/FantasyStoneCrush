@@ -29,7 +29,7 @@ public class BoardView : MonoBehaviour
     GameAnalyticsService _analyticsService;
     GameConfigService _gameConfigService;
 
-    private void Awake()  
+    private void Awake()
     {
         DOTween.Init().SetCapacity(400, 400);
         tiles.Clear();
@@ -47,13 +47,22 @@ public class BoardView : MonoBehaviour
         _gameplayInput.SwapTouch += InputSwapTouch; ;
         _gameplayInput.EndTouch += InputEndTouch;
         _config = PlayerProgression.GetCurrentLevelBoard();
-        Board = new BoardController(_config.board.GridSize.x, _config.board.GridSize.y,_config.board);
+        Board = new BoardController(_config.board.GridSize.x, _config.board.GridSize.y, _config.board);
         _visualSelector = new VisualSelector();
         _availableMoves = _config.AvailableMoves;
         _analyticsService = ServiceLocator.GetService<GameAnalyticsService>();
         _gameConfigService = ServiceLocator.GetService<GameConfigService>();
         _analyticsService.SendEvent("LevelStarted", new Dictionary<string, object> { ["CurrentLevel"] = PlayerProgression.CurrentLevel });
         InitializeTexts();
+        HandleTutorial();
+    }
+
+    void HandleTutorial()
+    {
+        if(_config.tutorial != null)
+        {
+            Instantiate(_config.tutorial, MovesText.transform.parent);
+        }
     }
 
     private void MovesAddedEvent()

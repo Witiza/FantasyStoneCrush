@@ -12,7 +12,6 @@ public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadList
     TaskStatus _initializationStatus = TaskStatus.Created;
     TaskStatus _showAdStatus = TaskStatus.Created;
     public bool IsAdReady => Advertisement.IsReady(_adUnitId);
-    private Action<bool> _adWatched = null;
 
     public GameAdsService(string adsGameId, string adUnitId)
     {

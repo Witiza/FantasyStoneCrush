@@ -19,6 +19,7 @@ public class BoardConfig : ScriptableObject
     public int ScoreOrBoxesNeeded=20;
     [Header("Tile Numbers:\n\nRandom: 0\nBase Tiles: 1-4\nUnused Base Tile: 5\nBomb: 6\nVerticalRocket: 7\nHorizontalRocket: 8\nBox: 9")]
     public Array2DInt board = new Array2DInt();
+    public GameObject tutorial;
     public int BoardWidth { get => board.GridSize.x; }
     public int BoardHeight { get => board.GridSize.y; }
 }

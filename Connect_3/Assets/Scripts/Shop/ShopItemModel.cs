@@ -6,7 +6,8 @@ public enum CostType
 {
     NULL,
     COINS,
-    GEMS
+    GEMS,
+    AD
 }
 [System.Serializable]
 public  class ShopItemModel 
@@ -35,6 +36,9 @@ public  class ShopItemModel
                 {
                     ret = true;
                 }
+                break;
+                case CostType.AD:
+                ret = true;
                 break;
         }
         return ret;

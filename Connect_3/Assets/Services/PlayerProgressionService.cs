@@ -113,6 +113,7 @@ public class PlayerProgressionService  : ScriptableObject , IService
             TileBooster.amount = config.initialTileBooster;
             TurnBooster.amount = config.initialTurnBooster;
             ManaBooster.amount = config.initialManaBooster;
+            SaveGame();
         }
     }
 

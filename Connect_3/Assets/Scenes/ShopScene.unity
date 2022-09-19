@@ -379,7 +379,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Buy \n100 Gems\n"
+  m_text: 'Get
+
+    60 Gems
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fac228da24936034fb5ad94268829a17, type: 2}
   m_sharedMaterial: {fileID: -7570135243985537058, guid: fac228da24936034fb5ad94268829a17, type: 2}
@@ -514,9 +518,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Free
-
-'
+  m_text: '>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fac228da24936034fb5ad94268829a17, type: 2}
   m_sharedMaterial: {fileID: -7570135243985537058, guid: fac228da24936034fb5ad94268829a17, type: 2}
@@ -885,6 +887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 515657904}
+  - component: {fileID: 515657905}
   m_Layer: 5
   m_Name: BuyGems
   m_TagString: Untagged
@@ -914,6 +917,26 @@ RectTransform:
   m_AnchoredPosition: {x: 315.4, y: 505.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &515657905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515657903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45a8f54de8b5644cb31b69c270e9a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: {fileID: 209088999}
+  reward: {fileID: 191900496}
+  model:
+    name: Gems
+    id: 7
+    type: 3
+  progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
+  boughtEvent: {fileID: 11400000, guid: 24b46ee1269a28643a77ccb7d4448c12, type: 2}
 --- !u!1 &523356950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,74 +1784,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838548860}
   m_CullTransparentMesh: 1
---- !u!1 &931110892
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 931110895}
-  - component: {fileID: 931110894}
-  - component: {fileID: 931110893}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &931110893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931110892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &931110894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931110892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &931110895
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931110892}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -540, y: -960, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1036603626}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977090913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,7 +2154,6 @@ RectTransform:
   - {fileID: 489148236}
   - {fileID: 347357189}
   - {fileID: 608832023}
-  - {fileID: 931110895}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2235,6 +2189,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7236a059d3de34147acb0d1c565735cd, type: 2}
   - {fileID: 11400000, guid: b2364a734313b5746b7a141c24874d7e, type: 2}
   - {fileID: 11400000, guid: d8e8c37d57fb4cd4dbd587c97ac6e117, type: 2}
+  - {fileID: 11400000, guid: 24b46ee1269a28643a77ccb7d4448c12, type: 2}
   - {fileID: 11400000, guid: 36f1364c3ab29b442bd668bf46191237, type: 2}
   _playerProgression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
   _coins: {fileID: 1484432711}
@@ -4271,14 +4226,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
-        m_TargetAssemblyTypeName: PlayerProgressionService, Assembly-CSharp
-        m_MethodName: ModifyGems
-        m_Mode: 3
+      - m_Target: {fileID: 515657905}
+        m_TargetAssemblyTypeName: ShopItemView, Assembly-CSharp
+        m_MethodName: AttemptToBuy
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5111,7 +5066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 813
+      value: 990.25
       objectReference: {fileID: 0}
     - target: {fileID: 9072718036421229469, guid: 85b020e31ebfb49439dabc53feacd6a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

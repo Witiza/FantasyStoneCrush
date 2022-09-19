@@ -51,10 +51,6 @@ public class GameEndController : MonoBehaviour
                 {
                     AddMovesGO.SetActive(true);
                 }
-                else
-                {
-                    AddMovesGO.SetActive(false);
-                }
             }
         }
     }
@@ -96,6 +92,8 @@ public class GameEndController : MonoBehaviour
             MovesAdded.NotifyEvent();
             gameObject.SetActive(false);
             _gameEnded = false;
+            _bonusMovesUsed = true;
+            AddMovesGO.SetActive(false);
         }
     }
 

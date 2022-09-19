@@ -50,15 +50,15 @@ public class ShopController : MonoBehaviour
         switch (index)
         {
             case 1:
-                _playerProgression.ModifyTurnBooster(1);
+                _playerProgression.ModifyTurnBooster(10);
                 _analytics.SendEvent("TurnBoosterBought");
             break;
             case 2:
-                _playerProgression.ModifyManaBooster(1);
+                _playerProgression.ModifyManaBooster(10);
                 _analytics.SendEvent("ManaBoosterBought");
                 break;
             case 3:
-                _playerProgression.ModifyTileBooster(1);
+                _playerProgression.ModifyTileBooster(10);
                 _analytics.SendEvent("TileBoosterBought");
                 break;
             case 4:
@@ -75,6 +75,9 @@ public class ShopController : MonoBehaviour
             case 6:
                 OpenChest(true);
                 _analytics.SendEvent("GemsChestBought");
+                break;
+            case 7:
+                _playerProgression.ModifyGems(_config.gemsAddedByAd);
                 break;
         }
         UpdateItems();
