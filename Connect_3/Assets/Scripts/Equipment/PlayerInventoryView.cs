@@ -18,7 +18,6 @@ public class PlayerInventoryView : MonoBehaviour
 
     List<GameObject> buttons = new List<GameObject>();
 
-
     private void EquipmentEvent(ItemModel item, bool equipping)
     {
         if(equipping)
