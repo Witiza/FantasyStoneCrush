@@ -2,7 +2,16 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-
+public enum ResourceType
+{
+    COINS,
+    GEMS
+}
+public class ResourceItem
+{
+    public ResourceType type;
+    public int amount;
+}
 [CreateAssetMenu]
 public class PlayerProgressionService  : ScriptableObject , IService
 {
@@ -10,6 +19,7 @@ public class PlayerProgressionService  : ScriptableObject , IService
     public int MaxLevelUnlocked = 0;
     public int Coins { get; private set; }
     public int Gems { get; private set; }
+    public List<ResourceItem> resources;
     public PlayerInventory inventory;
     public HeroInventory warriorInventory;
     public HeroInventory rogueInventory;
@@ -22,7 +32,12 @@ public class PlayerProgressionService  : ScriptableObject , IService
     public IntEventBus CoinsChange;
     public IntEventBus GemsChange;
 
-
+    public void UpdateResource(ResourceType type, int amount)
+    {
+        var resource = resources.Find(r => r.type == type);
+        if(resource == null) { resource = new ResourceItem { type=type, amount=0 }; resources.Add(resource); }
+        resource.amount += amount;
+    }
     public BoardConfig GetCurrentLevelBoard()
     {
         return levels[CurrentLevel];

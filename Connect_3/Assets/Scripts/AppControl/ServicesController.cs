@@ -43,6 +43,7 @@ public class ServicesController : MonoBehaviour
         PlayerProgressionService playerProgressionService = progression;
         GameAnalyticsService gameAnalyticsService = new GameAnalyticsService();
         GameAdsService gameAdsService = new GameAdsService("4928653", "Rewarded_Android");
+        GameIAPService gameIAPService = new GameIAPService();
 
         ServiceLocator.AddService<GameLoginService>(gameLoginService);
         ServiceLocator.AddService<RemoteGameConfigService>(remoteGameConfigService);
@@ -50,6 +51,7 @@ public class ServicesController : MonoBehaviour
         ServiceLocator.AddService<PlayerProgressionService>(playerProgressionService);
         ServiceLocator.AddService<GameAnalyticsService>(gameAnalyticsService);
         ServiceLocator.AddService<GameAdsService>(gameAdsService);
+        ServiceLocator.AddService<GameIAPService>(gameIAPService);
 
         await gameLoginService.Initialize();
         await remoteGameConfigService.Initialize();
@@ -57,6 +59,10 @@ public class ServicesController : MonoBehaviour
         playerProgressionService.Initialize();
         await gameAnalyticsService.Initialize();
         await gameAdsService.Initialize();
+        await gameIAPService.Initialize(new Dictionary<string, string>
+        {
+            ["Test1"] = "com.witizagames.fantasystonecrush.test1"
+        });
 
         _loadEvent.NotifyEvent("MainMenu");
     }

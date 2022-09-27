@@ -3674,7 +3674,7 @@ MonoBehaviour:
   model:
     name: Big Chest
     id: 5
-    type: 1
+    type: 4
   progression: {fileID: 11400000, guid: e07ae0f015f0aa4428e4ff386b3cee63, type: 2}
   boughtEvent: {fileID: 11400000, guid: 7236a059d3de34147acb0d1c565735cd, type: 2}
 --- !u!1 &1743612832

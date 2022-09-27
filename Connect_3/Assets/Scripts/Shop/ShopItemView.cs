@@ -18,6 +18,13 @@ public class ShopItemView : MonoBehaviour
 
     [SerializeField]
     IntEventBus boughtEvent;
+
+    GameIAPService IAPService;
+
+    private void Awake()
+    {
+        IAPService = ServiceLocator.GetService<GameIAPService>();
+    }
     public void UpdateView()
     {
         model.SetPrice();
@@ -33,6 +40,9 @@ public class ShopItemView : MonoBehaviour
             case CostType.AD:
                 cost.text = ">";
                 break;
+            case CostType.MONEY:
+                UpdateIAPProduct();
+                break;
         }
 
         if (model.canBuy(progression))
@@ -45,6 +55,20 @@ public class ShopItemView : MonoBehaviour
         }
         reward.text = model.name;
     }
+
+    public void UpdateIAPProduct()
+    {
+        if(IAPService.IsReady)
+        {
+            cost.text = IAPService.GetLocalizedPrice("Test1");
+            cost.text += "$";
+        }
+        else
+        {
+            cost.text = "Unavailable";
+        }
+    }
+
 
     public async void AttemptToBuy()
     {
@@ -62,6 +86,12 @@ public class ShopItemView : MonoBehaviour
                     break;
                 case CostType.AD:
                     if(await ServiceLocator.GetService<GameAdsService>().ShowAd())
+                    {
+                        boughtEvent.NotifyEvent(model.id);
+                    }
+                    break;
+                case CostType.MONEY:
+                    if(await IAPService.StartPurchase("Test1"))
                     {
                         boughtEvent.NotifyEvent(model.id);
                     }

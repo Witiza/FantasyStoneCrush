@@ -17,4 +17,6 @@ public interface IGameplayInput
 
     Vector2 _initialTouch { get; set; }
     float SwapDistance { get;set; }
+
 }
+

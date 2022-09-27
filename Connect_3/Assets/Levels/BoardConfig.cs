@@ -30,7 +30,7 @@ public class BoardEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
+        //base.OnInspectorGUI();
 
         BoardConfig boardConfig = (BoardConfig)target;
         if(boardConfig.Objective == GameObjectives.BOXES)
