@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "229f2abb",
         "name": "com.WitizaGames.FantasyStoneCrush",
-        "processId": 6071,
-        "exited": true
+        "processId": 11470,
+        "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -16,15 +16,33 @@
         },
         {
             "deviceId": "229f2abb",
-            "name": "com.android.settings",
-            "processId": 3717,
+            "name": "com.unity3d.mobileremote",
+            "processId": 32160,
             "exited": true
         },
         {
             "deviceId": "229f2abb",
             "name": "com.WitizaGames.FantasyStoneCrush",
-            "processId": 6071,
+            "processId": 6311,
             "exited": true
+        },
+        {
+            "deviceId": "229f2abb",
+            "name": "com.WitizaGames.FantasyStoneCrush",
+            "processId": 6632,
+            "exited": true
+        },
+        {
+            "deviceId": "229f2abb",
+            "name": "com.WitizaGames.FantasyStoneCrush",
+            "processId": 10455,
+            "exited": true
+        },
+        {
+            "deviceId": "229f2abb",
+            "name": "com.WitizaGames.FantasyStoneCrush",
+            "processId": 11470,
+            "exited": false
         }
     ],
     "m_Tags": {
