@@ -23,8 +23,11 @@ public class GameAnalyticsService : IService
 
     public void SendEvent(string eventName, Dictionary<string, object> parameters = null)
     {
-        parameters ??= new Dictionary<string, object>();
-        AnalyticsService.Instance.CustomData(eventName, parameters);
+        if (Initialized)
+        {
+            parameters ??= new Dictionary<string, object>();
+            AnalyticsService.Instance.CustomData(eventName, parameters);
+        }
     }
 
     public void Clear()

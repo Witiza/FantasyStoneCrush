@@ -15,7 +15,10 @@ public class GameSaveService:IService
     {
         playerProgressionService = ServiceLocator.GetService<PlayerProgressionService>();
         progressionProviders.Add(new FileProgressionProvider());
-        progressionProviders.Add(new RemoteUnityProgressionProvider());
+        if (ServiceLocator.GetService<GameLoginService>().Initialized)
+        {
+            progressionProviders.Add(new RemoteUnityProgressionProvider());
+        }
         for(int i = 0;i<progressionProviders.Count;i++)
         {
             await progressionProviders[i].Initialize();

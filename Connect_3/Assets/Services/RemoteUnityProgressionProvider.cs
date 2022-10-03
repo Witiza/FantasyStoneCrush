@@ -40,7 +40,14 @@ public class RemoteUnityProgressionProvider:IProgressionProvider
     }
     public SaveGameJsonWrapper Load()
     {
-        return JsonUtility.FromJson<SaveGameJsonWrapper>(_dataJson);
+        if (!string.IsNullOrEmpty(_dataJson))
+        {
+            return JsonUtility.FromJson<SaveGameJsonWrapper>(_dataJson);
+        }
+        else
+        {
+            return new SaveGameJsonWrapper();
+        }
     }
     public void Save()
     {

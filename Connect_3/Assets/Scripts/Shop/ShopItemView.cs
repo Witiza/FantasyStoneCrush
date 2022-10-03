@@ -20,10 +20,12 @@ public class ShopItemView : MonoBehaviour
     IntEventBus boughtEvent;
 
     GameIAPService IAPService;
+    GameAdsService ADService;
 
     private void Awake()
     {
         IAPService = ServiceLocator.GetService<GameIAPService>();
+        ADService = ServiceLocator.GetService<GameAdsService>();
     }
     public void UpdateView()
     {
@@ -68,6 +70,18 @@ public class ShopItemView : MonoBehaviour
         }
     }
 
+    public void UpdateADProduct()
+    {
+        if (ADService.IsAdReady)
+        {
+            cost.text = ">";
+        }
+        else
+        {
+            cost.text = "Unavailable";
+        }
+    }
+
 
     public async void AttemptToBuy()
     {
@@ -84,13 +98,13 @@ public class ShopItemView : MonoBehaviour
                     boughtEvent.NotifyEvent(model.id);
                     break;
                 case CostType.AD:
-                    if(await ServiceLocator.GetService<GameAdsService>().ShowAd())
+                    if(ADService.Initialized && await ADService.ShowAd())
                     {
                         boughtEvent.NotifyEvent(model.id);
                     }
                     break;
                 case CostType.MONEY:
-                    if(await IAPService.StartPurchase("Test1"))
+                    if(IAPService.Initialized && await IAPService.StartPurchase("Test1"))
                     {
                         boughtEvent.NotifyEvent(model.id);
                     }

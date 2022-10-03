@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
+using TMPro;
 
 
 public class ServicesController : MonoBehaviour
@@ -15,7 +16,8 @@ public class ServicesController : MonoBehaviour
     public string DevelopmentID;
     public string ProducionID;
     [SerializeField] bool _devBuild = true;
-
+    [SerializeField] SlicedFilledImage _loadingBar;
+    [SerializeField] TMP_Text _loadingText;
     private TaskCompletionSource<bool> _cancellationTaskSource;
 
     public void Awake()
@@ -35,6 +37,7 @@ public class ServicesController : MonoBehaviour
     {
         string ID = _devBuild ? DevelopmentID : ProducionID;
         Debug.Log(ID);
+        DisplayLoadingStatus(0.1f, "Initializing");
         await Initialize(ID);
 
         GameLoginService gameLoginService = new GameLoginService();
@@ -55,17 +58,27 @@ public class ServicesController : MonoBehaviour
         ServiceLocator.AddService<GameIAPService>(gameIAPService);
         ServiceLocator.AddService<GameSaveService>(gameSaveService);
 
-        await gameLoginService.Initialize();
+        DisplayLoadingStatus(0.2f, "Logging In");
+        await Task.WhenAny(gameLoginService.Initialize(),Task.Delay(5000));
+        bool logged = gameLoginService.Initialized;
+        DisplayLoadingStatus(0.3f, "Fetching Remote Config");
         await remoteGameConfigService.Initialize();
         gameConfigService.Initialize();
         playerProgressionService.Initialize();
+        DisplayLoadingStatus(0.6f, "Fetching Cloud Save");
         await gameSaveService.Initialize();
-        await gameAnalyticsService.Initialize();
-        await gameAdsService.Initialize();
-        await gameIAPService.Initialize(new Dictionary<string, string>
+        if (logged)
         {
-            ["Test1"] = "com.witizagames.fantasystonecrush.test1"
-        });
+            DisplayLoadingStatus(0.7f, "Initializing Analytics");
+            await gameAnalyticsService.Initialize();
+            DisplayLoadingStatus(0.8f, "Initializing Ads");
+            await gameAdsService.Initialize();
+            DisplayLoadingStatus(0.9f, "Initializing In App Purchases");
+            await gameIAPService.Initialize(new Dictionary<string, string>
+            {
+                ["Test1"] = "com.witizagames.fantasystonecrush.test1"
+            });
+        }
 
         _loadEvent.NotifyEvent("MainMenu");
     }
@@ -80,6 +93,11 @@ public class ServicesController : MonoBehaviour
         await UnityServices.InitializeAsync(options);
     }
 
+    void DisplayLoadingStatus(float amount, string text)
+    {
+        _loadingBar.fillAmount = amount;
+        _loadingText.text = text;
+    }
     void OnDestroy()
     {
         _cancellationTaskSource.SetResult(true);
