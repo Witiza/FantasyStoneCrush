@@ -24,6 +24,7 @@ public class ShopController : MonoBehaviour
 
     GameConfigService _config;
     GameAnalyticsService _analytics;
+    GameSaveService _progressionProvider;
     private void Awake()
     {
         foreach(IntEventBus bought in _boughtEvents)
@@ -32,6 +33,7 @@ public class ShopController : MonoBehaviour
         }
         _config = ServiceLocator.GetService<GameConfigService>();
         _analytics = ServiceLocator.GetService<GameAnalyticsService>();
+        _progressionProvider = ServiceLocator.GetService<GameSaveService>();
     }
     void Start()
     {
@@ -80,6 +82,7 @@ public class ShopController : MonoBehaviour
                 _playerProgression.ModifyGems(_config.gemsAddedByAd);
                 break;
         }
+        _progressionProvider.SaveGame();
         UpdateItems();
     }
 

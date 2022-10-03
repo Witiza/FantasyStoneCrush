@@ -8,11 +8,6 @@ using UnityEngine;
 public static partial class SaveSystem
 {
     private static string ProgressionPath = Application.persistentDataPath + "/savegame.json";
-    private static string InventoryPath = Application.persistentDataPath + "/inventory.json";
-    private static string WarriorInventoryPath = Application.persistentDataPath + "warrior.json";
-    private static string RogueInventoryPath = Application.persistentDataPath + "/rogue.json";
-    private static string ArcherInventoryPath = Application.persistentDataPath + "/archer.json";
-    private static string MageInventoryPath = Application.persistentDataPath + "/mage.json";
 
     public static void SaveGame(SaveGameJsonWrapper progression)
     {
@@ -21,15 +16,13 @@ public static partial class SaveSystem
     }
 
     //-------------------------Loading--------------------------
-    public static SaveGameJsonWrapper LoadGame(out bool success)
+    public static SaveGameJsonWrapper LoadGame()
     {
-        success = false;
         SaveGameJsonWrapper data = new SaveGameJsonWrapper();
         string to_load = Load(ProgressionPath);
         if (to_load != "")
         {
             data = JsonUtility.FromJson<SaveGameJsonWrapper>(to_load);
-            success = true;
         }
         return data;
     }

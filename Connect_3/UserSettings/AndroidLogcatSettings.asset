@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "229f2abb",
         "name": "com.WitizaGames.FantasyStoneCrush",
-        "processId": 11470,
+        "processId": 18695,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,37 +11,37 @@
         {
             "deviceId": "229f2abb",
             "name": "com.miui.home",
-            "processId": 2949,
+            "processId": 2789,
             "exited": false
         },
         {
             "deviceId": "229f2abb",
-            "name": "com.unity3d.mobileremote",
-            "processId": 32160,
+            "name": "com.WitizaGames.FantasyStoneCrush",
+            "processId": 15972,
             "exited": true
         },
         {
             "deviceId": "229f2abb",
             "name": "com.WitizaGames.FantasyStoneCrush",
-            "processId": 6311,
+            "processId": 17499,
             "exited": true
         },
         {
             "deviceId": "229f2abb",
             "name": "com.WitizaGames.FantasyStoneCrush",
-            "processId": 6632,
+            "processId": 17973,
             "exited": true
         },
         {
             "deviceId": "229f2abb",
             "name": "com.WitizaGames.FantasyStoneCrush",
-            "processId": 10455,
+            "processId": 18347,
             "exited": true
         },
         {
             "deviceId": "229f2abb",
             "name": "com.WitizaGames.FantasyStoneCrush",
-            "processId": 11470,
+            "processId": 18695,
             "exited": false
         }
     ],

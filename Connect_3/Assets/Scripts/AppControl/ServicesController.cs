@@ -44,6 +44,7 @@ public class ServicesController : MonoBehaviour
         GameAnalyticsService gameAnalyticsService = new GameAnalyticsService();
         GameAdsService gameAdsService = new GameAdsService("4928653", "Rewarded_Android");
         GameIAPService gameIAPService = new GameIAPService();
+        GameSaveService gameSaveService = new GameSaveService();
 
         ServiceLocator.AddService<GameLoginService>(gameLoginService);
         ServiceLocator.AddService<RemoteGameConfigService>(remoteGameConfigService);
@@ -52,11 +53,13 @@ public class ServicesController : MonoBehaviour
         ServiceLocator.AddService<GameAnalyticsService>(gameAnalyticsService);
         ServiceLocator.AddService<GameAdsService>(gameAdsService);
         ServiceLocator.AddService<GameIAPService>(gameIAPService);
+        ServiceLocator.AddService<GameSaveService>(gameSaveService);
 
         await gameLoginService.Initialize();
         await remoteGameConfigService.Initialize();
         gameConfigService.Initialize();
         playerProgressionService.Initialize();
+        await gameSaveService.Initialize();
         await gameAnalyticsService.Initialize();
         await gameAdsService.Initialize();
         await gameIAPService.Initialize(new Dictionary<string, string>
@@ -80,11 +83,7 @@ public class ServicesController : MonoBehaviour
     void OnDestroy()
     {
         _cancellationTaskSource.SetResult(true);
-
-        if (UseSavegame)
-        {
-            progression.SaveGame();
-            volumeOptions.SaveOptions();
-        }
+        volumeOptions.SaveOptions();
+        ServiceLocator.GetService<GameSaveService>().SaveGame();
     }
 }

@@ -3,6 +3,7 @@
 
 public class GameConfigService : IService
 {
+    public bool Initialized { get { return true; } }
     public int initialCoins { get; private set; }
     public int initialGems { get; private set; }
     public int initialTurnBooster { get; private set; }

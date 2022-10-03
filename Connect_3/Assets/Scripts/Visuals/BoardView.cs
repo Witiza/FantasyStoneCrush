@@ -28,7 +28,7 @@ public class BoardView : MonoBehaviour
     public Booster TurnBooster;
     GameAnalyticsService _analyticsService;
     GameConfigService _gameConfigService;
-
+    GameSaveService _progressionProviderService;
     private void Awake()
     {
         DOTween.Init().SetCapacity(400, 400);
@@ -52,6 +52,7 @@ public class BoardView : MonoBehaviour
         _availableMoves = _config.AvailableMoves;
         _analyticsService = ServiceLocator.GetService<GameAnalyticsService>();
         _gameConfigService = ServiceLocator.GetService<GameConfigService>();
+        _progressionProviderService = ServiceLocator.GetService<GameSaveService>();
         _analyticsService.SendEvent("LevelStarted", new Dictionary<string, object> { ["CurrentLevel"] = PlayerProgression.CurrentLevel });
         InitializeTexts();
         HandleTutorial();
@@ -157,6 +158,7 @@ public class BoardView : MonoBehaviour
 
     public void OnDestroy()
     {
+        _progressionProviderService.SaveGame();
         BoardEvents.TileCreated -= BoardEventsTileCreated;
         BoardEvents.TileChanged -= BoardEventsTileChanged;
         BoardEvents.TileMoved -= BoardEventsTileMoved;

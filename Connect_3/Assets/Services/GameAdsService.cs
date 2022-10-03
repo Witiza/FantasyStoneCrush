@@ -3,9 +3,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener,
-        IService
+public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener, IService
 {
+    public bool Initialized { get { return _initializationStatus == TaskStatus.RanToCompletion; }}
+
     private string _adsGameId;
     private string _adUnitId;
 

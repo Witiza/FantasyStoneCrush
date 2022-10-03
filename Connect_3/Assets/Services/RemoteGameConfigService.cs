@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RemoteGameConfigService:IService
 {
+    public bool Initialized { get { return true; }}
     private RuntimeConfig _config;
 
     public async Task Initialize()

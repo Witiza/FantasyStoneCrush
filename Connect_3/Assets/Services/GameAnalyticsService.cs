@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class GameAnalyticsService : IService
 {
+    public bool Initialized { get=>_initialized;}
+    private bool _initialized = false;
     public async Task Initialize()
     {
         try
         {
             List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
             Debug.Log("Accepted consents: " + consentIdentifiers.Count);
+            _initialized = true;
         }
         catch (ConsentCheckException e)
         {

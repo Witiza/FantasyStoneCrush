@@ -15,6 +15,10 @@ public static class ServiceLocator
         IService ret = _services.GetValueOrDefault(typeof(T), null);
         if(ret != null)
         {
+            if(!ret.Initialized)
+            {
+                Debug.LogWarning("Getting a service that has not been initialized");
+            }
             return (T)ret;
         }
         else

@@ -61,7 +61,6 @@ public class ShopItemView : MonoBehaviour
         if(IAPService.IsReady)
         {
             cost.text = IAPService.GetLocalizedPrice("Test1");
-            cost.text += "$";
         }
         else
         {

@@ -5,6 +5,7 @@ using UnityEngine.Purchasing;
 
 public class GameIAPService : IStoreListener, IService
 {
+    public bool Initialized { get { return _initializationStatus == TaskStatus.RanToCompletion; } }
     private IStoreController _unityStoreController = null;
     TaskStatus _initializationStatus = TaskStatus.Created;
     TaskStatus _purchaseStatus = TaskStatus.Created;

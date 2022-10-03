@@ -15,6 +15,8 @@ public class ResourceItem
 [CreateAssetMenu]
 public class PlayerProgressionService  : ScriptableObject , IService
 {
+    public bool Initialized{ get{  return _initialized; } }
+    private bool _initialized = false;
     public int CurrentLevel = 0;
     public int MaxLevelUnlocked = 0;
     public int Coins { get; private set; }
@@ -97,39 +99,20 @@ public class PlayerProgressionService  : ScriptableObject , IService
         TurnBooster.amount += amount;
     }
 
-    public void SaveGame()
+    public void LoadGame(SaveGameJsonWrapper save)
     {
-        SaveSystem.SaveGame(new SaveGameJsonWrapper(this));
-    }
-    public void LoadGame()
-    {
-        GameConfigService config = ServiceLocator.GetService<GameConfigService>();
-        bool success;
-        SaveGameJsonWrapper tmp = SaveSystem.LoadGame(out success);
-        if (success)
-        {
-            CurrentLevel = tmp.CurrentLevel;
-            MaxLevelUnlocked = tmp.MaxLevelUnlocked;
-            Coins = tmp.Coins;
-            Gems = tmp.Gems;
-            inventory.items = tmp.playerInventory;
-            warriorInventory.items = tmp.warriorInventory;
-            rogueInventory.items = tmp.rogueInventory;
-            archerInventory.items = tmp.archerInventory;
-            mageInventory.items = tmp.mageInventory;
-            TileBooster.amount = tmp.TileBoosterAmount;
-            TurnBooster.amount = tmp.TurnBoosterAmount;
-            ManaBooster.amount = tmp.ManaBoosterAmount;
-        }
-        else
-        {
-            Coins = config.initialCoins;
-            Gems = config.initialGems;
-            TileBooster.amount = config.initialTileBooster;
-            TurnBooster.amount = config.initialTurnBooster;
-            ManaBooster.amount = config.initialManaBooster;
-            SaveGame();
-        }
+    CurrentLevel = save.CurrentLevel;
+    MaxLevelUnlocked = save.MaxLevelUnlocked;
+    Coins = save.Coins;
+    Gems = save.Gems;
+    inventory.items = save.playerInventory;
+    warriorInventory.items = save.warriorInventory;
+    rogueInventory.items = save.rogueInventory;
+    archerInventory.items = save.archerInventory;
+    mageInventory.items = save.mageInventory;
+    TileBooster.amount = save.TileBoosterAmount;
+    TurnBooster.amount = save.TurnBoosterAmount;
+    ManaBooster.amount = save.ManaBoosterAmount;
     }
 
     public void Clear()
@@ -138,6 +121,6 @@ public class PlayerProgressionService  : ScriptableObject , IService
     }
     public void Initialize()
     {
-        LoadGame();
+        _initialized = true;
     }
 }
