@@ -8,7 +8,7 @@ using UnityEngine;
 public class RemoteUnityProgressionProvider:IProgressionProvider
 {
     PlayerProgressionService playerProgressionService;
-    string _dataJson= "not found";
+    string _dataJson= "";
     public async Task<bool> Initialize()
     {
         playerProgressionService = ServiceLocator.GetService<PlayerProgressionService>();

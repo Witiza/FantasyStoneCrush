@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fec47b31c6d504e9023963c02f99fa, type: 3}
   m_Name: PlayerProgression
   m_EditorClassIdentifier: 
-  CurrentLevel: 5
-  MaxLevelUnlocked: 1
+  CurrentLevel: 0
+  MaxLevelUnlocked: 3
   inventory: {fileID: 11400000, guid: d8f748481329a57439528eda5dc9c71f, type: 2}
   warriorInventory: {fileID: 11400000, guid: e7b9921d25b0ac84fba739ee8f9619e7, type: 2}
   rogueInventory: {fileID: 11400000, guid: 6fe814624062dc44b9d7ccb9106b482d, type: 2}

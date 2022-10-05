@@ -1989,6 +1989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 1595794700}
+  _loadingText: {fileID: 2115471977}
   _loadingBar: {fileID: 846689401}
   _loadEvent: {fileID: 11400000, guid: a185a72ec17e9534586e4e322d81e3b2, type: 2}
 --- !u!4 &2007131365

@@ -60,6 +60,7 @@ public class PlayerProgressionService  : ScriptableObject , IService
         rogueInventory.items.Clear();
         archerInventory.items.Clear();
         mageInventory.items.Clear();
+        ServiceLocator.GetService<GameSaveService>().SaveGame();
     }
 
     public void ModifyCoins(int coins)

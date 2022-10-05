@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 //Find a way to not make this a monobehaviour
 public class SceneHandler : MonoBehaviour
 {
     Scene _currentScene;
     [SerializeField] CanvasGroup _canvas;
+    [SerializeField] TMP_Text _loadingText;
     [SerializeField] SlicedFilledImage _loadingBar;
     [SerializeField] StringEventBus _loadEvent;
     Coroutine _currentCoroutine = null;
@@ -27,7 +29,7 @@ public class SceneHandler : MonoBehaviour
             asyncLoad = SceneManager.UnloadSceneAsync(_currentScene);
             while (!asyncLoad.isDone)
             {
-                _loadingBar.fillAmount = asyncLoad.progress;
+                DisplayLoadingStatus(asyncLoad.progress, "Unloading Previous Scene");
                 yield return null;
             }
         }
@@ -35,7 +37,7 @@ public class SceneHandler : MonoBehaviour
 
         while(!asyncLoad.isDone)
         {
-            _loadingBar.fillAmount = asyncLoad.progress;
+            DisplayLoadingStatus(asyncLoad.progress, "Loading Next Scene");
             yield return null;
         }
         _currentScene = SceneManager.GetSceneAt(1);
@@ -46,17 +48,13 @@ public class SceneHandler : MonoBehaviour
     private void Awake()
     {
         _loadEvent.Event += LoadScene;
-        //if (SceneManager.sceneCount==1)
-        //{
-        //    LoadScene("MainMenu");
-        //}
-        //else
-        //{
-        //    _currentScene = SceneManager.GetSceneAt(1);
-        //}
-
     }
 
+    void DisplayLoadingStatus(float amount, string text)
+    {
+        _loadingBar.fillAmount = amount;
+        _loadingText.text = text;
+    }
     private void OnDestroy()
     {
         _loadEvent.Event -= LoadScene;

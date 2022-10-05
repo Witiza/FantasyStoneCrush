@@ -78,6 +78,7 @@ public class ServicesController : MonoBehaviour
             {
                 ["Test1"] = "com.witizagames.fantasystonecrush.test1"
             });
+            DisplayLoadingStatus(1f, "");
         }
 
         _loadEvent.NotifyEvent("MainMenu");

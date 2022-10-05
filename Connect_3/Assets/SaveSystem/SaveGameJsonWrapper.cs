@@ -1,6 +1,19 @@
 ﻿using System.Collections.Generic;
 public class SaveGameJsonWrapper
 {
+    public int CurrentLevel = 0;
+    public int MaxLevelUnlocked = 0;
+    public int Coins = 0;
+    public int Gems = 0;
+    public List<ItemModel> playerInventory = new List<ItemModel>();
+    public List<ItemModel> warriorInventory = new List<ItemModel>();
+    public List<ItemModel> rogueInventory = new List<ItemModel>();
+    public List<ItemModel> archerInventory = new List<ItemModel>();
+    public List<ItemModel> mageInventory = new List<ItemModel>();
+    public int TileBoosterAmount = 0;
+    public int TurnBoosterAmount = 0;
+    public int ManaBoosterAmount = 0;
+
     public SaveGameJsonWrapper()
     {
         GameConfigService config = ServiceLocator.GetService<GameConfigService>();
@@ -9,11 +22,11 @@ public class SaveGameJsonWrapper
         TileBoosterAmount = config.initialTileBooster;
         TileBoosterAmount = config.initialTurnBooster;
         ManaBoosterAmount = config.initialManaBooster;
-        playerInventory = new List<ItemModel>();
-        warriorInventory = new List<ItemModel>();
-        rogueInventory = new List<ItemModel>();
-        archerInventory = new List<ItemModel>();
-        mageInventory = new List<ItemModel>();
+        playerInventory    = new List<ItemModel>();
+        warriorInventory  = new List<ItemModel>();
+        rogueInventory     = new List<ItemModel>();
+        archerInventory   = new List<ItemModel>();
+        mageInventory     = new List<ItemModel>();
 }
     public SaveGameJsonWrapper(PlayerProgressionService progression)
     {
@@ -30,18 +43,7 @@ public class SaveGameJsonWrapper
         TurnBoosterAmount = progression.TurnBooster.amount;
         ManaBoosterAmount = progression.ManaBooster.amount;
     }
-    public int CurrentLevel = 0;
-    public int MaxLevelUnlocked=0;
-    public int Coins;
-    public int Gems;
-    public List<ItemModel> playerInventory;
-    public List<ItemModel> warriorInventory;
-    public List<ItemModel> rogueInventory;
-    public List<ItemModel> archerInventory;
-    public List<ItemModel> mageInventory;
-    public int TileBoosterAmount;
-    public int TurnBoosterAmount;
-    public int ManaBoosterAmount;
+
 
     public static SaveGameJsonWrapper GetHighest(SaveGameJsonWrapper a,SaveGameJsonWrapper b)
     {
