@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using UnityEngine;
-
-
 public class GameSaveService:IService
 {
     public bool Initialized { get; set; }

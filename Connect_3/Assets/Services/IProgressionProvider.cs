@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-
-public interface IProgressionProvider
+﻿public interface IProgressionProvider:IProvider
 {
-    Task<bool> Initialize();
     SaveGameJsonWrapper Load();
     void Save();
 }

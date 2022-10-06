@@ -9,6 +9,7 @@ public class RemoteUnityProgressionProvider:IProgressionProvider
 {
     PlayerProgressionService playerProgressionService;
     string _dataJson= "";
+    public bool Initialized { get; set; } = false;
     public async Task<bool> Initialize()
     {
         playerProgressionService = ServiceLocator.GetService<PlayerProgressionService>();
@@ -20,6 +21,10 @@ public class RemoteUnityProgressionProvider:IProgressionProvider
         }
 
         savedData.TryGetValue("data", out _dataJson);
+        if(!string.IsNullOrEmpty(_dataJson))
+        {
+            Initialized = true;
+        }
         Debug.Log("Loaded  " + _dataJson + " for user " + AuthenticationService.Instance.PlayerId);
         return true;
     }
@@ -40,7 +45,7 @@ public class RemoteUnityProgressionProvider:IProgressionProvider
     }
     public SaveGameJsonWrapper Load()
     {
-        if (!string.IsNullOrEmpty(_dataJson))
+        if (Initialized)
         {
             return JsonUtility.FromJson<SaveGameJsonWrapper>(_dataJson);
         }

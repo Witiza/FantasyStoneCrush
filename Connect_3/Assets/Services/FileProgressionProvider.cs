@@ -11,10 +11,15 @@ public class FileProgressionProvider:IProgressionProvider
     }
     public SaveGameJsonWrapper Load()
     {
-        return SaveSystem.LoadGame();
+        SaveGameJsonWrapper saveGameJsonWrapper = SaveSystem.LoadClass<SaveGameJsonWrapper>(SaveSystem.ProgressionPath);
+        if(saveGameJsonWrapper == null)
+        {
+           saveGameJsonWrapper = new SaveGameJsonWrapper();
+        }
+        return saveGameJsonWrapper;
     }
     public void Save()
     {
-        SaveSystem.SaveGame(new SaveGameJsonWrapper(playerProgressionService));
+        SaveSystem.SaveClass(new SaveGameJsonWrapper(playerProgressionService), SaveSystem.ProgressionPath);
     }
 }
