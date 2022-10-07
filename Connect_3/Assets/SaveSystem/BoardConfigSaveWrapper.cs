@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Array2DEditor;
 
+[System.Serializable]
 public class BoardConfigSaveWrapper
 {
     public float TileSize = 0.5f;
@@ -24,7 +24,7 @@ public class BoardConfigSaveWrapper
 
     public BoardConfig getBoardConfig()
     {
-        BoardConfig ret = new BoardConfig();
+        BoardConfig ret = ScriptableObject.CreateInstance<BoardConfig>();
         ret.TileSize =                      TileSize;
         ret.Objective =                    Objective;
         ret.AvailableMoves =           AvailableMoves;
@@ -32,29 +32,6 @@ public class BoardConfigSaveWrapper
         ret.board =                         board;
         ret._tutorial =                     _tutorial;
         return ret;
-    }
-}
-
-public class LevelListSaveWrapper
-{
-    public List<BoardConfigSaveWrapper> levels = new List<BoardConfigSaveWrapper>();
-
-    public LevelListSaveWrapper(LevelList list)
-    {
-        FromList(list.levels);
-    }
-    public LevelListSaveWrapper(List<BoardConfig> list)
-    {
-        FromList(list);
-    }
-
-    void FromList(List<BoardConfig> list)
-    {
-        levels = new List<BoardConfigSaveWrapper>();
-        foreach (BoardConfig level in list)
-        {
-            levels.Add(new BoardConfigSaveWrapper(level));
-        }
     }
 }
 

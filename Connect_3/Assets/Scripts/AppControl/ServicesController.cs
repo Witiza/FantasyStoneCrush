@@ -48,6 +48,7 @@ public class ServicesController : MonoBehaviour
         GameAdsService gameAdsService = new GameAdsService("4928653", "Rewarded_Android");
         GameIAPService gameIAPService = new GameIAPService();
         GameSaveService gameSaveService = new GameSaveService();
+        GameLevelsService gameLevelService = new GameLevelsService();
 
         ServiceLocator.AddService<GameLoginService>(gameLoginService);
         ServiceLocator.AddService<RemoteGameConfigService>(remoteGameConfigService);
@@ -57,6 +58,7 @@ public class ServicesController : MonoBehaviour
         ServiceLocator.AddService<GameAdsService>(gameAdsService);
         ServiceLocator.AddService<GameIAPService>(gameIAPService);
         ServiceLocator.AddService<GameSaveService>(gameSaveService);
+        ServiceLocator.AddService<GameLevelsService>(gameLevelService);
 
         DisplayLoadingStatus(0.2f, "Logging In");
         await Task.WhenAny(gameLoginService.Initialize(),Task.Delay(5000));
@@ -65,21 +67,23 @@ public class ServicesController : MonoBehaviour
         await remoteGameConfigService.Initialize();
         gameConfigService.Initialize();
         playerProgressionService.Initialize();
-        DisplayLoadingStatus(0.6f, "Fetching Cloud Save");
+        DisplayLoadingStatus(0.4f, "Fetching Cloud Save");
         await gameSaveService.Initialize();
         if (logged)
         {
-            DisplayLoadingStatus(0.7f, "Initializing Analytics");
+            DisplayLoadingStatus(0.5f, "Initializing Analytics");
             await gameAnalyticsService.Initialize();
-            DisplayLoadingStatus(0.8f, "Initializing Ads");
+            DisplayLoadingStatus(0.6f, "Initializing Ads");
             await gameAdsService.Initialize();
-            DisplayLoadingStatus(0.9f, "Initializing In App Purchases");
+            DisplayLoadingStatus(0.7f, "Initializing In App Purchases");
             await gameIAPService.Initialize(new Dictionary<string, string>
             {
                 ["Test1"] = "com.witizagames.fantasystonecrush.test1"
             });
-            DisplayLoadingStatus(1f, "");
         }
+        DisplayLoadingStatus(0.8f, "Fetching New Levels");
+        await gameLevelService.Initialize();
+        DisplayLoadingStatus(1f, "");
 
         _loadEvent.NotifyEvent("MainMenu");
     }
@@ -104,5 +108,6 @@ public class ServicesController : MonoBehaviour
         _cancellationTaskSource.SetResult(true);
         volumeOptions.SaveOptions();
         ServiceLocator.GetService<GameSaveService>().SaveGame();
+        ServiceLocator.GetService<GameLevelsService>().SaveLevels();
     }
 }

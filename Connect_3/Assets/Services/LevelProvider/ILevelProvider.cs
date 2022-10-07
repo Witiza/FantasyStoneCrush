@@ -3,7 +3,7 @@
 public interface ILevelProvider:IProvider
 {
     bool loaded { get;}
+    int priority { get; set; }
     List<BoardConfig> GetLevels();
-    void SetLevels();
-    void SaveLevels();
+    void SaveLevels(List<BoardConfig> levels);
 }
