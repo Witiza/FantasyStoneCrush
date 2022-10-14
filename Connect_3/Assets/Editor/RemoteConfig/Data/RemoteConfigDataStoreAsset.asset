@@ -12,100 +12,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"2f5429ff-b775-4023-b49e-97c33253ac32\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3bc537aa-bdf8-47a2-8bab-7162a7554475\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialGems\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 1000\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"4c6b38b6-9328-47a0-8702-294c1d87cfad\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"752cd582-af0b-4f11-9693-f3e26539682f\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialCoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8d52469b-6cf2-4321-bbbd-1b67e653ae06\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"fe932450-c53a-41c5-b09b-9fb3f20a6360\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialTurnBooster\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"f22633eb-bd51-403c-a529-14e0296f1353\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"0cce735b-b491-428e-8f1e-aef3ee492afb\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"InitialManaBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"d09a4a73-bbef-4b65-b120-18b88a418cef\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"a12534a2-295a-42f4-aed7-5ffe33fc8078\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialTileBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"1626fd35-5525-45e0-ba20-b449efd79236\"\r\n   
+    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f0d58462-2cbd-43b6-ad15-cf3854e44387\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplier\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"ebd1fda0-9673-4b9a-b3bc-b82a018a0f42\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"2271ff02-2f56-499d-a7e2-2dc8ae8d6cbb\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"CoinsWonMultiplierLowLevel\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"cb951294-30ce-4c9c-b463-0e9abe87ab67\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"8c5786db-a2c5-4721-a1af-8f2d926dc739\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"TurnBoosterCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"8a7240b4-cfef-4830-9e39-8c76549a2e53\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"7753ddea-fb07-48f2-b0dd-494814638506\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ManaBoosterCost\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5fed51ac-c9dd-4c4d-9d7e-a63fe52bd587\"\r\n   
+    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5fedad83-72db-4dad-994f-dd7f26587522\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"TileBoosterCost\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"bb845d00-7761-4a7a-a8a3-54fe7bf6d4e4\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"cb420005-fde5-4868-9048-b217a1781bec\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"NormalChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 200\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"331a3517-9273-4f82-82df-fd4fca158c0d\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"2fe678e6-b875-4d1d-9ea7-ac69dceaf195\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestCost\",\r\n      \"type\": \"int\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"1d4473ab-fe43-4019-b14f-1b07bb90a297\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5310fe4c-b848-4e0a-a239-33f86872ed40\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 500\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"94a8c1a5-494e-4e12-9f5e-21869e6d169c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"f52a2635-0282-4b32-894d-cd3bf9635b67\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestItemAmount\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a146beef-d520-4db0-93e5-ecdbd0d29091\"\r\n   
+    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"402e25a2-bef0-4b36-9c79-51cc31a10d6b\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"MovesAddedByAd\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"e0f83a0b-6afc-4f0c-bf02-579077c0c221\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"55c47346-414d-4245-8664-2cfab018f213\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"MovesAddedByBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"b7c0e7f0-30ad-42f6-a6c3-318469cf2dc3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"5e193820-232f-4d91-8204-9e6b56c859ed\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"TilesAddedByBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8e9a43ad-c75d-40cd-8387-4cb42e5784f7\"\r\n   
+    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a3407d5a-f22a-48e2-8ec2-509e3c77fb76\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsAddedByAd\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 60\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"2f5429ff-b775-4023-b49e-97c33253ac32\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3bc537aa-bdf8-47a2-8bab-7162a7554475\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialGems\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 1000\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"4c6b38b6-9328-47a0-8702-294c1d87cfad\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"752cd582-af0b-4f11-9693-f3e26539682f\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialCoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8d52469b-6cf2-4321-bbbd-1b67e653ae06\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"fe932450-c53a-41c5-b09b-9fb3f20a6360\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialTurnBooster\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"f22633eb-bd51-403c-a529-14e0296f1353\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"0cce735b-b491-428e-8f1e-aef3ee492afb\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"InitialManaBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"d09a4a73-bbef-4b65-b120-18b88a418cef\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"a12534a2-295a-42f4-aed7-5ffe33fc8078\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialTileBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"1626fd35-5525-45e0-ba20-b449efd79236\"\r\n   
+    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f0d58462-2cbd-43b6-ad15-cf3854e44387\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplier\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"ebd1fda0-9673-4b9a-b3bc-b82a018a0f42\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"2271ff02-2f56-499d-a7e2-2dc8ae8d6cbb\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"CoinsWonMultiplierLowLevel\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"cb951294-30ce-4c9c-b463-0e9abe87ab67\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"8c5786db-a2c5-4721-a1af-8f2d926dc739\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"TurnBoosterCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"8a7240b4-cfef-4830-9e39-8c76549a2e53\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"7753ddea-fb07-48f2-b0dd-494814638506\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ManaBoosterCost\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5fed51ac-c9dd-4c4d-9d7e-a63fe52bd587\"\r\n   
+    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5fedad83-72db-4dad-994f-dd7f26587522\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"TileBoosterCost\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"bb845d00-7761-4a7a-a8a3-54fe7bf6d4e4\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"cb420005-fde5-4868-9048-b217a1781bec\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"NormalChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 200\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"331a3517-9273-4f82-82df-fd4fca158c0d\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"2fe678e6-b875-4d1d-9ea7-ac69dceaf195\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestCost\",\r\n      \"type\": \"int\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"1d4473ab-fe43-4019-b14f-1b07bb90a297\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5310fe4c-b848-4e0a-a239-33f86872ed40\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 500\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"94a8c1a5-494e-4e12-9f5e-21869e6d169c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"f52a2635-0282-4b32-894d-cd3bf9635b67\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestItemAmount\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a146beef-d520-4db0-93e5-ecdbd0d29091\"\r\n   
+    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"402e25a2-bef0-4b36-9c79-51cc31a10d6b\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"MovesAddedByAd\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"e0f83a0b-6afc-4f0c-bf02-579077c0c221\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"55c47346-414d-4245-8664-2cfab018f213\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"MovesAddedByBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"b7c0e7f0-30ad-42f6-a6c3-318469cf2dc3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"5e193820-232f-4d91-8204-9e6b56c859ed\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"TilesAddedByBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8e9a43ad-c75d-40cd-8387-4cb42e5784f7\"\r\n   
+    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a3407d5a-f22a-48e2-8ec2-509e3c77fb76\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsAddedByAd\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 60\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"8e8d5eb2-5409-43a3-9f4d-10809cb91ada\",\r\n   

@@ -27,7 +27,6 @@ public class PlayerProgressionService  : ScriptableObject , IService
     public HeroInventory rogueInventory;
     public HeroInventory archerInventory;
     public HeroInventory mageInventory;
-    public List<BoardConfig> levels;
     public Booster TileBooster;
     public Booster TurnBooster;
     public Booster ManaBooster;
@@ -42,7 +41,7 @@ public class PlayerProgressionService  : ScriptableObject , IService
     }
     public BoardConfig GetCurrentLevelBoard()
     {
-        return levels[CurrentLevel];
+        return ServiceLocator.GetService<GameLevelsService>().levels[CurrentLevel];
     }
     public void ResetProgression()
     {

@@ -23,6 +23,7 @@ public class GameEndController : MonoBehaviour
 
     GameAnalyticsService _analytics;
     GameAdsService _ads;
+    GameLevelsService _levels;
 
     void EndGame(GameEndInfo info)
     {
@@ -34,7 +35,7 @@ public class GameEndController : MonoBehaviour
             {
                 _analytics.SendEvent("LevelWon", new Dictionary<string, object> { ["CurrentLevel"] = info._level });
                 WonGO.SetActive(true);
-                if (PlayerProgression.CurrentLevel < PlayerProgression.levels.Count)
+                if (PlayerProgression.CurrentLevel < _levels.levels.Count)
                 {
                     if (PlayerProgression.CurrentLevel == PlayerProgression.MaxLevelUnlocked)
                     {
@@ -80,6 +81,7 @@ public class GameEndController : MonoBehaviour
         WonGO.SetActive(false);
         _analytics = ServiceLocator.GetService<GameAnalyticsService>();
         _ads = ServiceLocator.GetService<GameAdsService>();
+        _levels = ServiceLocator.GetService<GameLevelsService>();
         GameConfigService config = ServiceLocator.GetService<GameConfigService>();
         MovesMultiplier = config.coinsWonMultiplier;
         LowerLevelMultiplier = config.coinsWonMultiplierLowLevel;

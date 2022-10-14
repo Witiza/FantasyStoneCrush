@@ -10,14 +10,19 @@ public class LevelSelection : MonoBehaviour
     [SerializeField] Button _previousButton;
     [SerializeField] Button _nextButton;
     [SerializeField] PlayerProgressionService _progression;
+    GameLevelsService _gameLevelsService;
+    int _maxLevel;
 
     void Start()
     {
+        _gameLevelsService = ServiceLocator.GetService<GameLevelsService>();
+
         UpdateLevelSelector();
     }
 
     void UpdateLevelSelector()
     {
+        CheckMaxLevelConsistency();
         if (_progression.CurrentLevel == 0)
         {
             _levelText.text = "Tutorial";
@@ -39,6 +44,17 @@ public class LevelSelection : MonoBehaviour
         }
     }
 
+    void CheckMaxLevelConsistency()
+    {
+        if(_progression.MaxLevelUnlocked > _gameLevelsService.levels.Count)
+        {
+            _maxLevel = _gameLevelsService.levels.Count;
+        }
+        else
+        {
+            _maxLevel = _progression.MaxLevelUnlocked;
+        }
+    }
     public void SelectNextLevel()
     {
         _progression.CurrentLevel++;

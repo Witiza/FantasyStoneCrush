@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class LevelListSaveWrapper
 {
-    [SerializeField]
     public List<BoardConfigSaveWrapper> levels = new List<BoardConfigSaveWrapper>();
 
     public LevelListSaveWrapper(LevelList list)

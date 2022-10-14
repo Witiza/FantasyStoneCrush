@@ -252,17 +252,17 @@ public class BoardView : MonoBehaviour
         return tile;
     }
 
-    private void OnDrawGizmos()
-    {
-        BoardConfig config = PlayerProgression.levels[PlayerProgression.CurrentLevel];
-        float width =  config.TileSize * config.BoardWidth;
-        float height = config.TileSize * config.BoardHeight;
-        Vector3 center = transform.position;
-        center.x += (width / 2)-config.TileSize/2;
-        center.y += (height / 2)-config.TileSize/2;
-        Color color = Color.black;
-        color.a = 0.5f;
-        Gizmos.color = color;
-        Gizmos.DrawCube(center, new Vector3(width, height, 1));
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    BoardConfig config = PlayerProgression.levels[PlayerProgression.CurrentLevel];
+    //    float width =  config.TileSize * config.BoardWidth;
+    //    float height = config.TileSize * config.BoardHeight;
+    //    Vector3 center = transform.position;
+    //    center.x += (width / 2)-config.TileSize/2;
+    //    center.y += (height / 2)-config.TileSize/2;
+    //    Color color = Color.black;
+    //    color.a = 0.5f;
+    //    Gizmos.color = color;
+    //    Gizmos.DrawCube(center, new Vector3(width, height, 1));
+    //}
 }

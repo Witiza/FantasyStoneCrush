@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class GameLevelsService: IService
 {
     public bool Initialized { get { return levels != null && levels.Count > 0; } }
-    List<BoardConfig> levels;
+    public List<BoardConfig> levels;
     List<ILevelProvider> levelProviders = new List<ILevelProvider>();
 
     public async Task Initialize()

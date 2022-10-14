@@ -7,7 +7,6 @@ using TMPro;
 public class ShopController : MonoBehaviour
 {
 
-    [SerializeField]
     List<ShopItemView> _items = new List<ShopItemView>();
     [SerializeField]
     List<IntEventBus> _boughtEvents = new List<IntEventBus>();
@@ -27,6 +26,7 @@ public class ShopController : MonoBehaviour
     GameSaveService _progressionProvider;
     private void Awake()
     {
+        _items = new List<ShopItemView>(FindObjectsOfType<ShopItemView>());
         foreach(IntEventBus bought in _boughtEvents)
         {
             bought.Event += BoughtEvent;
