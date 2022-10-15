@@ -6,6 +6,8 @@ using UnityEngine;
 public class ItemModel
 {
     public string name;
+    public string icon = "amulet";
+    public Color iconColor = Color.white;
 
     public Multipliers ItemMultipliers;
 

@@ -78,6 +78,7 @@ public class ItemDetails : MonoBehaviour
         {
             equipOrUnequipItem.NotifyEvent(_currentItem, true);
         }
+        ChangeEquipButton();
         gameObject.SetActive(false);
     }
     private void Awake()

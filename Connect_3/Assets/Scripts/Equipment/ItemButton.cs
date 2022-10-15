@@ -9,7 +9,7 @@ public class ItemButton : MonoBehaviour
     [SerializeField]
     Button _equip;
     [SerializeField]
-    TMP_Text _buttonText;
+    Image _icon;
     ItemModel _model;
     ItemDetails _itemDetails;
 
@@ -21,13 +21,14 @@ public class ItemButton : MonoBehaviour
     public void SetupButton(ItemModel model)
     {
         _model = model;
-        _buttonText.text = model.name;
+        _icon.sprite = Resources.Load<Sprite>("Icons/" + _model.icon);//ItemGenerator.icons.GetValueOrDefault(_model.icon);
+        _icon.color = _model.iconColor;
     }
 
     public void ResetButton()
     {
         _model = null;
-        _buttonText.text = "";
+        _icon.sprite = null;
     }
 
     public void ActivateButton()

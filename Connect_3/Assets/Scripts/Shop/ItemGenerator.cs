@@ -13,6 +13,11 @@ public class ItemGenerator
     public Multipliers PremiumVariance;
 
     public PlayerInventory inventory;
+    public Dictionary<string, Sprite> icons;
+    public List<string> prefixes;
+    public List<string> names;
+    public List<string> sufixes;
+    public List<Color> itemRarities;
 
     public ItemModel GenerateItem(bool premium)
     {
@@ -43,8 +48,26 @@ public class ItemGenerator
 
         ItemModel item = new ItemModel();
         item.ItemMultipliers = result;
-        item.name = "Sample Item No" + Random.Range(0, 100).ToString();
+        string name = GetRandomWord(names);
+        item.name = GetRandomWord(prefixes) + " " + name + " " + GetRandomWord(sufixes);
+        item.icon = name;
+        AssignColor(item);
         inventory.AddItem(item);
         return item;
+    }
+
+    string GetRandomWord(List<string> list)
+    {
+        return list[Random.Range(0, list.Count)];
+    }
+
+    void AssignColor(ItemModel item)
+    {
+        float value = Mathf.Lerp(0, NormalVariance.CritChance, item.ItemMultipliers.CritChance);
+        value += Mathf.Lerp(0, NormalVariance.NormalMultiplier, item.ItemMultipliers.NormalMultiplier);
+        value += Mathf.Lerp(0, NormalVariance.CriticalMultiplier, item.ItemMultipliers.CriticalMultiplier);
+        value += Mathf.Lerp(0, NormalVariance.ManaGainMultiplier, item.ItemMultipliers.ManaGainMultiplier);
+
+        item.iconColor = itemRarities[Mathf.FloorToInt(value)];
     }
 }
