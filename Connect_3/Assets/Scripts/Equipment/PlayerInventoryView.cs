@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class Icon
+{
+    public Sprite icon;
+    public string id;
+}
 public class PlayerInventoryView : MonoBehaviour
 {
     [SerializeField]
@@ -17,6 +23,8 @@ public class PlayerInventoryView : MonoBehaviour
     private RectTransform viewport;
 
     List<GameObject> buttons = new List<GameObject>();
+
+    public List<Icon> icons;
 
     private void EquipmentEvent(ItemModel item, bool equipping)
     {
@@ -52,6 +60,18 @@ public class PlayerInventoryView : MonoBehaviour
             button.GetComponent<ItemButton>().SetupButton(inventory.items[i]);
             buttons.Add(button);
         }
+    }
+
+    public Sprite getIcon(string id)
+    {
+        for(int i = 0;i<icons.Count;i++)
+        {
+            if (icons[i].id == id)
+            {
+                return icons[i].icon;
+            }
+        }
+        return null;
     }
     private void Awake()
     {

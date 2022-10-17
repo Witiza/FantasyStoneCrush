@@ -12,23 +12,27 @@ public class ItemButton : MonoBehaviour
     Image _icon;
     ItemModel _model;
     ItemDetails _itemDetails;
+    [SerializeField]
+    PlayerInventoryView _inventoryView;
 
     public void Start()
     {
         _itemDetails = FindObjectOfType<ItemDetails>(true);
+        _inventoryView = FindObjectOfType<PlayerInventoryView>(true);
     }
 
     public void SetupButton(ItemModel model)
     {
         _model = model;
-        _icon.sprite = Resources.Load<Sprite>("Icons/" + _model.icon);//ItemGenerator.icons.GetValueOrDefault(_model.icon);
+        Sprite tmp = _inventoryView.getIcon(_model.icon);
+        _icon.sprite = tmp;
         _icon.color = _model.iconColor;
     }
 
     public void ResetButton()
     {
         _model = null;
-        _icon.sprite = null;
+        _icon.sprite = _inventoryView.getIcon("None");
     }
 
     public void ActivateButton()

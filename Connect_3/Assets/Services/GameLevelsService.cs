@@ -17,6 +17,10 @@ public class GameLevelsService: IService
         fileLevelProvider.priority = 1;
         await fileLevelProvider.Initialize();
         levelProviders.Add(fileLevelProvider);
+        RemoteLevelProvider remoteLevelProvider = new RemoteLevelProvider();
+        remoteLevelProvider.priority = 2;
+        await remoteLevelProvider.Initialize();
+        levelProviders.Add(remoteLevelProvider);
         selectLevels();
         await Task.Yield();
     }

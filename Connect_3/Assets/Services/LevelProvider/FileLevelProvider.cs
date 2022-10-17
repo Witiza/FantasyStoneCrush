@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-
 public class FileLevelProvider:ILevelProvider
 {
-    public bool loaded { get { return levels != null; } }
+    public bool loaded { get { return levels.Count > 0; } }
     public int priority { get; set; } = 0;
-    List<BoardConfig> levels;
+    List<BoardConfig> levels = new List<BoardConfig>();
 
     public async Task<bool> Initialize()
     {

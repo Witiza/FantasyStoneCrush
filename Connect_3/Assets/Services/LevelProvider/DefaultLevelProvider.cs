@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class DefaultLevelProvider : ILevelProvider
 {
@@ -11,7 +12,8 @@ public class DefaultLevelProvider : ILevelProvider
 
     public async Task<bool> Initialize()
     {
-        levels = Resources.Load<LevelList>(path).levels;
+        //levels = Resources.Load<LevelList>(path).levels;
+        levels = (await Addressables.LoadAssetAsync<LevelList>(path).Task).levels;
         await Task.Yield();
         return true;
     }

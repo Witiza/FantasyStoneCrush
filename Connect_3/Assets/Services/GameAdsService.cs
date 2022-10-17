@@ -32,6 +32,11 @@ public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadList
         }
     }
 
+    private async void Retry()
+    {
+        await Task.Delay(10000);
+        await Initialize();
+    }
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
@@ -43,6 +48,10 @@ public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadList
     {
         Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
         _initializationStatus = TaskStatus.Faulted;
+        if (error == UnityAdsInitializationError.UNKNOWN)
+        {
+            Retry();
+        }
     }
 
     public void LoadAd()

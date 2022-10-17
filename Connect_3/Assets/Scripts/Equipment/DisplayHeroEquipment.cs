@@ -74,6 +74,10 @@ public class DisplayHeroEquipment : MonoBehaviour
     {
         _heroSelected.Event += HeroSelectedEvent;
         _equipmentEvent.Event += EquipmentEvent;
+    }
+
+    private void Start()
+    {
         _heroSelected.NotifyEvent(defaultHero);
     }
 

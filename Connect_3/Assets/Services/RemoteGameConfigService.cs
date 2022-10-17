@@ -64,8 +64,8 @@ public class RemoteGameConfigService:IService
 
     public T Get<T>(string key, T defaultValue = default)
     {
-        string data = _config?.GetString(key, "{}");
-        if (string.IsNullOrEmpty(data))
+        string data = _config?.GetJson(key, "{}");
+        if (string.IsNullOrEmpty(data) || data =="{}")
             return defaultValue;
 
         try
