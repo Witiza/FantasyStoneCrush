@@ -12,102 +12,266 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d03e0dda-6a7c-4b5b-9d21-b21aea0677bd\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b14ecd30-7df6-41c4-b8ac-c5294390c6e5\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialGems\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 1000\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"14ffd700-9a50-40bf-82d3-6719f5c7a5cb\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"cf472b2a-40fd-4589-a1ee-5e38700fdf60\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialCoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"7a267f9d-e12c-4b0e-8566-401fae2ecdc8\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f82a2d49-25cb-495e-bb06-5a5385431409\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialTurnBooster\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"af2e1a14-944d-4f52-8fd6-fbf66316a739\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"1ce0a19b-f8c0-4077-b659-82fba883db72\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"InitialManaBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"b14e034c-dc84-4e7c-bf0a-03b1f40fed4c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"2af8045c-77b3-4d68-bb5d-9c30b17105b4\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialTileBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"7af38fbb-3708-40b6-a330-f74e5d8dc81d\"\r\n   
+    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b6f52c08-785c-49af-b02f-663f37e5f72b\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplier\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"d2de29ab-f2b3-45ed-a422-8545661adafc\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"f9ab97bd-0a69-4bf5-bc8c-1edcb790c2ac\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"CoinsWonMultiplierLowLevel\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"a8cab3b7-a821-4fe3-bc08-c14762a0a327\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"5f47b4ac-1c81-4cef-a6e4-d959ca37a79d\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"TurnBoosterCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"eee16afd-05e0-4b1a-a044-03ea6a5cdbe5\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"58f76add-d718-4154-82f1-124ebc70d53c\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ManaBoosterCost\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8ef4a38f-1d8a-4f1a-a995-a908fc443040\"\r\n   
+    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"de74c605-8c3f-45d4-859a-a98918077e99\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"TileBoosterCost\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"096e389d-cb69-48de-827c-d27cb059e81d\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"ce75ec27-bffe-47c0-96cd-d7f9142a385b\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"NormalChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 200\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"900f2bf8-7c78-47fd-b9e8-13875f6b3b8d\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"768794fb-d7c5-4ea9-8ea4-43ba4988dc19\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestCost\",\r\n      \"type\": \"int\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"4bb133d2-e87f-497c-b2d0-5617b458e034\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"afbef290-bcdf-4aeb-93da-2cdfe87a2405\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 500\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"20eb753a-90b8-4fb7-a002-bcf53fb5b1fc\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"d99491ee-dd97-4ca3-a193-1c6486dbbc24\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestItemAmount\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f6b1d411-33fe-48fb-b523-26738f5bee8b\"\r\n   
+    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"43197bb9-6c09-4983-9b77-cdaecf91c277\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"MovesAddedByAd\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"e8b6148a-68bd-408f-a76a-3748726d41fb\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"0b966fa5-b253-49db-861d-427af2ed5ee8\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"MovesAddedByBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"ea8f5247-ca56-447b-9a08-754f3f0c553f\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"de2df3d0-9400-4d1c-8b12-edae4b09d0e1\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"TilesAddedByBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"49e020d0-0c00-40fd-ae0d-cf3a3d1fadd3\"\r\n   
+    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b88561f0-ac1e-4538-bf4e-c114d6864523\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsAddedByAd\",\r\n      \"type\": \"int\",\r\n     
-    \"value\": 60\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d03e0dda-6a7c-4b5b-9d21-b21aea0677bd\"\r\n   
+    \"value\": 60\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"62eb9583-6419-4dc7-8ab9-04bb87355a6e\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"LevelAmount\",\r\n      \"type\": \"int\",\r\n      \"value\": 10\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"70271262-db74-44e6-851c-c3a11e73bc6f\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Level1\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"data\": {\r\n         
+    \"TileSize\": 0.5,\r\n          \"Objective\": 0,\r\n          \"AvailableMoves\":
+    20,\r\n          \"ScoreOrBoxesNeeded\": 100,\r\n          \"board\": {\r\n           
+    \"gridSize\": {\r\n              \"x\": 9,\r\n              \"y\": 9\r\n           
+    },\r\n            \"cellSize\": {\r\n              \"x\": 32,\r\n             
+    \"y\": 16\r\n            },\r\n            \"cells\": [\r\n              {\r\n               
+    \"row\": [\r\n                  9,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              }\r\n            ]\r\n          },\r\n         
+    \"tutorial\": {\r\n            \"instanceID\": 0\r\n          },\r\n         
+    \"_tutorial\": \"\"\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
+    {\r\n      \"entityId\": \"aec24e4c-acdd-41c8-9996-510bcf1a8d50\"\r\n    },\r\n   
+    \"rs\": {\r\n      \"key\": \"Tutorial\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"data\": {\r\n         
+    \"TileSize\": 0.5,\r\n          \"Objective\": 0,\r\n          \"AvailableMoves\":
+    20,\r\n          \"ScoreOrBoxesNeeded\": 100,\r\n          \"board\": {\r\n           
+    \"gridSize\": {\r\n              \"x\": 9,\r\n              \"y\": 9\r\n           
+    },\r\n            \"cellSize\": {\r\n              \"x\": 32,\r\n             
+    \"y\": 16\r\n            },\r\n            \"cells\": [\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              }\r\n            ]\r\n          },\r\n         
+    \"tutorial\": {\r\n            \"instanceID\": 0\r\n          },\r\n         
+    \"_tutorial\": \"\"\r\n        }\r\n      }\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b14ecd30-7df6-41c4-b8ac-c5294390c6e5\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialGems\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 1000\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"14ffd700-9a50-40bf-82d3-6719f5c7a5cb\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"cf472b2a-40fd-4589-a1ee-5e38700fdf60\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialCoins\",\r\n      \"type\": \"int\",\r\n      \"value\": 200\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"7a267f9d-e12c-4b0e-8566-401fae2ecdc8\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f82a2d49-25cb-495e-bb06-5a5385431409\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialTurnBooster\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"af2e1a14-944d-4f52-8fd6-fbf66316a739\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"1ce0a19b-f8c0-4077-b659-82fba883db72\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"InitialManaBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"b14e034c-dc84-4e7c-bf0a-03b1f40fed4c\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"2af8045c-77b3-4d68-bb5d-9c30b17105b4\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialTileBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"7af38fbb-3708-40b6-a330-f74e5d8dc81d\"\r\n   
+    3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b6f52c08-785c-49af-b02f-663f37e5f72b\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"CoinsWonMultiplier\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"d2de29ab-f2b3-45ed-a422-8545661adafc\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"f9ab97bd-0a69-4bf5-bc8c-1edcb790c2ac\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"CoinsWonMultiplierLowLevel\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"a8cab3b7-a821-4fe3-bc08-c14762a0a327\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"5f47b4ac-1c81-4cef-a6e4-d959ca37a79d\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"TurnBoosterCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"eee16afd-05e0-4b1a-a044-03ea6a5cdbe5\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"58f76add-d718-4154-82f1-124ebc70d53c\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ManaBoosterCost\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8ef4a38f-1d8a-4f1a-a995-a908fc443040\"\r\n   
+    20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"de74c605-8c3f-45d4-859a-a98918077e99\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"TileBoosterCost\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 20\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"096e389d-cb69-48de-827c-d27cb059e81d\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"ce75ec27-bffe-47c0-96cd-d7f9142a385b\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"NormalChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 200\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"900f2bf8-7c78-47fd-b9e8-13875f6b3b8d\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"768794fb-d7c5-4ea9-8ea4-43ba4988dc19\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestCost\",\r\n      \"type\": \"int\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"4bb133d2-e87f-497c-b2d0-5617b458e034\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"afbef290-bcdf-4aeb-93da-2cdfe87a2405\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsChestCost\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 500\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"20eb753a-90b8-4fb7-a002-bcf53fb5b1fc\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"d99491ee-dd97-4ca3-a193-1c6486dbbc24\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BigChestItemAmount\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f6b1d411-33fe-48fb-b523-26738f5bee8b\"\r\n   
+    4\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"43197bb9-6c09-4983-9b77-cdaecf91c277\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"MovesAddedByAd\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"e8b6148a-68bd-408f-a76a-3748726d41fb\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"0b966fa5-b253-49db-861d-427af2ed5ee8\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"MovesAddedByBooster\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"ea8f5247-ca56-447b-9a08-754f3f0c553f\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"de2df3d0-9400-4d1c-8b12-edae4b09d0e1\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"TilesAddedByBooster\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"49e020d0-0c00-40fd-ae0d-cf3a3d1fadd3\"\r\n   
+    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b88561f0-ac1e-4538-bf4e-c114d6864523\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"GemsAddedByAd\",\r\n      \"type\": \"int\",\r\n     
-    \"value\": 60\r\n    }\r\n  }\r\n]"
+    \"value\": 60\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"62eb9583-6419-4dc7-8ab9-04bb87355a6e\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"LevelAmount\",\r\n      \"type\": \"int\",\r\n      \"value\": 10\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"70271262-db74-44e6-851c-c3a11e73bc6f\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"Level1\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"data\": {\r\n         
+    \"TileSize\": 0.5,\r\n          \"Objective\": 0,\r\n          \"AvailableMoves\":
+    20,\r\n          \"ScoreOrBoxesNeeded\": 100,\r\n          \"board\": {\r\n           
+    \"gridSize\": {\r\n              \"x\": 9,\r\n              \"y\": 9\r\n           
+    },\r\n            \"cellSize\": {\r\n              \"x\": 32,\r\n             
+    \"y\": 16\r\n            },\r\n            \"cells\": [\r\n              {\r\n               
+    \"row\": [\r\n                  9,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              }\r\n            ]\r\n          },\r\n         
+    \"tutorial\": {\r\n            \"instanceID\": 0\r\n          },\r\n         
+    \"_tutorial\": \"\"\r\n        }\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
+    {\r\n      \"entityId\": \"aec24e4c-acdd-41c8-9996-510bcf1a8d50\"\r\n    },\r\n   
+    \"rs\": {\r\n      \"key\": \"Tutorial\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"data\": {\r\n         
+    \"TileSize\": 0.5,\r\n          \"Objective\": 0,\r\n          \"AvailableMoves\":
+    20,\r\n          \"ScoreOrBoxesNeeded\": 100,\r\n          \"board\": {\r\n           
+    \"gridSize\": {\r\n              \"x\": 9,\r\n              \"y\": 9\r\n           
+    },\r\n            \"cellSize\": {\r\n              \"x\": 32,\r\n             
+    \"y\": 16\r\n            },\r\n            \"cells\": [\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              },\r\n              {\r\n               
+    \"row\": [\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0\r\n                ]\r\n             
+    },\r\n              {\r\n                \"row\": [\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0\r\n               
+    ]\r\n              },\r\n              {\r\n                \"row\": [\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0,\r\n                  0,\r\n                  0,\r\n                  0,\r\n                 
+    0\r\n                ]\r\n              }\r\n            ]\r\n          },\r\n         
+    \"tutorial\": {\r\n            \"instanceID\": 0\r\n          },\r\n         
+    \"_tutorial\": \"\"\r\n        }\r\n      }\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"8e8d5eb2-5409-43a3-9f4d-10809cb91ada\",\r\n   
     \"name\": \"development\",\r\n    \"id\": \"a0cdd690-5697-40c3-80a5-26f141dd419a\",\r\n   
     \"isDefault\": false,\r\n    \"createdAt\": \"2022-09-07T17:52:13Z\",\r\n   

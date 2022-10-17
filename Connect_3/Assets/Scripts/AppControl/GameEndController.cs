@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameEndController : MonoBehaviour
@@ -20,6 +21,7 @@ public class GameEndController : MonoBehaviour
     public GameObject WonGO;
     public GameObject LostGO;
     public GameObject AddMovesGO;
+    public Button NextLevelButton;
 
     GameAnalyticsService _analytics;
     GameAdsService _ads;
@@ -33,15 +35,20 @@ public class GameEndController : MonoBehaviour
             gameObject.SetActive(true);
             if (info._gameWon)
             {
+                NextLevelButton.interactable = true;
                 _analytics.SendEvent("LevelWon", new Dictionary<string, object> { ["CurrentLevel"] = info._level });
                 WonGO.SetActive(true);
-                if (PlayerProgression.CurrentLevel < _levels.levels.Count)
+                if (PlayerProgression.CurrentLevel < _levels.levels.Count-1)
                 {
                     if (PlayerProgression.CurrentLevel == PlayerProgression.MaxLevelUnlocked)
                     {
                         PlayerProgression.MaxLevelUnlocked++;
                     }
                     PlayerProgression.CurrentLevel++;
+                }
+                else
+                {
+                    NextLevelButton.interactable = false;
                 }
                 CalculateEndCoins(info._remainingMoves, info._score, info._level, info._highestLevel);
             }

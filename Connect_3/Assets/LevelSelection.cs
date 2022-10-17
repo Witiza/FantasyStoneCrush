@@ -16,13 +16,12 @@ public class LevelSelection : MonoBehaviour
     void Start()
     {
         _gameLevelsService = ServiceLocator.GetService<GameLevelsService>();
-
+        _maxLevel = _gameLevelsService.levels.Count-1;
         UpdateLevelSelector();
     }
 
     void UpdateLevelSelector()
     {
-        CheckMaxLevelConsistency();
         if (_progression.CurrentLevel == 0)
         {
             _levelText.text = "Tutorial";
@@ -44,17 +43,6 @@ public class LevelSelection : MonoBehaviour
         }
     }
 
-    void CheckMaxLevelConsistency()
-    {
-        if(_progression.MaxLevelUnlocked > _gameLevelsService.levels.Count)
-        {
-            _maxLevel = _gameLevelsService.levels.Count;
-        }
-        else
-        {
-            _maxLevel = _progression.MaxLevelUnlocked;
-        }
-    }
     public void SelectNextLevel()
     {
         _progression.CurrentLevel++;

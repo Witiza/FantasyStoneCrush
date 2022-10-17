@@ -2683,6 +2683,7 @@ MonoBehaviour:
   WonGO: {fileID: 1201141322}
   LostGO: {fileID: 14279913}
   AddMovesGO: {fileID: 549293527}
+  NextLevelButton: {fileID: 1425830481}
 --- !u!224 &947395126 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8157287810877462607, guid: 32696997bc522214d8d6deb596c14ff3, type: 3}
