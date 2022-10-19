@@ -47,8 +47,4 @@ public class GameLevelsService: IService
             levelProvider.SaveLevels(levels);
         }
     }
-    public void Clear()
-    {
-
-    }
 } 

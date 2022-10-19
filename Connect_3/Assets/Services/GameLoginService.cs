@@ -12,8 +12,4 @@ public class GameLoginService:IService
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
     }
-
-    public void Clear()
-    {
-    }
 }

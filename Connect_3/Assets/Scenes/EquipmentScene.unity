@@ -2832,10 +2832,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portraitList:
-  - {fileID: -1970158210, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
-  - {fileID: -1916959622, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
-  - {fileID: -2020448922, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
-  - {fileID: 1938621572, guid: 7e69b4216759b954fb5f906a87eae4de, type: 3}
+  - {fileID: 2067314992, guid: f70b79884c686024a860fc3238709227, type: 3}
+  - {fileID: -44417087, guid: f70b79884c686024a860fc3238709227, type: 3}
+  - {fileID: -870123624, guid: f70b79884c686024a860fc3238709227, type: 3}
+  - {fileID: 362256301, guid: f70b79884c686024a860fc3238709227, type: 3}
   defaultHero: {fileID: 11400000, guid: 8e78e3aee6660c2458f6de2fe8519abf, type: 2}
   _equipmentEvent: {fileID: 11400000, guid: 1a87af9a877afd049bea301a0c850a8d, type: 2}
   _heroSelected: {fileID: 11400000, guid: 4d38e1939635669408e8403d06939f22, type: 2}

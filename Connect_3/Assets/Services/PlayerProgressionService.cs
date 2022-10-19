@@ -115,10 +115,6 @@ public class PlayerProgressionService  : ScriptableObject , IService
     ManaBooster.amount = save.ManaBoosterAmount;
     }
 
-    public void Clear()
-    {
-
-    }
     public void Initialize()
     {
         _initialized = true;

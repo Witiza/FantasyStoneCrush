@@ -127,8 +127,4 @@ public class GameAdsService : IUnityAdsInitializationListener, IUnityAdsLoadList
     {
         Debug.Log("User clicked in the ad");
     }
-
-    public void Clear()
-    {
-    }
 }

@@ -32,8 +32,7 @@ public class RemoteGameConfigService:IService
     private struct userData
     {
     }
-    public void Clear()
-    { }
+
     // :)
     [System.Serializable]
     private class Wrapper<T>

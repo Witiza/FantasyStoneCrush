@@ -29,8 +29,4 @@ public class GameAnalyticsService : IService
             AnalyticsService.Instance.CustomData(eventName, parameters);
         }
     }
-
-    public void Clear()
-    {
-    }
 }

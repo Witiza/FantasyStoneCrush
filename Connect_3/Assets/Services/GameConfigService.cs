@@ -27,10 +27,6 @@ public class GameConfigService : IService
     public int costGemsChest { get; private set; }
     public int bigChestItemAmount { get; private set; }
 
-
-    public void Clear()
-    { }
-
     public void Initialize()
     {
         RemoteGameConfigService config = ServiceLocator.GetService<RemoteGameConfigService>();

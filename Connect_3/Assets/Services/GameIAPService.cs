@@ -76,5 +76,4 @@ public class GameIAPService : IStoreListener, IService
         Debug.LogError("Purchase failed with error: " + failureReason);
         _purchaseStatus = TaskStatus.Faulted;
     }
-    public void Clear() { }
 }

@@ -25,10 +25,6 @@ public class GameSaveService:IService
         LoadGame();
         return true;
     }
-    public void Clear()
-    {
-
-    }
 
     public void SaveGame()
     {
