@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 
+//This service is currently useless, as I am using adressables for the level list, and they are automatically updated. I have decided to leave it, since I think its more scalable than adressables, and if I had found a way
+//to change the RemoteConfig from script, I could have done a level editor tool etc.
 public class GameLevelsService: IService
 {
     public bool Initialized { get { return levels != null && levels.Count > 0; } }

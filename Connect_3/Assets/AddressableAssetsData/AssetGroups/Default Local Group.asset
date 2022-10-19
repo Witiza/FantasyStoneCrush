@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: Levels/DefaultLevels
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 7bd0bfe2beec4de47a3c88b1bf2615e5
+    m_Address: Levels/GameLevels
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f70b79884c686024a860fc3238709227
+    m_Address: Heroes/HeroPortraits
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 158e59a69db7b5a4a9651d892328149b, type: 2}
   m_SchemaSet:

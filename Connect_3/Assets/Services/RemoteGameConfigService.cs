@@ -10,8 +10,7 @@ public class RemoteGameConfigService:IService
 
     public async Task Initialize()
     {
-        //await RemoteConfigService.Instance.Fet
-            _config = await RemoteConfigService.Instance.FetchConfigsAsync(new userData(), new appData());
+        _config = await RemoteConfigService.Instance.FetchConfigsAsync(new userData(), new appData());
         switch (_config.origin)
         {
             case ConfigOrigin.Default:

@@ -12,7 +12,6 @@ public class ItemButton : MonoBehaviour
     Image _icon;
     ItemModel _model;
     ItemDetails _itemDetails;
-    [SerializeField]
     PlayerInventoryView _inventoryView;
 
     public void Start()
