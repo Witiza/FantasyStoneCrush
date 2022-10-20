@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7e69b4216759b954fb5f906a87eae4de
+guid: 538e461ec6f54ad4ea0fe07bd157e635
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -128,169 +128,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: match3_sheet_31
+      name: roguelikeitems_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 16
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fc369e0b042edd478a6b1df5eed0828
-      internalID: 1426990336
+      spriteID: fb6a7ca59d119c247ab685fea5b2591d
+      internalID: -124687781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_40
+      name: roguelikeitems_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ab0a11a1ce43424394a2537c4b63f1e
+      internalID: -995678993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roguelikeitems_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a4e99112a773be4aa183455dd77bc29
+      internalID: -469433291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roguelikeitems_3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01639e8d03b9c0546814561a245d526f
+      internalID: -1413386004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roguelikeitems_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e0ecd5c01d65243b543849bd0a3cf1
+      internalID: 1866427650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roguelikeitems_5
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38af33944583a38459fc9a6bc55cc1bf
+      internalID: 522370438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roguelikeitems_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 601ee029610a34d4a9a722fc83f4a931
+      internalID: -2107046590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roguelikeitems_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbb885f945fec84d97b85460f3bad4b
+      internalID: -341753912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roguelikeitems_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
-        height: 32
+        y: 176
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5886201c7e358bd4d88cad23db0d14d5
-      internalID: -97684806
+      spriteID: d5e5473e3b690c2468c74fac17d4d09c
+      internalID: 1012589509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_62
+      name: roguelikeitems_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
+        x: 128
+        y: 192
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecc0f492d8d24634480c94774720c346
-      internalID: 1788054155
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: match3_sheet_78
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c5788d750b4743e49a2e32a7c3771a29
-      internalID: -986593091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: match3_sheet_101
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f62985b4dc685944abea143241d87118
-      internalID: -430989144
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: match3_sheet_108
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a5e3afd4830df14f8e47a7a04a22f66
-      internalID: 297661407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: match3_sheet_109
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d3ec99540bba5d341b33f0f3f02fd831
-      internalID: 2038904539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: match3_sheet_110
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 253dc249ea91a9140853fd1e1973dd52
-      internalID: 7836981
+      spriteID: 5eafa7f27ff44cf40b8e10bf4c7462f1
+      internalID: 1793760338
       vertices: []
       indices: 
       edges: []
@@ -306,118 +348,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      match3_sheet_100: 1154816714
-      match3_sheet_48: 1390333284
-      match3_sheet_92: -1059962880
-      match3_sheet_7: 72969473
-      match3_sheet_12: 360871320
-      match3_sheet_58: 939053845
-      match3_sheet_99: 302008154
-      match3_sheet_26: -633559938
-      match3_sheet_28: 832418427
-      match3_sheet_6: -753099167
-      match3_sheet_88: 442814054
-      match3_sheet_39: 1489232318
-      match3_sheet_62: 1788054155
-      match3_sheet_44: 877306278
-      match3_sheet_22: 773809300
-      match3_sheet_80: -337928133
-      match3_sheet_91: 61645732
-      match3_sheet_104: 241046906
-      match3_sheet_2: -926883428
-      match3_sheet_61: 424040650
-      match3_sheet_74: -1551838150
-      match3_sheet_5: 821244034
-      match3_sheet_69: 369245736
-      match3_sheet_23: -1053112661
-      match3_sheet_79: 1280558103
-      match3_sheet_17: -563133720
-      match3_sheet_83: 1040014329
-      match3_sheet_40: -97684806
-      match3_sheet_49: -581369535
-      match3_sheet_73: 1779173289
-      match3_sheet_66: 757296945
-      match3_sheet_75: 981645716
-      match3_sheet_78: -986593091
-      match3_sheet_64: -1826307863
-      match3_sheet_47: -1500772186
-      match3_sheet_65: 258662757
-      match3_sheet_60: -1970158210
-      match3_sheet_98: -2137940065
-      match3_sheet_70: -774839910
-      match3_sheet_51: 1834940280
-      match3_sheet_95: -617784212
-      match3_sheet_89: -1545855578
-      match3_sheet_101: -430989144
-      match3_sheet_43: -1087892111
-      match3_sheet_59: -287710332
-      match3_sheet_81: -1655335471
-      match3_sheet_29: 630789384
-      match3_sheet_27: -445041725
-      match3_sheet_72: 774810779
-      match3_sheet_102: 1157655952
-      match3_sheet_10: -481527679
-      match3_sheet_18: 1340723301
-      match3_sheet_107: -1714945853
-      match3_sheet_84: -963438794
-      match3_sheet_106: -1852334857
-      match3_sheet_111: 1889514456
-      match3_sheet_68: -667969230
-      match3_sheet_53: 1573944490
-      match3_sheet_56: -83699020
-      match3_sheet_57: -153773432
-      match3_sheet_25: 358162572
-      match3_sheet_14: -878517209
-      match3_sheet_37: 1374682656
-      match3_sheet_90: -1604691876
-      match3_sheet_94: -759660952
-      match3_sheet_108: 297661407
-      match3_sheet_0: -891442316
-      match3_sheet_87: 1358470745
-      match3_sheet_21: -1486576780
-      match3_sheet_34: -2090514581
-      match3_sheet_76: 888856290
-      match3_sheet_20: -1275165098
-      match3_sheet_35: 605002895
-      match3_sheet_67: -574242339
-      match3_sheet_77: 1665707063
-      match3_sheet_32: -583793730
-      match3_sheet_13: 1490931850
-      match3_sheet_54: 45939073
-      match3_sheet_19: -1362189649
-      match3_sheet_46: 977547067
-      match3_sheet_8: -403051234
-      match3_sheet_42: 1870527276
-      match3_sheet_38: 307372768
-      match3_sheet_82: -1088269869
-      match3_sheet_103: -981066376
-      match3_sheet_93: 2053024727
-      match3_sheet_55: 800998609
-      match3_sheet_105: 2085010019
-      match3_sheet_109: 2038904539
-      match3_sheet_1: -729211456
-      match3_sheet_96: 1938621572
-      match3_sheet_30: -1916959622
-      match3_sheet_11: 97529331
-      match3_sheet_63: -1876502129
-      match3_sheet_85: 1147844390
-      match3_sheet_24: 521818519
-      match3_sheet_3: -1688954511
-      match3_sheet_52: -1679087530
-      match3_sheet_16: 1258013616
-      match3_sheet_71: -1451701259
-      match3_sheet_33: -211329015
-      match3_sheet_36: -2020448922
-      match3_sheet_45: -1147658421
-      match3_sheet_41: 423170038
-      match3_sheet_31: 1426990336
-      match3_sheet_4: -1147755440
-      match3_sheet_15: -727808169
-      match3_sheet_97: 68838155
-      match3_sheet_9: 1779991169
-      match3_sheet_86: 86115594
-      match3_sheet_50: 1751758081
-      match3_sheet_110: 7836981
+      roguelikeitems_6: -2107046590
+      roguelikeitems_8: 1012589509
+      roguelikeitems_9: 1793760338
+      roguelikeitems_5: 522370438
+      roguelikeitems_3: -1413386004
+      roguelikeitems_0: -124687781
+      roguelikeitems_2: -469433291
+      roguelikeitems_4: 1866427650
+      roguelikeitems_7: -341753912
+      roguelikeitems_1: -995678993
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
