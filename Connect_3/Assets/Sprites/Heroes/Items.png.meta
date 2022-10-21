@@ -128,15 +128,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: roguelikeitems_0
+      name: Sword
       rect:
         serializedVersion: 2
-        x: 16
-        y: 112
+        x: 0
+        y: 32
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,15 +149,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_1
+      name: Mace
       rect:
         serializedVersion: 2
-        x: 96
-        y: 112
+        x: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,15 +170,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_2
+      name: Shield
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
+        x: 48
+        y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,15 +191,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_3
+      name: Bow
       rect:
         serializedVersion: 2
-        x: 176
-        y: 80
+        x: 32
+        y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,15 +212,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_4
+      name: Necklace
       rect:
         serializedVersion: 2
-        x: 160
-        y: 208
+        x: 16
+        y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -233,15 +233,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_5
+      name: Axe
       rect:
         serializedVersion: 2
-        x: 144
-        y: 96
+        x: 16
+        y: 16
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,15 +254,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_6
+      name: Dagger
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
+        x: 32
+        y: 16
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,15 +275,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_7
+      name: Ring
       rect:
         serializedVersion: 2
-        x: 1
-        y: 192
+        x: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,15 +296,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_8
+      name: Trinket
       rect:
         serializedVersion: 2
         x: 0
-        y: 176
+        y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -317,15 +317,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: roguelikeitems_9
+      name: Crown
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 32
+        y: 32
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -333,6 +333,27 @@ TextureImporter:
       bones: []
       spriteID: 5eafa7f27ff44cf40b8e10bf4c7462f1
       internalID: 1793760338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: None
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 606a167756d3bb541af09b3449248996
+      internalID: 645031458
       vertices: []
       indices: 
       edges: []
@@ -348,16 +369,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      roguelikeitems_6: -2107046590
-      roguelikeitems_8: 1012589509
-      roguelikeitems_9: 1793760338
-      roguelikeitems_5: 522370438
-      roguelikeitems_3: -1413386004
-      roguelikeitems_0: -124687781
-      roguelikeitems_2: -469433291
-      roguelikeitems_4: 1866427650
-      roguelikeitems_7: -341753912
-      roguelikeitems_1: -995678993
+      Trinket: 1012589509
+      Crown: 1793760338
+      Mace: -995678993
+      Sword: -124687781
+      None: 645031458
+      Necklace: 1866427650
+      Axe: 522370438
+      Shield: -469433291
+      Ring: -341753912
+      Dagger: -2107046590
+      Bow: -1413386004
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

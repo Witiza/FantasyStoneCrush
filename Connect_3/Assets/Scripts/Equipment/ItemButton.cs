@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -14,7 +15,7 @@ public class ItemButton : MonoBehaviour
     ItemDetails _itemDetails;
     PlayerInventoryView _inventoryView;
 
-    public void Start()
+    public void Awake()
     {
         _itemDetails = FindObjectOfType<ItemDetails>(true);
         _inventoryView = FindObjectOfType<PlayerInventoryView>(true);
@@ -23,20 +24,28 @@ public class ItemButton : MonoBehaviour
     public void SetupButton(ItemModel model)
     {
         _model = model;
-        Sprite tmp = _inventoryView.getIcon(_model.icon);
-        _icon.sprite = tmp;
+        StartCoroutine(SetupSpriteCoroutine());
         _icon.color = _model.iconColor;
     }
 
     public void ResetButton()
     {
         _model = null;
-        _icon.sprite = _inventoryView.getIcon("None");
+         _icon.sprite = _inventoryView.GetIcon("None");
+        _icon.color = Color.white;
+
     }
 
     public void ActivateButton()
     {
         if(_model != null)
             _itemDetails.SetupDetails(_model);
+    }
+
+    //This is bad, should be an async method that waits for the icons to be loaded
+    IEnumerator SetupSpriteCoroutine()
+    {
+        yield return new WaitForSeconds(0.3f);
+        _icon.sprite = _inventoryView.GetIcon(_model.icon);
     }
 }

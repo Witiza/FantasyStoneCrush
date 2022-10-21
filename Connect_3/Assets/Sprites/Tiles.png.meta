@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: match3_sheet_31
+      name: Red
       rect:
         serializedVersion: 2
         x: 32
@@ -149,10 +149,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_40
+      name: Green
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 64
         width: 32
         height: 32
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_62
+      name: Blue
       rect:
         serializedVersion: 2
         x: 0
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_78
+      name: Rock
       rect:
         serializedVersion: 2
         x: 64
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_101
+      name: Purple
       rect:
         serializedVersion: 2
         x: 32
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_108
+      name: Bomb
       rect:
         serializedVersion: 2
         x: 64
@@ -254,7 +254,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_109
+      name: HorizontalMissile
       rect:
         serializedVersion: 2
         x: 0
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: match3_sheet_110
+      name: VerticalMissile
       rect:
         serializedVersion: 2
         x: 32
@@ -307,7 +307,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       match3_sheet_100: 1154816714
-      match3_sheet_48: 1390333284
       match3_sheet_92: -1059962880
       match3_sheet_7: 72969473
       match3_sheet_12: 360871320
@@ -318,13 +317,13 @@ TextureImporter:
       match3_sheet_6: -753099167
       match3_sheet_88: 442814054
       match3_sheet_39: 1489232318
-      match3_sheet_62: 1788054155
       match3_sheet_44: 877306278
       match3_sheet_22: 773809300
       match3_sheet_80: -337928133
       match3_sheet_91: 61645732
       match3_sheet_104: 241046906
       match3_sheet_2: -926883428
+      Purple: -430989144
       match3_sheet_61: 424040650
       match3_sheet_74: -1551838150
       match3_sheet_5: 821244034
@@ -333,22 +332,23 @@ TextureImporter:
       match3_sheet_79: 1280558103
       match3_sheet_17: -563133720
       match3_sheet_83: 1040014329
-      match3_sheet_40: -97684806
+      HorizontalMissile: 2038904539
+      Blue: 1788054155
       match3_sheet_49: -581369535
       match3_sheet_73: 1779173289
+      VerticalMissile: 7836981
       match3_sheet_66: 757296945
       match3_sheet_75: 981645716
-      match3_sheet_78: -986593091
       match3_sheet_64: -1826307863
       match3_sheet_47: -1500772186
       match3_sheet_65: 258662757
       match3_sheet_60: -1970158210
+      Green: -97684806
       match3_sheet_98: -2137940065
       match3_sheet_70: -774839910
       match3_sheet_51: 1834940280
       match3_sheet_95: -617784212
       match3_sheet_89: -1545855578
-      match3_sheet_101: -430989144
       match3_sheet_43: -1087892111
       match3_sheet_59: -287710332
       match3_sheet_81: -1655335471
@@ -371,7 +371,6 @@ TextureImporter:
       match3_sheet_37: 1374682656
       match3_sheet_90: -1604691876
       match3_sheet_94: -759660952
-      match3_sheet_108: 297661407
       match3_sheet_0: -891442316
       match3_sheet_87: 1358470745
       match3_sheet_21: -1486576780
@@ -384,6 +383,7 @@ TextureImporter:
       match3_sheet_32: -583793730
       match3_sheet_13: 1490931850
       match3_sheet_54: 45939073
+      Bomb: 297661407
       match3_sheet_19: -1362189649
       match3_sheet_46: 977547067
       match3_sheet_8: -403051234
@@ -394,7 +394,6 @@ TextureImporter:
       match3_sheet_93: 2053024727
       match3_sheet_55: 800998609
       match3_sheet_105: 2085010019
-      match3_sheet_109: 2038904539
       match3_sheet_1: -729211456
       match3_sheet_96: 1938621572
       match3_sheet_30: -1916959622
@@ -410,14 +409,15 @@ TextureImporter:
       match3_sheet_36: -2020448922
       match3_sheet_45: -1147658421
       match3_sheet_41: 423170038
-      match3_sheet_31: 1426990336
+      Red: 1426990336
+      Rock: -986593091
       match3_sheet_4: -1147755440
       match3_sheet_15: -727808169
       match3_sheet_97: 68838155
       match3_sheet_9: 1779991169
       match3_sheet_86: 86115594
+      match3_sheet_48: 1390333284
       match3_sheet_50: 1751758081
-      match3_sheet_110: 7836981
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

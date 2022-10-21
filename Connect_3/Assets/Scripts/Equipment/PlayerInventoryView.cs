@@ -14,34 +14,45 @@ public class PlayerInventoryView : MonoBehaviour
     [SerializeField]
     private EquipmentEvent _equipmentEvent;
     [SerializeField]
-    private PlayerInventory inventory;
+    private PlayerInventory _inventory;
     [SerializeField]
     private GameObject _buttonTemplate;
     [SerializeField]
     private GridLayoutGroup _itemGrid;
     [SerializeField]
-    private RectTransform viewport;
+    private RectTransform _viewport;
+
+    [SerializeField]
+    private SpritesheetLoader _iconsSheet;
+    [SerializeField]
+    private SpritesheetLoader _portraitSheet;
 
     List<GameObject> buttons = new List<GameObject>();
-
-    public List<Icon> icons;
 
     private void EquipmentEvent(ItemModel item, bool equipping)
     {
         if(equipping)
         {
-            inventory.items.Remove(item);
+            _inventory.items.Remove(item);
         }
         else
         {
-            inventory.items.Add(item);
+            _inventory.items.Add(item);
         }
         GenerateInventoryView();
     }
 
+    public Sprite GetIcon(string id)
+    {
+        return _iconsSheet.getSprite(id);
+    }
+    public Sprite GetPortrait(string id)
+    {
+        return _portraitSheet.getSprite(id);
+    }
     private void Start()
     {
-        float width = viewport.rect.width- (_itemGrid.padding.left+_itemGrid.padding.right+_itemGrid.spacing.x*(_itemGrid.constraintCount-1));
+        float width = _viewport.rect.width- (_itemGrid.padding.left+_itemGrid.padding.right+_itemGrid.spacing.x*(_itemGrid.constraintCount-1));
         float final_width = width / _itemGrid.constraintCount;
         Vector2 newSize = new Vector2(final_width, final_width);
         _itemGrid.cellSize = newSize;
@@ -54,32 +65,25 @@ public class PlayerInventoryView : MonoBehaviour
         {
            Destroy(button);
         }
-        for (int i = 0; i < inventory.items.Count; i++)
+        for (int i = 0; i < _inventory.items.Count; i++)
         {
             GameObject button = Instantiate(_buttonTemplate, _itemGrid.gameObject.transform);
-            button.GetComponent<ItemButton>().SetupButton(inventory.items[i]);
+            button.GetComponent<ItemButton>().SetupButton(_inventory.items[i]);
             buttons.Add(button);
         }
-    }
-
-    public Sprite getIcon(string id)
-    {
-        for(int i = 0;i<icons.Count;i++)
-        {
-            if (icons[i].id == id)
-            {
-                return icons[i].icon;
-            }
-        }
-        return null;
     }
     private void Awake()
     {
         _equipmentEvent.Event += EquipmentEvent;
+        _portraitSheet.Load();
+        _iconsSheet.Load();
     }
 
     private void OnDestroy()
     {
         _equipmentEvent.Event -= EquipmentEvent;
+        _portraitSheet.Unload();
+        _iconsSheet.Unload();
+
     }
 }

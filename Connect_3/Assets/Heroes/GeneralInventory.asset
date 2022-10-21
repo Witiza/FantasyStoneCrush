@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: GeneralInventory
   m_EditorClassIdentifier: 
   items:
-  - name: Sample Item No52
+  - name: Armored Trinket of the Conqueror
+    icon: Trinket
+    iconColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
     ItemMultipliers:
       CritChance: 0
+      NormalMultiplier: 0
+      CriticalMultiplier: 0.23887154
+      ManaGainMultiplier: 0
+  - name: Spiked Rings of the Rabbit
+    icon: Ring
+    iconColor: {r: 0.21226418, g: 0.21226418, b: 1, a: 1}
+    ItemMultipliers:
+      CritChance: 5
       NormalMultiplier: 0
       CriticalMultiplier: 0
       ManaGainMultiplier: 0
-  - name: Sample Item No59
-    ItemMultipliers:
-      CritChance: 0
-      NormalMultiplier: 0
-      CriticalMultiplier: 0
-      ManaGainMultiplier: 0.27069208

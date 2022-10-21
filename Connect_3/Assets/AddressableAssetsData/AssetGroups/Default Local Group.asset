@@ -26,11 +26,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: f70b79884c686024a860fc3238709227
-    m_Address: Heroes/HeroPortraits
+    m_Address: Heroes/Portraits
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 538e461ec6f54ad4ea0fe07bd157e635
-    m_Address: Heroes/Items
+    m_Address: Assets/Sprites/Heroes/Items.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7e69b4216759b954fb5f906a87eae4de
+    m_Address: Tiles
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58688b04dd27d3641a6de7d72a8b0c70
+    m_Address: ItemsAtlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f08fd6c6a6b7f54dab2d3fea476da1a
+    m_Address: HeroAtlas
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

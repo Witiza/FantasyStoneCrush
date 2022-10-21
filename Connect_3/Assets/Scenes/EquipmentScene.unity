@@ -1308,33 +1308,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _equipmentEvent: {fileID: 11400000, guid: 1a87af9a877afd049bea301a0c850a8d, type: 2}
-  inventory: {fileID: 11400000, guid: d8f748481329a57439528eda5dc9c71f, type: 2}
+  _inventory: {fileID: 11400000, guid: d8f748481329a57439528eda5dc9c71f, type: 2}
   _buttonTemplate: {fileID: 8648124183658171057, guid: e1be83beef0266d498f28855cf235b01, type: 3}
   _itemGrid: {fileID: 2143642438}
-  viewport: {fileID: 1050271138}
-  icons:
-  - icon: {fileID: 7482667652216324306, guid: d2af0b3a5bdad7a43836c07f888e1ade, type: 3}
-    id: Amulet
-  - icon: {fileID: 7482667652216324306, guid: 9c04672f1386e6749bfe1a66bf934f85, type: 3}
-    id: Bow
-  - icon: {fileID: 7482667652216324306, guid: a04052e0b347602488a9d45e07d0d7f3, type: 3}
-    id: Bracers
-  - icon: {fileID: 7482667652216324306, guid: 92175663a4b358d4ab07fb6f4b7b627d, type: 3}
-    id: Crown
-  - icon: {fileID: 7482667652216324306, guid: a013ff581faec284ebfa95da5693fee0, type: 3}
-    id: Daggers
-  - icon: {fileID: 7482667652216324306, guid: 735e1dc61259d71469f389864fd2df37, type: 3}
-    id: Mace
-  - icon: {fileID: -2413806693520163455, guid: 638526d6733ed944d91d303d679854b8, type: 3}
-    id: None
-  - icon: {fileID: 7482667652216324306, guid: 14b686ac639c5de488fded76e5c087b6, type: 3}
-    id: Rings
-  - icon: {fileID: 7482667652216324306, guid: e515f52c529539040a1c885f606fcb07, type: 3}
-    id: Shield
-  - icon: {fileID: 7482667652216324306, guid: ea77c6e80ec74db4c9e5c2657f87768b, type: 3}
-    id: Sword
-  - icon: {fileID: 7482667652216324306, guid: 3b498682a54dd5a45bcd16c288957a9b, type: 3}
-    id: Trinket
+  _viewport: {fileID: 597720768}
+  _iconsSheet:
+    iconSheet:
+      m_AssetGUID: 58688b04dd27d3641a6de7d72a8b0c70
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    defaultSprite: {fileID: 645031458, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
+  _portraitSheet:
+    iconSheet:
+      m_AssetGUID: 8f08fd6c6a6b7f54dab2d3fea476da1a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    defaultSprite: {fileID: 0}
 --- !u!1 &669308516
 GameObject:
   m_ObjectHideFlags: 0
