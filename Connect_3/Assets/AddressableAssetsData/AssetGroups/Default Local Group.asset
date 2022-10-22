@@ -16,35 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 6598078ea3e281a4b84f6fd230ac043b
-  m_SerializeEntries:
-  - m_GUID: 4d65edfabece5cd4cb3653f3e2e21b2b
-    m_Address: Levels/DefaultLevels
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7bd0bfe2beec4de47a3c88b1bf2615e5
-    m_Address: Levels/GameLevels
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f70b79884c686024a860fc3238709227
-    m_Address: Heroes/Portraits
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 538e461ec6f54ad4ea0fe07bd157e635
-    m_Address: Assets/Sprites/Heroes/Items.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7e69b4216759b954fb5f906a87eae4de
-    m_Address: Tiles
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 58688b04dd27d3641a6de7d72a8b0c70
-    m_Address: ItemsAtlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 8f08fd6c6a6b7f54dab2d3fea476da1a
-    m_Address: HeroAtlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 158e59a69db7b5a4a9651d892328149b, type: 2}
   m_SchemaSet:

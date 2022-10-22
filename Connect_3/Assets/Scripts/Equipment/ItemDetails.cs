@@ -38,6 +38,11 @@ public class ItemDetails : MonoBehaviour
         ChangeEquipButton();
     }
 
+    private void EquipmentEvent(ItemModel arg1, bool arg2)
+    {
+        ChangeEquipButton();
+    }
+
     public void SetupDetails(ItemModel model)
     {
         gameObject.SetActive(true);
@@ -64,31 +69,36 @@ public class ItemDetails : MonoBehaviour
             }
         }
     }
+
     bool ItemEquipped()
     {
         return _currentHero.HasItem(_currentItem);
     }
+
     public void EquipOrUnequip()
     {
         if(ItemEquipped())
         {
             equipOrUnequipItem.NotifyEvent(_currentItem, false);
         }
-        else if(_currentHero.Inventory.items.Count<=4)
+        else if(_currentHero.Inventory.items.Count<4)
         {
             equipOrUnequipItem.NotifyEvent(_currentItem, true);
         }
         ChangeEquipButton();
         gameObject.SetActive(false);
     }
+
     private void Awake()
     {
         _heroSelected.Event += HeroSelectedEvent;
+        equipOrUnequipItem.Event += EquipmentEvent;
         gameObject.SetActive(false);
     }
 
     private void OnDestroy()
     {
         _heroSelected.Event -= HeroSelectedEvent;
+        equipOrUnequipItem.Event -= EquipmentEvent;
     }
 }

@@ -48,9 +48,9 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 1866427650, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
   - {fileID: 522370438, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
   - {fileID: 1012589509, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
+  - {fileID: 1866427650, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
   - {fileID: 1793760338, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
   - {fileID: -124687781, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
   - {fileID: -1413386004, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
@@ -60,9 +60,9 @@ SpriteAtlas:
   - {fileID: -341753912, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
   - {fileID: -469433291, guid: 538e461ec6f54ad4ea0fe07bd157e635, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Necklace
   - Axe
   - Trinket
+  - Amulet
   - Crown
   - Sword
   - Bow

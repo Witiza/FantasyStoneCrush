@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using TMPro;
+using UnityEngine.AddressableAssets;
 
 
 public class ServicesController : MonoBehaviour
@@ -22,7 +23,6 @@ public class ServicesController : MonoBehaviour
 
     public void Awake()
     {
-
         _cancellationTaskSource = new();      
         LoadServicesCancellable().ContinueWith(task =>
                     Debug.LogException(task.Exception),

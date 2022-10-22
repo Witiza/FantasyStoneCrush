@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Necklace
+      name: Amulet
       rect:
         serializedVersion: 2
         x: 16
@@ -372,9 +372,9 @@ TextureImporter:
       Trinket: 1012589509
       Crown: 1793760338
       Mace: -995678993
+      Amulet: 1866427650
       Sword: -124687781
       None: 645031458
-      Necklace: 1866427650
       Axe: 522370438
       Shield: -469433291
       Ring: -341753912

@@ -14,7 +14,15 @@ public class RemoteLevelProvider:ILevelProvider
     public async Task<bool> Initialize()
     {
         RemoteGameConfigService config = ServiceLocator.GetService<RemoteGameConfigService>();
-        levels = (await Addressables.LoadAssetAsync<LevelList>(config.Get("LevelsPath",defaultPath)).Task).levels;
+        int level_amount = config.Get("LevelAmount", 0);
+        string name = "";
+        for(int i = 0;i<level_amount;i++)
+        {
+            name = "Level" + i.ToString();
+            BoardConfig boardConfig = await Addressables.LoadAssetAsync<BoardConfig>(name).Task;
+            levels.Add(boardConfig);
+        }
+        //levels = (await Addressables.LoadAssetAsync<LevelList>(config.Get("LevelsPath",defaultPath)).Task).levels;
 
         #region RemoteConfigAttempt
         //This works but the devs should add each level manually, which sucks.
