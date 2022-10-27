@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 6598078ea3e281a4b84f6fd230ac043b
+  m_DefaultGroup: 5cba9c6c17e9d494a887a7175d9166de
   m_CachedHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -34,16 +34,16 @@ MonoBehaviour:
   m_MonoScriptBundleNaming: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: b160ca718a8493a4e87a2dd3df4fd1ba
+    m_Id: 24bdf1243a42fa04abac13d8dad8bf18
   m_RemoteCatalogLoadPath:
-    m_Id: 22a0da2fcbc44de45864cf8686cd8d6f
+    m_Id: fdce2056b208a0a43acea9d3e291ac5e
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: 
   m_GroupAssets:
-  - {fileID: 11400000, guid: 09bdc8d64f1d7a246990e7891bd98a2e, type: 2}
-  - {fileID: 11400000, guid: 11ed9879628b2f54aa16eea23e8acbac, type: 2}
-  - {fileID: 11400000, guid: c0d929429134e424c834753c4c8b1a07, type: 2}
+  - {fileID: 11400000, guid: d893110e77ba135478b5dcd571c874c4, type: 2}
+  - {fileID: 11400000, guid: eeffb83c9313b67479b1f2cb09915c04, type: 2}
+  - {fileID: 11400000, guid: 7a5c626bd4112e9459bcdf22e91ebb64, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -52,33 +52,33 @@ MonoBehaviour:
   m_ProfileSettings:
     m_Profiles:
     - m_InheritedParent: 
-      m_Id: d86975ca8140e0145a4cc31322eaa3d6
+      m_Id: 05c6db8084c4d5541aa0066f6e9be73b
       m_ProfileName: Default
       m_Values:
-      - m_Id: ea94a72b90a62a8499cca109556b9315
+      - m_Id: b8c32cfd17a05a04ea445c657df99346
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: 2a4bea530f7ca8b4c99539c287ff4c7d
+      - m_Id: dc54954318ad181438407dac44b6770c
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: 3bf316cbdfffb474d94f9705e57c731d
+      - m_Id: 15dc76703f3b3d245b6d2f4565342c70
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: b160ca718a8493a4e87a2dd3df4fd1ba
+      - m_Id: 24bdf1243a42fa04abac13d8dad8bf18
         m_Value: CCDBuildData/cc98c473-5326-4aa2-93f3-188b7dab1175/latest
-      - m_Id: 22a0da2fcbc44de45864cf8686cd8d6f
+      - m_Id: fdce2056b208a0a43acea9d3e291ac5e
         m_Value: https://8e8d5eb2-5409-43a3-9f4d-10809cb91ada.client-api.unity3dusercontent.com/client_api/v1/buckets/cc98c473-5326-4aa2-93f3-188b7dab1175/release_by_badge/latest/entry_by_path/content/?path=
     m_ProfileEntryNames:
-    - m_Id: ea94a72b90a62a8499cca109556b9315
+    - m_Id: b8c32cfd17a05a04ea445c657df99346
       m_Name: BuildTarget
       m_InlineUsage: 0
-    - m_Id: 2a4bea530f7ca8b4c99539c287ff4c7d
+    - m_Id: dc54954318ad181438407dac44b6770c
       m_Name: Local.BuildPath
       m_InlineUsage: 0
-    - m_Id: 3bf316cbdfffb474d94f9705e57c731d
+    - m_Id: 15dc76703f3b3d245b6d2f4565342c70
       m_Name: Local.LoadPath
       m_InlineUsage: 0
-    - m_Id: b160ca718a8493a4e87a2dd3df4fd1ba
+    - m_Id: 24bdf1243a42fa04abac13d8dad8bf18
       m_Name: Remote.BuildPath
       m_InlineUsage: 0
-    - m_Id: 22a0da2fcbc44de45864cf8686cd8d6f
+    - m_Id: fdce2056b208a0a43acea9d3e291ac5e
       m_Name: Remote.LoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
@@ -87,49 +87,20 @@ MonoBehaviour:
     - default
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
-  - {fileID: 11400000, guid: 9e5c5247f0469ec43b76650f387e60b1, type: 2}
+  - {fileID: 11400000, guid: dee513869f26a714aa007aee68e255a0, type: 2}
   m_InitializationObjects: []
   m_CertificateHandlerType:
     m_AssemblyName: 
     m_ClassName: 
   m_ActivePlayerDataBuilderIndex: 3
   m_DataBuilders:
-  - {fileID: 11400000, guid: ef70c5e1e5210a240a438e28e1437e7c, type: 2}
-  - {fileID: 11400000, guid: a1b702d84b63bdc4aa9cb00c6fdd3229, type: 2}
-  - {fileID: 11400000, guid: 8b9d02964e3e29646836831bfe5f43c1, type: 2}
-  - {fileID: 11400000, guid: d46a98725bbfab442847f6e60b6c24d6, type: 2}
-  m_ActiveProfileId: d86975ca8140e0145a4cc31322eaa3d6
+  - {fileID: 11400000, guid: fa528b034b4755a48bf40c36a3002dc8, type: 2}
+  - {fileID: 11400000, guid: 378cddc97b4d6da4aa16aa6d9f69f0b5, type: 2}
+  - {fileID: 11400000, guid: a2b5370d0c0ab3944b951f6a82e13052, type: 2}
+  - {fileID: 11400000, guid: eabe5184b5033ef418486eeea9469409, type: 2}
+  m_ActiveProfileId: 05c6db8084c4d5541aa0066f6e9be73b
   m_HostingServicesManager:
-    m_HostingServiceInfos:
-    - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
-        Unity.Addressables.Editor
-      dataStore:
-        m_SerializedData:
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Int32
-          m_Data: 0
-          m_Key: HostingServicePort
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Int32
-          m_Data: 0
-          m_Key: HostingServiceUploadSpeed
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Android/Android
-          m_Key: ContentRoot
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Boolean
-          m_Data: False
-          m_Key: IsEnabled
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.String
-          m_Data: Local Hosting 0
-          m_Key: DescriptiveName
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Int32
-          m_Data: 0
-          m_Key: InstanceId
+    m_HostingServiceInfos: []
     m_Settings: {fileID: 11400000}
-    m_NextInstanceId: 1
-    m_RegisteredServiceTypeRefs:
-    - UnityEditor.AddressableAssets.HostingServices.HttpHostingService, Unity.Addressables.Editor
+    m_NextInstanceId: 0
+    m_RegisteredServiceTypeRefs: []

@@ -24,17 +24,17 @@ public  class ShopItemModel
 
     public bool canBuy(PlayerProgressionService player)
     {
-        bool ret = true;
+        bool ret = false;
         switch (type)
         {
             case CostType.COINS:
-                if (player.Coins < cost)
+                if (player.Coins >= cost)
                 {
                     ret = true;
                 }
                 break;
             case CostType.GEMS:
-                if (player.Gems < cost)
+                if (player.Gems >= cost)
                 {
                     ret = true;
                 }

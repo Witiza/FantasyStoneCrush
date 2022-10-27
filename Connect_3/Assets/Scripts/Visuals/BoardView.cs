@@ -55,7 +55,7 @@ public class BoardView : MonoBehaviour
         _progressionProviderService = ServiceLocator.GetService<GameSaveService>();
         _analyticsService.SendEvent("LevelStarted", new Dictionary<string, object> { ["CurrentLevel"] = PlayerProgression.CurrentLevel });
         InitializeTexts();
-        HandleTutorial();
+       // HandleTutorial();
     }
 
     void HandleTutorial()

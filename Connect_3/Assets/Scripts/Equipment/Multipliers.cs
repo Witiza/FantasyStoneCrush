@@ -16,6 +16,7 @@ public class Multipliers
         CriticalMultiplier = 0;
         ManaGainMultiplier = 0;
     }
+
     public int CritChance = 10;
     public float NormalMultiplier = 4;
     public float CriticalMultiplier = 8;

@@ -27,4 +27,4 @@ EditorBuildSettings:
     path: Assets/Scenes/CreditsScene.unity
     guid: 9b80a1e92078f8f4c9b107ef1dcfe350
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: 7bcd3583cf7296a46bd8d393916b7df4, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: f12ee89ead281a64ba76ec7061ec5a05, type: 2}

@@ -62,7 +62,7 @@ public class ShopItemView : MonoBehaviour
     {
         if(IAPService.IsReady)
         {
-            cost.text = IAPService.GetLocalizedPrice("Test1");
+            cost.text = IAPService.GetLocalizedPrice(model.name);
         }
         else
         {
@@ -104,7 +104,7 @@ public class ShopItemView : MonoBehaviour
                     }
                     break;
                 case CostType.MONEY:
-                    if(IAPService.Initialized && await IAPService.StartPurchase("Test1"))
+                    if(IAPService.Initialized && await IAPService.StartPurchase(model.name))
                     {
                         boughtEvent.NotifyEvent(model.id);
                     }
